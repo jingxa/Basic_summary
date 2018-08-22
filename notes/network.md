@@ -17,8 +17,8 @@
 [^_^]:
 	以下是引用
 	[OSI_tcp_five]: https://github.com/CyC2018/CS-Notes/blob/master/pics/426df589-6f97-4622-b74d-4a81fcb1da8e.png
-	[osi]: /pics/osi7.png
-	[tcp_ip]: /pics/tcpip.png
+	[osi]: /pics/network/osi7.png
+	[tcp_ip]: /pics/network/tcpip.png
 	[tcp_ip_protocol]: https://github.com/CyC2018/CS-Notes/raw/master/pics/d4eef1e2-5703-4ca4-82ab-8dda93d6b81f.png
 
 
@@ -51,9 +51,9 @@
 	以下是引用
 	[数据链路层详解]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
 	[数据链路层]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
-	[frame]: /pics/frame.png
-	[pppframe]: /pics/pppframe.png
-	[macFrame]: /pics/macframe.png
+	[frame]: /pics/network/frame.png
+	[pppframe]: /pics/network/pppframe.png
+	[macFrame]: /pics/network/macframe.png
 	
 - 实现网卡接口的网络驱动程序，处理数据在物理媒介上的传输。
 - 两个常用的协议：
@@ -147,7 +147,7 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 [^_^]:
 	以下是引用
-	[icmp]: /pics/icmp.png
+	[icmp]: /pics/network/icmp.png
 	[icmp详解]: https://blog.csdn.net/jxch____/article/details/78876995
 
 	
@@ -188,9 +188,9 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 [^_^]:
 	以下是引用
-	[pic_frame_encap]: /pics/frame_encap.png
-	[pic_macframe_encap]: /pics/macframe_encap.jpg
-	[pic_frame_demulti]: /pics/frame_demulti.png
+	[pic_frame_encap]: /pics/network/frame_encap.png
+	[pic_macframe_encap]: /pics/network/macframe_encap.jpg
+	[pic_frame_demulti]: /pics/network/frame_demulti.png
 
 
 
@@ -234,7 +234,7 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 [^_^]:
 	以下是引用
-	[pic_ipv4]: /pics/ipv4.png
+	[pic_ipv4]: /pics/network/ipv4.png
 	
 	
 #### 特点
@@ -302,7 +302,7 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 [^_^]:
 	以下是引用
-	[pic_arp]: /pics/arp.png
+	[pic_arp]: /pics/network/arp.png
 	
 ARP协议实现 任意网络层地址到任意物理地址的转换
 工作原理：
@@ -332,7 +332,7 @@ ARP协议实现 任意网络层地址到任意物理地址的转换
 
 [^_^]:
 	以下是引用
-	[pic_dns]: /pics/dns.png
+	[pic_dns]: /pics/network/dns.png
 
 
 #### dns 查询和应答报文
