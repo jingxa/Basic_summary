@@ -20,53 +20,51 @@
 ## 从封装变化角度对模式分类
 
 
-#### [零、组件协作](#1-组件协作)
-- Template Method
-- Observer / Event
-- Stratagy
+#### [一、组件协作](#1-组件协作)
+- [1.1 Template Method](#1.1-template-method)
+- [1.2 Observer/Event](#1.2-observer)
+- [1.3 Stratagy](#1.3-strategy)
 
-#### [一、单一职责](#2-单一职责)
-- Decorator
-- Bridge
-
-
-#### [二、对象创建](#3-对象创建)
-- Factory Method
-- Abstract Factory
-- Prototype
-- Builder
+#### [二、单一职责](#2-单一职责)
+- [2.1 Decorator](#2.1-decorator)
+- [2.2 Bridge](#2.2-bridge)
 
 
-#### [三、对象性能](#4-对象性能)
-- Singleton
-- Flyweight
+#### [三、对象创建](#3-对象创建)
+- [3.1 Factory Method](#3.1-factory-method)
+- [3.2 Abstract Factory](#3.2-abstract-facotory)
+- [3.3 Prototype](#3.3-prototype)
+- [3.4 Builder](#3.4-builder)
+
+#### [四、对象性能](#4-对象性能)
+- [4.1 Singleton](#4.1-singleton)
+- [Flyweight](#4.2-flyweight)
 
 
-#### [四、接口隔离](#5-接口隔离)
-- Facade
-- Proxy
-- Mediator
-- Adapter
+#### [五、接口隔离](#5-接口隔离)
+- [5.1 Facade](#5.1-facade)
+- [5.2 Proxy](#5.2-proxy)
+- [5.3 Mediator](#5.3-mediator)
+- [5.4 Adapter](#5.4-adapter)
 
-#### [五、状态变化](#6-状态变化)
-- Memento
-- State
-
-
-#### [六、数据结构](#7-数据结构)
-- Composite
-- Iterator
-- Chain of
-- Responsibility
-
-#### [七、行为变化](#8-行为变化)
-- Command
-- Visitor
+#### [六、状态变化](#6-状态变化)
+- [6.1 Memento](#6.1-memento)
+- [6.2 State](#6.2-state)
 
 
-#### [八、领域问题](#9-领域问题)
-- Interpreter
+#### [七、数据结构](#7-数据结构)
+- [7.1 Composite](#7.1-compositer)
+- [7.2 Iterator](#7.2-iterator)
+- [7.3 Chain of](#7.3-chain-of)
+- [7.4 Responsibility](#7.4-responsibility)
 
+#### [八、行为变化](#8-行为变化)
+- [8.1 Command](#8.1-command)
+- [8.2 Visitor](#8.2-visitor)
+
+
+#### [九、领域问题](#9-领域问题)
+- [9.1 Interpreter](#9.1-interpreter)
 
 
 
@@ -75,13 +73,19 @@
 	[pic_template_mothed]: /pics/pattern/template_method.png
 	[pic_strategy]: /pics/pattern/strategy.png
 	[pic_observer]: /pics/pattern/observer.png
+	
+
+[^_^]:	
 	二、对象创建
 	三、对象性能
 	四、接口隔离
 	五、状态变化
 	
+	
+	
+	
 ---
-# 1.组件协作
+# 1. 组件协作
 
 - 现在软件专业分工之后的第一个结果：“框架与应用程序的划分”，“组件协作”模式通过晚期绑定，来实现框架与应用程序直接的松耦合，是二者之间的写作时常用的模式。
 
@@ -94,6 +98,8 @@
 
 #### 实现
 - 可以采用继承的方式，将某些通用函数作为虚函数，在子类重写；
+
+<details><summary>**具体实现**</summary>
 
 ```c++
 class Library{
@@ -137,9 +143,10 @@ int main(){
 }
 ```
 
+</details>
 
 
-## 1.2 Observer/Event
+## 1.2 Observer
 定义
 - 对象间的一种一对多(变化)的依赖关系， 以便当一个对象的状态发生改变的时候，所有依赖于它的对象都得到通知并自动更新。 
 
@@ -156,6 +163,7 @@ int main(){
 - Subject:具有注册和移除、通知观察者的功能；
 - Observer： 每个具体的对象执行各自的具体行为
 
+<details><summary>**具体实现**</summary>
 
 ```c++
 // Subject
@@ -241,7 +249,7 @@ int main(){
 
 ```
 
-
+</details>
 
 
 
@@ -256,8 +264,7 @@ int main(){
 #### 实现
 - 子类的具体行为不同，但是继承父类的接口相同；
 
-
-
+<details><summary>**具体实现**</summary>
 
 ```c++
 /*
@@ -317,16 +324,17 @@ public:
 };
 
 ```
+</details>
 
 
+# 2. 单一职责
 
-# 2.单一职责
 ## 2.1 Decorator
 
 ## 2.2 Bridge
 
 
-# 3.对象创建
+# 3. 对象创建
 
 ## 3.1 Factory Method
 
@@ -337,6 +345,35 @@ public:
 ## 3.4 Builder
 
 
+
+# 4. 对象性能
+## 4.1 Singleton
+## 4.2 Flyweight
+
+
+# 5. 接口隔离
+## 5.1 Facade
+## 5.2 Proxy
+## 5.3 Mediator
+## 5.4 Adapter
+
+
+# 6. 状态变化
+## 6.1 Memento
+## 6.2 State
+# 7. 数据结构
+## 7.1 Composite
+## 7.2 Iterator
+## 7.3 Chain of
+## 7.4 Responsibility
+
+
+# 8. 行为变化
+## 8.1 Command
+## 8.2 Visitor
+
+# 9. 领域问题
+## 9.1 Interpreter
 
 
  
