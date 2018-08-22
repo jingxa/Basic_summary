@@ -25,7 +25,7 @@
 - Observer / Event
 - Stratagy
 
-#### [一、单一职责]](#2-单一职责)
+#### [一、单一职责](#2-单一职责)
 - Decorator
 - Bridge
 
@@ -69,13 +69,17 @@
 
 
 
+
 [^_^]:
-	以下为图片引用
-	1、组件协作
+	一、组件协作
 	[pic_template_mothed]: /pics/pattern/template_method.png
 	[pic_strategy]: /pics/pattern/strategy.png
 	[pic_observer]: /pics/pattern/observer.png
-
+	二、对象创建
+	三、对象性能
+	四、接口隔离
+	五、状态变化
+	
 ---
 # 1.组件协作
 
@@ -318,13 +322,18 @@ public:
 
 # 2.单一职责
 ## 2.1 Decorator
+
 ## 2.2 Bridge
 
 
 # 3.对象创建
+
 ## 3.1 Factory Method
+
 ## 3.2 Abstract Factory
+
 ## 3.3 Prototype
+
 ## 3.4 Builder
 
 
