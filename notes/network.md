@@ -87,7 +87,9 @@
 ![frame]
 
 - 以太网帧
+
 ![macFrame]
+
 - 帧部：18字节
 - MTU: 46-1500字节；
 
@@ -137,10 +139,12 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 
 ## 1.4 网络层
+
 [^_^]:
 	[icmp]: /pics/icmp.png
 	[icmp详解]: https://blog.csdn.net/jxch____/article/details/78876995
 
+	
 - 实现数据包的选路和转发。
 - 网络层的主要协议：
 	- IP协议
@@ -148,6 +152,7 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 
 #### ICMP 
+
 - [icmp详解]
 
 - 格式
