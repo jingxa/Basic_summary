@@ -21,50 +21,50 @@
 
 
 #### [一、组件协作](#1-组件协作)
-- [1.1 Template Method](#1.1-template-method)
-- [1.2 Observer/Event](#1.2-observer)
-- [1.3 Stratagy](#1.3-strategy)
+- [1.1 Template Method](#11-template-method)
+- [1.2 Observer/Event](#12-observer)
+- [1.3 Stratagy](#13-strategy)
 
 #### [二、单一职责](#2-单一职责)
-- [2.1 Decorator](#2.1-decorator)
-- [2.2 Bridge](#2.2-bridge)
+- [2.1 Decorator](#21-decorator)
+- [2.2 Bridge](#22-bridge)
 
 
 #### [三、对象创建](#3-对象创建)
-- [3.1 Factory Method](#3.1-factory-method)
-- [3.2 Abstract Factory](#3.2-abstract-facotory)
-- [3.3 Prototype](#3.3-prototype)
-- [3.4 Builder](#3.4-builder)
+- [3.1 Factory Method](#31-factory-method)
+- [3.2 Abstract Factory](#32-abstract-facotory)
+- [3.3 Prototype](#33-prototype)
+- [3.4 Builder](#34-builder)
 
 #### [四、对象性能](#4-对象性能)
-- [4.1 Singleton](#4.1-singleton)
-- [Flyweight](#4.2-flyweight)
+- [4.1 Singleton](#41-singleton)
+- [Flyweight](#42-flyweight)
 
 
 #### [五、接口隔离](#5-接口隔离)
-- [5.1 Facade](#5.1-facade)
-- [5.2 Proxy](#5.2-proxy)
-- [5.3 Mediator](#5.3-mediator)
-- [5.4 Adapter](#5.4-adapter)
+- [5.1 Facade](#51-facade)
+- [5.2 Proxy](#52-proxy)
+- [5.3 Mediator](#53-mediator)
+- [5.4 Adapter](#54-adapter)
 
 #### [六、状态变化](#6-状态变化)
-- [6.1 Memento](#6.1-memento)
-- [6.2 State](#6.2-state)
+- [6.1 Memento](#61-memento)
+- [6.2 State](#62-state)
 
 
 #### [七、数据结构](#7-数据结构)
-- [7.1 Composite](#7.1-compositer)
-- [7.2 Iterator](#7.2-iterator)
-- [7.3 Chain of](#7.3-chain-of)
-- [7.4 Responsibility](#7.4-responsibility)
+- [7.1 Composite](#71-compositer)
+- [7.2 Iterator](#72-iterator)
+- [7.3 Chain of](#73-chain-of)
+- [7.4 Responsibility](#74-responsibility)
 
 #### [八、行为变化](#8-行为变化)
-- [8.1 Command](#8.1-command)
-- [8.2 Visitor](#8.2-visitor)
+- [8.1 Command](#81-command)
+- [8.2 Visitor](#82-visitor)
 
 
 #### [九、领域问题](#9-领域问题)
-- [9.1 Interpreter](#9.1-interpreter)
+- [9.1 Interpreter](#91-interpreter)
 
 
 
@@ -99,7 +99,7 @@
 #### 实现
 - 可以采用继承的方式，将某些通用函数作为虚函数，在子类重写；
 
-<details><summary>**具体实现**</summary>
+<details><summary><b>具体实现</b></summary>
 
 ```c++
 class Library{
@@ -163,7 +163,7 @@ int main(){
 - Subject:具有注册和移除、通知观察者的功能；
 - Observer： 每个具体的对象执行各自的具体行为
 
-<details><summary>**具体实现**</summary>
+<details><summary><b>具体实现</b></summary>
 
 ```c++
 // Subject
@@ -264,7 +264,7 @@ int main(){
 #### 实现
 - 子类的具体行为不同，但是继承父类的接口相同；
 
-<details><summary>**具体实现**</summary>
+<details><summary><b>具体实现</b></summary>
 
 ```c++
 /*
@@ -329,51 +329,236 @@ public:
 
 # 2. 单一职责
 
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 2.1 Decorator
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 ## 2.2 Bridge
 
 
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 # 3. 对象创建
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 ## 3.1 Factory Method
 
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
+
 ## 3.2 Abstract Factory
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 
 ## 3.3 Prototype
 
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
+
 ## 3.4 Builder
 
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 
 # 4. 对象性能
+
 ## 4.1 Singleton
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 4.2 Flyweight
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 
 # 5. 接口隔离
+
 ## 5.1 Facade
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 5.2 Proxy
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 5.3 Mediator
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
+
 ## 5.4 Adapter
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 
 # 6. 状态变化
+
+
 ## 6.1 Memento
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 6.2 State
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
+
+
 # 7. 数据结构
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 7.1 Composite
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 7.2 Iterator
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
+
 ## 7.3 Chain of
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
+
 ## 7.4 Responsibility
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 
 # 8. 行为变化
+
 ## 8.1 Command
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
+
 ## 8.2 Visitor
+
+#### 结构
+
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
 # 9. 领域问题
 ## 9.1 Interpreter
+#### 结构
 
+#### 实现
+
+<details><summary><b>具体实现</b></summary>
+</details>
 
  
