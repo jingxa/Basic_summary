@@ -17,12 +17,13 @@
 
 #### [4.UDP协议](#4-udp协议)
 
-#### [5.SCTP协议](#4-sctp协议)
+#### [5.SCTP协议](#5-sctp协议)
 
-#### [6.ARP协议](#5-arp协议)
+#### [6.ARP协议](#6-arp协议)
 
-#### [7.DNS协议](#6-dns协议)
+#### [7.DNS协议](#7-dns协议)
 
+#### [8.参考文献](#参考文献)
 
 
 ---
@@ -82,7 +83,7 @@
 2. 广播信道，一对多的广播通信方式
 
 - 通常使用的多是点对点的信道
-	- HDLC协议[^1]： 面向比特流的
+	- HDLC协议： 面向比特流的
 	- PPP协议： 面向字节流的
 	- HDLC在控制字段中提供了可靠的确认机制，因此它可以实现可靠传输，而PPP则不提供可靠传输
 	- 全世界使用得最多的数据链路层协议是PPP协议
@@ -95,7 +96,7 @@
 
 #### 以太网帧
 
-以太网帧格式[^2]：
+以太网帧格式：
 - 类型 ：标记上层使用的协议；
 - 数据 ：长度在46-1500 之间，如果太小则需要填充；
 - FCS ：帧检验序列，使用的是 CRC 检验方法；
@@ -109,7 +110,7 @@
 
 #### ppp 帧
 
-PPP 的帧格式[^2]：
+PPP 的帧格式：
 - F 字段为帧的定界符
 - A 和 C 字段暂时没有意义
 - FCS 字段是使用 CRC 的检验序列
@@ -179,8 +180,6 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 	- IGMP协议（Internet Group Management Protocol, 网际组管理协议）
 
 ### ICMP协议
-
-- 参考[^3]
 
 - 格式
 
@@ -368,7 +367,7 @@ CIDR 的地址掩码可以继续称为子网掩码，子网掩码首 1 长度为
 
 ---
 
-# 3. TCP
+# 3. TCP协议
 
 [^_^]:	
 	TCP引用
@@ -701,11 +700,11 @@ TCP的发送有以下几种结果：
 
 ---
 
-# 4. UDP
+# 4. UDP协议
 
 ---
 
-# 5. SCTP
+# 5. SCTP协议
 
 
 
@@ -744,7 +743,7 @@ ARP协议实现 任意网络层地址到任意物理地址的转换
 	
 	
 ---
-# 7. DNS 协议
+# 7. DNS协议
 
 [^_^]:
 	以下是引用
@@ -765,9 +764,9 @@ ARP协议实现 任意网络层地址到任意物理地址的转换
 
 
 # 参考文献
-[^1]: [数据链路层详解]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
-[^2]: [数据链路层]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
-[^3]: [icmp详解]: https://blog.csdn.net/jxch____/article/details/78876995
+1. [数据链路层详解]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
+2. [数据链路层]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
+3. [icmp详解]: https://blog.csdn.net/jxch____/article/details/78876995
 
 
 
