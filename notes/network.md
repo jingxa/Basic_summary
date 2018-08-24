@@ -485,7 +485,7 @@ SYN攻击不能完全被阻止，除非将TCP协议重新设计。我们所做�
 
 ---
 
-###(4) ddos
+### (4)ddos
 
 #### DDos 攻击
 
@@ -762,6 +762,7 @@ TCP的发送有以下几种结果：
 # 4. UDP协议
 
 [^_^]:
+	UDP引用
 	[pic_udp]: https://github.com/CyC2018/CS-Notes/blob/master/pics/d4c3a4a1-0846-46ec-9cc3-eaddfca71254.jpg
 	[pic_udp_service]: /pics/network/udp_service.png
 		
@@ -822,6 +823,7 @@ TCP (Transmission Control Protocol)和UDP(User Datagram Protocol)协议属于传
 # 5. SCTP协议
 
 [^_^]:
+	SCTP引用
 	[pic_multi_homing]: /pics/network/multi_homing.gif
 	[pic_multi_stream]: /pics/network/multi_stream.gif
 	[pic_init_protect]: /pics/network/init_protect.gif
@@ -956,8 +958,11 @@ ARP协议实现 任意网络层地址到任意物理地址的转换
 
 
 # 参考文献
+
 1. [数据链路层详解]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
+
 2. [数据链路层]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
+
 3. [icmp详解]: https://blog.csdn.net/jxch____/article/details/78876995
 
 4. [笔试面试知识整理](https://hit-alibaba.github.io/interview/basic/network/TCP.html)
