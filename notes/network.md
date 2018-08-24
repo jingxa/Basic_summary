@@ -959,11 +959,11 @@ ARP协议实现 任意网络层地址到任意物理地址的转换
 
 # 参考文献
 
-1. [数据链路层详解]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
+1. [数据链路层详解](https://blog.csdn.net/xiongqiaochu/article/details/65653132)
 
-2. [数据链路层]: https://blog.csdn.net/xiongqiaochu/article/details/65653132
+2. [数据链路层](https://blog.csdn.net/xiongqiaochu/article/details/65653132)
 
-3. [icmp详解]: https://blog.csdn.net/jxch____/article/details/78876995
+3. [icmp详解](https://blog.csdn.net/jxch____/article/details/78876995)
 
 4. [笔试面试知识整理](https://hit-alibaba.github.io/interview/basic/network/TCP.html)
 
