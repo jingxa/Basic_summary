@@ -485,19 +485,75 @@ public:
 
 ## 3.2 435. Non-overlapping Intervals (Medium)
 
+- 删除重复区间，保留最小的区间，即留下最多区间数
+
+- 利用区间的结尾，排序
+- 然后比较后一个区间的开头和当前区间的结尾，只要后面区间区间的开头在当前区间内，寻找到不在区间的内部的开头，
+- 计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。
+
+
+
 <details><summary>code</summary>
 
 ```
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+class Solution {
+public:
+    int eraseOverlapIntervals(vector<Interval>& num) {
+        if(num.empty())
+            return 0;
+        
+        sort(num.begin(), num.end() , comp);
+        
+        int len = num.size();
+        int cnt = 1;
+        int end = num[0].end;
+        
+        for(int i=1;i<len;i++)
+        {
+            if(num[i].start < end)
+            {
+                continue;
+            }
+            cnt++;
+            end = num[i].end;
+        }
+        return len - cnt;
+        
+    }
+    
+static    bool comp(Interval a, Interval b){
+        if(a.end < b.end)
+            return true;
+        
+        return false;
+    }
+    
+};
 ```
 
 </details>
 
-## 3.3
+## 3.3 452. Minimum Number of Arrows to Burst Balloons (Medium)
 
+- [452](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/)
+
+- 二维坐标，表示x轴上的位置起点和终点，但是，箭头只能垂直射入，最小能够射破气球的箭头数
+- 计算不重叠的区域个数
 
 <details><summary>code</summary>
 
+
 ```
+
 
 ```
 

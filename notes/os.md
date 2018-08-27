@@ -687,6 +687,8 @@ int mkfifoat(int fd, const char *path, mode_t mode);
 - 它与RAID 3不同的是它在分区时是以区块为单位分别存在硬盘中，但每次的数据访问都必须从同比特检查的那个硬盘中取出对应的同比特数据进行核对，由于过于频繁的使用，所以对硬盘的损耗可能会提高。（块交织技术，Block interleaving）
 
 
+
+
 #### 注意： RAID 2/3/4 在实际应用中很少使用
 
 #### RAID 5
