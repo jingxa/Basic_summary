@@ -553,7 +553,39 @@ static    bool comp(Interval a, Interval b){
 
 
 ```
-
+class Solution {
+public:
+    int findMinArrowShots(vector<pair<int, int>>& points) {
+        if(points.empty())
+            return 0;
+        
+        sort(points.begin(), points.end(), comp);
+        int len = points.size();
+        int cnt =1;
+        int end = points[0].second;
+        
+        for(int i=1;i<len;i++){
+            if(points[i].first <= end){
+                continue;
+            }
+            cnt++;
+            end = points[i].second;
+          //  cout<<"i:"<<i<<" "<<points[i].first<<endl;
+        }
+        return cnt;
+        
+        
+        
+    }
+    
+    
+ static   bool comp(pair<int,int>& a,pair<int,int>&b ){
+        if (a.second < b.second)
+            return true;
+        return false;
+    }
+    
+};
 
 ```
 
