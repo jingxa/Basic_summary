@@ -73,8 +73,18 @@
 	[pic_template_mothed]: /pics/pattern/template_method.png
 	[pic_strategy]: /pics/pattern/strategy.png
 	[pic_observer]: /pics/pattern/observer.png
-	
 
+	
+[^_^]:
+	二、单一职责
+	[pic_decorator]: /pics/pattern/decorator.png
+	[pic_bridge]: /pics/pattern/bridge.png
+	
+[^_^]:
+	三、对象创建
+	[pic_factory]: /pics/pattern/factory.png
+	
+	
 [^_^]:	
 	二、对象创建
 	三、对象性能
@@ -330,32 +340,205 @@ public:
 # 2. 单一职责
 
 #### 结构
+- 在软件组件的设计中，如果责任划分的不清晰，使用继承得到的结果往往是随着需求的变化，子类极具膨胀，同时充斥着重复代码，这是的关键是划清楚**责任**
 
-#### 实现
-
-<details><summary><b>具体实现</b></summary>
-</details>
+- 典型模式
+	- Decorator 装饰器模式
+	- Bridge : 桥接模式
 
 ## 2.1 Decorator
 
+- 动态(组合)地给一个对象增加一些额外的职责，就增加功能而言， Decorator模式比生成子类（继承）更为灵活(消除重复代码 ，减小子类个数)
 #### 结构
+
+![pic_decorator]
 
 #### 实现
 
+- 通过对象的组合达到这种效果
+- 实现一个基本的NetWorkStream类
+- 通过在另一个CryptoStream类中封装一个 NetWorkStream, 在添加额外的功能
+
 <details><summary><b>具体实现</b></summary>
+
+```
+// 基类
+class stream{
+public:
+	virtual int read(char* buffer, int num) =0;
+	
+	virtual ~stream(){ }
+};
+
+
+// 网络流
+
+class NetWorkStream : public stream{
+
+public:
+	virtual int read(char* buffer, int num){
+		// 具体操作
+	}
+};
+
+
+// 装饰器
+class CryptoStream: public stream{
+
+protected:
+	stream *stream;  // 组合一个对象
+	
+public:
+	CryptoStream(stream *s){
+	
+	}
+	
+	virtual int read(char* buffer, int num){
+		// 加密操作
+		stream->read(buffer,num);  // 内部调用
+	}	
+
+};
+
+
+```
+
+```
+void process(){
+
+	NetWorkStream* ns = NetWorkStream();
+	
+	CryptoStream* cs = CryptoStream(ns);
+}
+```
+
+
+
 </details>
 
 ## 2.2 Bridge
-
+- 将抽象部分（业务功能） 与实现部分(平台实现)分离， 使它们都可以独立变化；
 
 #### 结构
 
+![pic_bridge]
+
 #### 实现
+- 例如： 手机和pc的消息功能实现
+- 建立一个通用类Message类，内部包含一个具体的实现 MessageImp 类
+- 具体的实现在 MessageImp 类中
 
 <details><summary><b>具体实现</b></summary>
+
+```
+class MessageImp;
+
+class Messager{
+protected:
+	MessageImp* messageImp;
+
+public:
+	virtual ~Messager(){}
+	
+	virtual void Login() = 0;
+	virtual void sendmsg(string msg) = 0;
+	virtual void recvmsg()=0;
+	
+	
+};
+
+
+
+// 实现基类
+class MessageImp{
+public:
+	virtual ~MessageImp(){}
+
+	virtual void PlaySound() = 0; 		// 声音
+	virtual void Connect() = 0;		// 连接
+	virtual void WriteText() = 0;		// 文本格式
+
+};
+
+
+// 具体实现
+class PCMessageImp: public MessageImp{
+public:
+
+    virtual void PlaySound(){
+        //**********
+    }
+    virtual void Connect(){
+        //**********
+    }
+    virtual void WriteText(){
+        //**********
+    }
+};
+
+// 具体实现
+class MobileMessagerImp : public MessagerImp{
+public:
+
+    virtual void PlaySound(){
+        //==========
+    }
+    virtual void Connect(){
+        //==========
+    }
+    virtual void WriteText(){
+        //==========
+    }
+
+};
+
+
+// 业务功能实现
+class MessagerLite: public Messager{
+
+public:
+	MessagerLite(MessageImp* m):messageImp(m)
+	{}
+	
+	~MessagerLite(){
+	}
+	
+
+    virtual void Login(){
+        messagerImp->Connect();	  // 具体的连接
+        //........
+    }
+    virtual void sendmsg(string message){
+        
+        messagerImp->WriteText();		// 消息发送格式
+        //........
+    }
+	
+    virtual void recvmsg (){  
+        messagerImp->PlaySound();		// 收到消息的声音
+        //........
+    }	
+
+};
+
+```
+
+```
+void process(){
+	// 运行时装配
+	MessageImp* mimp = new PCMessageImp();
+	Messager * m = new Messager(mimp);
+	
+}
+```
+
+
+
+
 </details>
 
 # 3. 对象创建
+-
 
 #### 结构
 
