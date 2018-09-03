@@ -105,11 +105,26 @@ Http协议永远是客户端发起请求，服务端回送响应
 	
 	
 	
+# 二、 CGI
+
+
+[^_^]:
+	图床
+	[pic_cgi]: /pics/network/cgi.png
 	
+## 1 基础
+
+### 1.1 CGI
+- Common Gateway Interface 通用网关接口
+- web服务器提供信息服务的标准接口
+- web服务器获取客户端提交的信息，转给服务器端CGI程序处理，最后返回结果给客户端
 	
-	
-	
-	
+### 1.2 CGI的组成
+1. HTML页面
+2. 运行在服务器上的CGI程序
+通信方式为：
+
+![pic_cgi]
 	
 	
 	
