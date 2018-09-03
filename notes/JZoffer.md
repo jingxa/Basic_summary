@@ -1,16 +1,287 @@
 # 3. 数组中重复的数字
+
+- [数组中重复的数字](https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 思路：O(N) + O(1)
+- 将 `j=nums[i]` ，将j放到nums的下标为j中，如果存在`nums[k] == num[j] == j `，说明重复；
+
+<details><summary>code</summary>
+
+```c++
+bool duplicate(vector<int>nums, int len, int* dup){
+
+	if(len <=0) return false;
+	
+	for(int i= 0;i< len;i++)
+	{
+		while(nums[i] != i){
+			int j = nums[i];
+			if(nums[j] == nums[i])
+			{
+				dup[0] = nums[i];
+				return true;
+				
+			}else{
+				swap(nums[i],nums[j]);
+			}
+		}
+	}
+	return false;
+}
+
+```
+
+</details>
+
+
 # 4. 二维数组中的查找
-5. 替换空格
-6. 从尾到头打印链表
-7. 重建二叉树
-8. 二叉树的下一个结点
-9. 用两个栈实现队列
-10.1 斐波那契数列
-10.2 跳台阶
-10.3 变态跳台阶
-10.4 矩形覆盖
-11. 旋转数组的最小数字
-12. 矩阵中的路径
+
+- [二维数组中的查找](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 复杂度：O(M + N) + O(1)
+- 从右上角开始查找。矩阵中的一个数，它左边的数都比它小，下边的数都比它大。
+	因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间。 
+
+
+	
+<details><summary>code</summary>
+
+```c++
+bool FindTarget(int target, vector<vector<int>> &nums){
+	if(nums.empty())
+	{
+		return false;
+	}
+
+	int m = nums.size();
+	int n = nums[0].size();
+	
+	int i=0, j = n-1;
+	while(i< m && j >=0){
+		if(nums[i][j] == target)
+			return true;
+		else if (nums[i][j] > target)
+			j--;
+		else 
+			i++;
+
+	}
+	return false;
+}
+
+```
+
+</details>
+
+
+
+# 5. 替换空格
+
+- [替换空格](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 将一个字符串中的空格替换成 "%20"。
+
+<details><summary>code</summary>
+
+```c++
+
+class Solution {
+public:
+void replaceSpace(char *str,int length) {
+        //遍历一边字符串找出空格的数量
+        if(str==NULL||length<0)
+            return ;
+        int i=0;
+        int oldSzie=0;//记录以前的长度
+        int space=0;//记录空格的数量
+        while(str[i]!='\0')
+            {
+               oldSzie++;
+               if(str[i]==' ')
+                   {
+                     space++;
+                   }
+                  i++; 
+            }
+    
+      
+        int newSize=oldSzie+space*2;//插入后的长度
+        if(newSize > length)//如果计算后的长度大于总长度就无法插入
+            return ;
+
+        while(oldSzie>=0&&newSize>oldSzie)//放字符
+            {
+              if(str[oldSzie]==' ') //碰到空格就替换
+                  {
+                     str[newSize--]='0';
+                     str[newSize--]='2';
+                     str[newSize--]='%';
+                     
+                  }
+               else //不是空格就把pOldlength指向的字符装入pNewlength指向的位置
+               {
+                    str[newSize--]=str[oldSzie];
+                   
+               }
+             oldSzie--; //不管是if还是elsr都要把pOldlength前移
+             
+           }
+        
+}
+};
+
+```
+
+</details>
+
+
+# 6. 从尾到头打印链表
+
+- [从尾到头打印链表](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 使用栈
+  
+<details><summary>code</summary>
+
+```
+
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        vector<int> res;
+        if(!head)
+            return res;
+        
+        stack<int> s;
+        while(head){
+            s.push(head->val);
+            head = head->next;
+        }
+        
+        while(!s.empty()){
+            res.push_back(s.top());
+            s.pop();
+        }
+        return res;
+    }
+};
+
+```
+
+</details>
+
+
+
+
+
+
+# 7. 重建二叉树
+
+- 
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+# 8. 二叉树的下一个结点
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+# 9. 用两个栈实现队列
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+# 10.1 斐波那契数列
+
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+# 10.2 跳台阶
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+# 10.3 变态跳台阶
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+# 10.4 矩形覆盖
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+
+# 11. 旋转数组的最小数字
+
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
+
+
+
+# 12. 矩阵中的路径
+
+
+<details><summary>code</summary>
+
+```
+```
+
+</details>
 
 
 
