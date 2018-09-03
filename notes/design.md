@@ -83,7 +83,9 @@
 [^_^]:
 	三、对象创建
 	[pic_factory]: /pics/pattern/factory.png
-	
+	[pic_ab_factory]: /pics/pattern/abstract_factory.png
+	[pic_builder]: /pics/pattern/builder.png
+	[pic_prototype]: https://github.com/CyC2018/CS-Notes/raw/master/pics/a40661e4-1a71-46d2-a158-ff36f7fc3331.png
 	
 [^_^]:	
 	二、对象创建
@@ -538,42 +540,250 @@ void process(){
 </details>
 
 # 3. 对象创建
--
 
-#### 结构
-
-#### 实现
-
-<details><summary><b>具体实现</b></summary>
-</details>
+- 通过 “对象创建”模式来绕开new，来避免对象创建过程中所导致的紧耦合（依赖具体类）,从而支持对象创建的稳定。它是接口抽象后的第一步工作。
 
 ## 3.1 Factory Method
 
+- 定义一个用于创建对象的接口，来让子类决定实例化哪一个类。Factory Method使得一个在等的实例化延迟（目的： 解耦，手段：虚函数）到子类
+
 #### 结构
+
+![pic_factory]
 
 #### 实现
 
+- 设计一个不同类型的Splitter类
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+class ISplitter{
+
+public:
+	virtual void split() = 0;
+	virtual ~ ISplitter(){}
+};
+
+
+//具体类
+class BinarySplitter : public ISplitter{
+		//...
+};
+
+class TxtSplitter: public ISplitter{
+   		//... 
+};
+
+class PictureSplitter: public ISplitter{
+  		//...  
+};
+
+class VideoSplitter: public ISplitter{
+ 		//...   
+};
+
+```
+
+各自的工厂类：
+
+```c++
+class SplitterFactory{
+public:
+	virtual ISplitter* CreateSplitter() = 0;
+	virtual ~SplitterFactory(){}
+
+};
+
+
+//具体工厂
+class BinarySplitterFactory: public SplitterFactory{
+public:
+    virtual ISplitter* CreateSplitter(){
+        return new BinarySplitter();
+    }
+};
+
+class TxtSplitterFactory: public SplitterFactory{
+public:
+    virtual ISplitter* CreateSplitter(){
+        return new TxtSplitter();
+    }
+};
+
+class PictureSplitterFactory: public SplitterFactory{
+public:
+    virtual ISplitter* CreateSplitter(){
+        return new PictureSplitter();
+    }
+};
+
+class VideoSplitterFactory: public SplitterFactory{
+public:
+    virtual ISplitter* CreateSplitter(){
+        return new VideoSplitter();
+    }
+};
+
+```
+同一接口：
+
+```c++
+void process(SplitterFactory*  factory){
+
+	ISplitter* spliter = facotory->CreateSplitter();  // 多态
+
+	spliter->split();	// 多态
+}
+```
+
 </details>
 
 
 ## 3.2 Abstract Factory
+- 提供一个接口，让该接口负责创建一系列“相关或者相互依赖的对象”， 无需指定他们具体的类
+- 提供一个接口，用于创建 相关的对象家族 。
 
 #### 结构
 
+![pic_ab_factory]
+
 #### 实现
 
+- 对于数据库的访问，有多种不同的数据库类型，因此设计一个抽象的数据对象创建接口 
+
 <details><summary><b>具体实现</b></summary>
+
+抽象的工厂基类
+```c++
+//数据库访问有关的基类
+class IDBConnection{
+    
+};
+
+class IDBCommand{
+    
+};
+
+class IDataReader{
+    
+};
+
+
+class IDBFactory{
+public:
+    virtual IDBConnection* CreateDBConnection()=0;
+    virtual IDBCommand* CreateDBCommand()=0;
+    virtual IDataReader* CreateDataReader()=0;
+    
+};
+
+```
+
+具体的工厂类
+
+```c++
+//支持SQL Server
+class SqlConnection: public IDBConnection{
+    
+};
+class SqlCommand: public IDBCommand{
+    
+};
+class SqlDataReader: public IDataReader{
+    
+};
+
+
+class SqlDBFactory:public IDBFactory{
+public:
+    virtual IDBConnection* CreateDBConnection()=0;
+    virtual IDBCommand* CreateDBCommand()=0;
+    virtual IDataReader* CreateDataReader()=0;
+ 
+};
+
+//支持Oracle
+class OracleConnection: public IDBConnection{
+    
+};
+
+class OracleCommand: public IDBCommand{
+    
+};
+
+class OracleDataReader: public IDataReader{
+    
+};
+
+
+class OracleBFactory:public IDBFactory{
+public:
+    virtual IDBConnection* CreateDBConnection()=0;
+    virtual IDBCommand* CreateDBCommand()=0;
+    virtual IDataReader* CreateDataReader()=0;
+ 
+};
+```
+工厂的使用：
+
+```c++
+void process (IDBFactory* dbFactory;){
+        IDBConnection* connection =
+            dbFactory->CreateDBConnection();
+		
+        IDBCommand* command =
+            dbFactory->CreateDBCommand();	
+
+        IDBDataReader* reader = dbFactory->CreateDataReader();		
+
+}
+```
+
 </details>
 
 
 ## 3.3 Prototype
 
+- 使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象。
+
 #### 结构
+
+![pic_prototype]
 
 #### 实现
 
+- 为对象创建每一个副本 
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+class Prototype{
+
+	int a;
+public:
+	Prototype(){}
+	Prototype(Prototype& pro):a(pro.a){}
+	Prototype* clone(){ return new Prototype(*this) };
+	~Prototype(){}
+};
+
+```
+
+创建副本：
+
+```c++
+void process(){
+
+	Prototype* proto = new Prototype();
+	
+	Prototype* copy_proto = proto.clone();
+}
+
+```
+
+
+
 </details>
 
 

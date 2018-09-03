@@ -10,7 +10,9 @@
 [剑指offer]: /notes/JZoffer.md
 [leetcode]: /notes/leetcode.md
 [network]: /notes/network.md
-[Http]:	https://github.com/CyC2018/CS-Notes/blob/master/notes/HTTP.md
+[HTTP and Https]:	https://github.com/CyC2018/CS-Notes/blob/master/notes/HTTP.md
+[HTTP相关]:	/notes/network/http.md
+
 
 [操作系统]: /notes/os.md
 [database常见题]: /notes/database.md
@@ -19,10 +21,12 @@
 
 
 
+
 | c++ | 算法| 设计模式 | 计算机网络 | linux和操作系统 |  数据库 | 系统设计 |
 | -|-|-|-| -|-|-|
 | [c++] | [剑指offer] |[设计模式] 	| [network] | [操作系统]    |  [数据库基本原理] |         |
-|       | [leetcode]    |             |   [Http]   |        | 	[database常见题] |  	   | 
+|       | [leetcode]    |        |   [HTTP and Https]   |        | 	[database常见题] |  	   | 
+|		|				|			| [HTTP相关] |		|			|
 
 
 - 其中部分为个人总结
