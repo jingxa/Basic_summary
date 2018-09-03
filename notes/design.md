@@ -783,17 +783,149 @@ void process(){
 ```
 
 
+- 在c++的多态中，clone常常声明为virtual函数
+- 因为构造函数不能是虚函数，然而，程序有时候非常需要通过传递一个指向基类对象的指针，创建派生类对象的备份。
+- 常见的解决方法是：在基类钟创建一个Clone（）成员函数，并将其设置为虚函数。Clone()函数创建当前对象的备份，并返回该对象。
+
+
+```c++
+class base{
+public:
+	base(){}
+	base(base& b){ 
+	//内部成员的复制，可以在初始化列表中完成 
+	// ...
+	}
+	virtual ~base(){}
+	virtual base *clone(){ return new base(*this);}
+};
+
+
+class derived : public base{
+public:
+	derived(){}
+	derived(derived&) d{ // ... }
+	
+	virtual derived* clone() { return new derived(*this); }  // 多态中的clone函数，可以将返回类型设置为子类类型
+
+};
+
+...
+
+
+base * obj1 = new base();
+base * obj2 = obj1->clone();
+
+derived* d1 = new derived();
+derived* d2 = d1.clone();
+
+base* d3 = d1.clone();
+
+```
+
+
+#### 原型模式的优势
+
+1. 为什么不用new直接新建对象，而要用原型模式？
+- 首先，用new新建对象不能获取当前对象运行时的状态
+- 其次就算new了新对象，在将当前对象的值复制给新对象，效率也不如原型模式高。
+
+2. 为什么不直接使用拷贝构造函数，而要使用原型模式？
+
+- 原型模式与拷贝构造函数是不同的概念，拷贝构造函数涉及的类是已知的，原型模式涉及的类可以是未知的。
+- 原型模式生成的新对象可能是一个派生类。拷贝构造函数生成的新对象只能是类本身。原型模式是描述了一个通用方法(或概念)，它不管是如何实现的，而拷贝构造则是描述了一个具体实现方法。
+
+- 参考资料 ： [C++ clone()函数的用法](https://blog.csdn.net/xiangxianghehe/article/details/78793300)
 
 </details>
 
 
 ## 3.4 Builder
 
+- 将一个复杂对象的构建和其表示相分离，使得同样的构建过程(稳定)可以创建不同的表示方法；
+
+- 封装一个对象的构造过程，并允许按步骤构造。
+
 #### 结构
+
+![pic_builder]
 
 #### 实现
 
+- 实现一栋房子的修建过程，过程是一样的，但是具体的修建方法不一样
+
 <details><summary><b>具体实现</b></summary>
+
+基类的实现：
+```c++
+
+class House{
+    //....
+};
+
+class HouseBuilder {
+public:
+    House* GetResult(){
+        return pHouse;
+    }
+    virtual ~HouseBuilder(){}
+protected:
+    
+    House* pHouse;
+	virtual void BuildPart1()=0;
+    virtual void BuildPart2()=0;
+    virtual void BuildPart3()=0;	
+};
+
+
+```
+
+不同的子类的实现：
+
+```c++
+class StoneHouse: public House{
+    
+};
+
+class StoneHouseBuilder: public HouseBuilder{
+protected:
+    
+    virtual void BuildPart1(){
+        //pHouse->Part1 = ...;
+    }
+    virtual void BuildPart2(){
+        
+    }
+    virtual void BuildPart3(){
+        
+    }
+    virtual void BuildPart4(){
+        
+    }
+    virtual void BuildPart5(){
+        
+    }
+    
+};
+
+```
+
+完成过程为：
+
+```c++
+
+void process(HouseBuilder* housebuilder){
+
+	housebuilder->BuildPart1();
+	housebuilder->BuildPart2();
+	housebuilder->BuildPart3();
+	housebuilder->BuildPart4();
+	housebuilder->BuildPart5();
+
+}
+
+```
+
 </details>
 
 
