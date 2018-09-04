@@ -11,7 +11,7 @@
 [leetcode]: /notes/leetcode.md
 [network]: /notes/network.md
 [HTTP and Https]:	https://github.com/CyC2018/CS-Notes/blob/master/notes/HTTP.md
-[HTTP相关]:	/notes/network/http.md
+[HTTP相关]:	/notes/http.md
 
 
 [操作系统]: /notes/os.md
