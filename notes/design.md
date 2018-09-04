@@ -88,12 +88,16 @@
 	[pic_prototype]: https://github.com/CyC2018/CS-Notes/raw/master/pics/a40661e4-1a71-46d2-a158-ff36f7fc3331.png
 	
 [^_^]:	
-	二、对象创建
-	三、对象性能
-	四、接口隔离
-	五、状态变化
+	四、对象性能
 	
 	
+	
+[^_^]:
+	五、接口隔离
+	六、状态变化
+	七、数据结构
+	八、行为变化
+	九、领域问题
 	
 	
 ---
@@ -932,11 +936,105 @@ void process(HouseBuilder* housebuilder){
 # 4. 对象性能
 
 ## 4.1 Singleton
+
+- 这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
+
+#### 注意
+1. 单例类只能有一个实例。
+2. 单例类必须自己创建自己的唯一实例。
+3. 单例类必须给所有其他对象提供这一实例。
+
+#### 介绍
+
+**意图**：保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+**主要解决**：一个全局使用的类频繁地创建与销毁。
+**何时使用**：当您想控制实例数目，节省系统资源的时候。
+**如何解决**：判断系统是否已经有这个单例，如果有则返回，如果没有则创建。
+**关键代码**：构造函数是私有的。
+
+**优点**： 1、在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。 2、避免对资源的多重占用（比如写文件操作）。
+**缺点**：没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。
+
+
 #### 结构
+- 实现一个`singleObject`,有它的私有构造函数和本身的一个静态实例；
 
 #### 实现
 
+![pic_singleton]: /pics/pattern/singleton.png
+
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+class SingleObject{
+private:
+
+	SingleObject();
+	SingleObject(const SalesOrder& other);
+
+	static SingleObject* instance ;
+
+public:
+	static SingleObject* getInstance();
+	
+	void showMessage(){
+		cout<<"Hello,world"<<endl;
+	}
+};
+
+
+SingleObject* SingleObject::getInstance(){
+	// 非线程安全
+	if(instance == nullptr)
+	{
+		instance = new SingleObject();
+	}
+	return instance;
+}
+
+```
+
+单例模式的实现方式：
+1. 懒汉式，线程不安全
+- 如上面实现，不支持多线程
+
+2. 懒汉式，线程安全
+- 加锁,代价比较高
+
+
+```C++
+
+SingleObject* SingleObject::getInstance(){
+	Lock lock;
+	if(instance == nullptr)
+	{
+		instance = new SingleObject();
+	}
+	return instance;
+}
+
+```
+
+
+3. 双检查锁
+- //双检查锁，但由于内存读写reorder不安全
+
+
+```c++
+
+SingleObject* SingleObject::getInstance(){
+    if(instance==nullptr){
+        Lock lock;
+        if (instance == nullptr) {
+            instance = new Singleton();
+        }
+    }
+}
+
+```
+
+
 </details>
 
 ## 4.2 Flyweight
