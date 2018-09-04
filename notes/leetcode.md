@@ -591,12 +591,17 @@ public:
 
 </details>
 
-## 3.4
+## 3.4 406. Queue Reconstruction by Height(Medium)
+
+- [406. Queue Reconstruction by Height(Medium)](https://leetcode.com/problems/queue-reconstruction-by-height/description/)
 
 
 <details><summary>code</summary>
 
-```
+```c++
+
+
+
 ```
 
 </details>
