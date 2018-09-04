@@ -596,10 +596,41 @@ public:
 - [406. Queue Reconstruction by Height(Medium)](https://leetcode.com/problems/queue-reconstruction-by-height/description/)
 
 
+> 为了在每次插入操作时不影响后续的操作，身高较高的学生应该先做插入操作，否则身高较小的学生原先正确插入第 k 个位置可能会变成第 k+1 个位置。
+
+> 身高降序、k 值升序，然后按排好序的顺序插入队列的第 k 个位置中。
+
 <details><summary>code</summary>
 
 ```c++
+class Solution {
+public:
+    vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
+        
+        vector<pair<int,int>> res;
+        if(people.empty())
+            return res;
+        
+        sort(people.begin(),people.end(),comp);
+          
+        
+        
+        for(auto &p : people){
+            res.insert(res.begin()+p.second, p);     // 首先插入高的人，在按排名插入
 
+        }
+        return res;
+        
+        
+    }
+    
+    static bool comp (pair<int,int>&a, pair<int,int>&b){            // 先排列身高，然后排名
+        if(a.first == b.first)
+            return  a.second < b.second;
+        else
+            return a.first > b.first;
+    }
+};
 
 
 ```
@@ -607,11 +638,56 @@ public:
 </details>
 
 
-## 3.5
+## 3.5 763. Partition Labels (Medium)【分隔字符串使同种字符出现在一起】
+- [763. Partition Labels (Medium)](https://leetcode.com/problems/partition-labels/description/)
+
+- 贪婪：始终寻找最后一个下标
 
 <details><summary>code</summary>
 
-```
+```c++
+
+class Solution {
+public:
+    vector<int> partitionLabels(string S) {
+        vector<int> res;
+        int len  = S.size();
+        if(len <=1)
+        {
+            res.push_back(len);
+            return res;
+        }
+        
+        res.resize(26);
+        for(int i=0;i<len;i++){    // 寻找每个字母出现的最后下标
+            res[S[i] - 'a'] = i;
+        }
+        
+        int start = 0;
+        int end = res[S[0] -'a'];
+        
+        vector<int> output;
+        for(int i=0;i<len;i++){
+            if(i == end){// 最后一次出现
+                output.push_back(end - start + 1);  // 统计分割总数
+                if(i+1 <=len-1)
+                    end = res[S[i+1] - 'a'];   // 下一个字母的最后一个下标
+                start = i+1;
+            }
+            else if(i == len -1){  // 最后一个字母
+                output.push_back(end -start + 1);
+            
+            }else{   // 继续寻找
+                if(end < res[S[i] - 'a'])  // 当前字母的下标更在后面
+                    end = res[S[i] - 'a'];   // 更新尾节点
+            }
+        
+        }
+        return output;
+     
+    }
+};
+
 ```
 
 </details>
