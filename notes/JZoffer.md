@@ -177,12 +177,44 @@ public:
 
 # 7. 重建二叉树
 
-- 
+- [重建二叉树](https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&tqId=11157&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
 <details><summary>code</summary>
 
-```
+```c++
+
+class Solution {
+public:
+    unordered_map<int,int> map;        // 中序的值和下标的映射
+    
+    TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
+        for(int i=0;i<pre.size();i++)
+            map[vin[i]] = i;
+        
+        return createRoot(pre,vin,0,0,vin.size()-1);
+    }
+    
+    // 参数： 前序， 中序， 前序root下标，中序左子树开始下标， 中序右子树开始下标
+    TreeNode* createRoot( vector<int>& pre,vector<int>& vin,int pre_root, int vin_l, int vin_r){
+        if(vin_l > vin_r)    // 结束
+            return NULL;
+        int root_val = pre[pre_root];    // root节点
+        int index = map[root_val];        // root下标
+        
+        
+        
+        int left_size = index - vin_l;    // 左子树大小
+        int right_size = vin_r - index;   // 右子树大小
+        
+        TreeNode* root = new TreeNode(root_val);
+        root->left = createRoot(pre,vin, pre_root+1,vin_l,index-1);
+        root->right = createRoot(pre,vin,pre_root+left_size+1, index+1,vin_r);
+        return root;
+        
+    }
+};
+
 ```
 
 </details>
@@ -191,10 +223,37 @@ public:
 
 # 8. 二叉树的下一个结点
 
+- [二叉树的下一个结点](https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 <details><summary>code</summary>
 
-```
+```c++
+
+class Solution {
+public:
+    TreeLinkNode* GetNext(TreeLinkNode* pNode)
+    {
+        TreeLinkNode* ne;
+        if(pNode->right){     // 存在右子树
+            ne =  pNode->right;
+            while(ne->left)   // 右子树的最左边
+                ne = ne->left;
+            return ne;
+        }
+        else{// 左节点
+        while(pNode->next != NULL){
+            ne = pNode->next;   // 父节点
+            if(ne->left == pNode)
+                return ne;
+            //右节点, 寻找祖先节点为某节点的左子树
+             pNode = pNode->next; 
+        }
+       }
+        return NULL;
+        
+    }
+};
+
 ```
 
 </details>
@@ -203,10 +262,43 @@ public:
 
 # 9. 用两个栈实现队列
 
+- [用两个栈实现队列](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 <details><summary>code</summary>
 
-```
+```c++
+
+class Solution
+{
+    
+private:
+    stack<int> stack_push;
+    stack<int> stack_pop;
+    
+public:
+    void push(int node) {
+        stack_push.push(node);
+        
+    }
+
+    int pop() {
+        if(stack_pop.empty()){
+            while(!stack_push.empty())
+            {
+                stack_pop.push(stack_push.top());
+                stack_push.pop();
+            }   
+        }
+        try{
+            int res = stack_pop.top();
+            stack_pop.pop();
+            return res;
+        }catch(exception& e){
+            return 0;
+        }
+    }
+};
+
 ```
 
 </details>
@@ -215,21 +307,58 @@ public:
 
 # 10.1 斐波那契数列
 
-
+- [斐波那契数列](https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId=13&tqId=11160&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 <details><summary>code</summary>
 
+```c++
+class Solution {
+public:
+    int Fibonacci(int n) {
+        if(n==0)
+            return n;
+        int pre1=0, pre2 = 1;
+        int res=0;
+        for(int i=2;i<=n;i++){
+            res = pre1 + pre2;
+            pre1= pre2;
+            pre2 = res;
+        }
+        return res;
+    }
+};
+
 ```
-```
+
 
 </details>
 
 
 # 10.2 跳台阶
 
+- [跳台阶](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 <details><summary>code</summary>
 
-```
+```c++
+class Solution {
+public:
+    int jumpFloor(int n) {
+        if(n<=2)
+            return n;
+        int pre1=1;
+        int pre2=2;
+        int res=0;
+        for(int i=3;i<=n;i++){
+            res = pre1 + pre2;
+            pre1 = pre2;
+            pre2= res;
+        }
+        return res;
+        
+    }
+};
+
 ```
 
 </details>
@@ -238,9 +367,30 @@ public:
 
 # 10.3 变态跳台阶
 
+- [变态跳台阶](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=11162&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 <details><summary>code</summary>
 
-```
+```c++
+class Solution {
+public:
+    int jumpFloorII(int n) {
+        if(n<=2)
+            return n;
+        vector<int> res(n,1);
+        res[0] = 1;
+        res[1] = 2;
+        for(int i=2;i < n;i++)
+        {   
+            for( int j=0;j <i;j++){
+                res[i]+=res[j];
+            }
+        }
+        
+        return res[n-1];
+    }
+};
+
 ```
 
 </details>
@@ -249,6 +399,7 @@ public:
 
 # 10.4 矩形覆盖
 
+- [矩形覆盖](https://github.com/CyC2018/CS-Notes/blob/master/notes/%E5%89%91%E6%8C%87%20offer%20%E9%A2%98%E8%A7%A3.md#56-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97)
 
 <details><summary>code</summary>
 
