@@ -693,11 +693,20 @@ public:
 </details>
 
 
-## 3.6
+## 3.6 【种植花朵】605. Can Place Flowers (Easy)
+
+- [605. Can Place Flowers (Easy)](https://leetcode.com/problems/can-place-flowers/description/)
+
+- 花必须间隔种的问题，寻找能够种植最多的解
+
+- 贪心思想：
+
 
 <details><summary>code</summary>
 
-```
+```c++
+
+
 ```
 
 </details>
