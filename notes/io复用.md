@@ -5,7 +5,7 @@
 [^_^]:
 	图片
 	[pic_block_io]: /pics/io/block_io.png
-	[pic_nonblock_io]: /pics/io/nonblock_io.png
+	[pic_nonblock_io]: /pics/io/non_block_io.png
 	[pic_multiplex_io]: /pics/io/multiplex_io.png
 	[pic_sig_io]: /pics/io/sig_io.png
 	[pic_aio]: /pics/io/aio.png
