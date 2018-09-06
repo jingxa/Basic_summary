@@ -401,9 +401,29 @@ public:
 
 - [矩形覆盖](https://github.com/CyC2018/CS-Notes/blob/master/notes/%E5%89%91%E6%8C%87%20offer%20%E9%A2%98%E8%A7%A3.md#56-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97)
 
+- 还是斐波那契问题
+
 <details><summary>code</summary>
 
-```
+```c++
+
+int rectCover(int n){
+
+	if(n <=2)
+		return n;
+	int pre1 = 1;
+	int pre2 = 2;
+	
+	int res=0;
+	for(int i=3;i<=n;i++){
+		res =pre1 + pre2;
+		pre1 = pre2;
+		pre2 = res;
+	}
+	
+	return res;
+}
+
 ```
 
 </details>
@@ -413,11 +433,51 @@ public:
 
 # 11. 旋转数组的最小数字
 
+- [旋转数组的最小数字](https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=11159&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
+- o(N): 遍历一遍
+- O(logN): 二分查找
+
+
+情况：
+- 数字不重复的情况下，直接使用二分查找
+	- `nums[m] <= nums[h]`,区间是`[l,m]`
+	- 否则，解在`[m+1,h], 令l = m+1`
+- 数字重复的情况下：
+	- `nums[l] == nums[m] == nums[h]，那么此时无法确定解在哪个区间，需要切换到顺序查找`
 
 <details><summary>code</summary>
 
-```
+```c++
+int minNumberInRotateArray(vector<int> nums) 
+{
+	if(nums.empty())
+		return 0;
+
+	int l=0, h = nums.size() -1;
+	
+	while(l<h){
+		int m = (l+h)/2;
+		if(nums[m] == nums[l] && nums[m] == nums[h])
+			return directFind(nums,l,h);
+		else if(nums[m] <= nums[h])
+			h = m;
+		else 
+			l = m+1;
+	}
+	return nums[l];
+}
+
+
+int directFind(vector<int>& nums, int l , int h){
+	int min_num = INT_MAX;
+	for(int i=l;i<h;i++){
+		if(min_num > nums[i])
+			min_num = nums[i];
+	}
+	return min_num;
+}
+
 ```
 
 </details>
