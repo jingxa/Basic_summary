@@ -89,11 +89,19 @@
 	
 [^_^]:	
 	四、对象性能
-	
-	
+	[pic_singleton]: /pics/pattern/singleton.png
+	[pic_flyweight]: /pics/pattern/flyweight.png
+
 	
 [^_^]:
 	五、接口隔离
+	[pic_facade]:	/pics/pattern/facade.png
+	[pic_adapter]:	/pics/pattern/adapter.png
+	[pic_proxy]:	/pics/pattern/proxy.png
+	[pic_mediator]: /pics/pattern/mediator.png
+	
+	
+[^_^]:
 	六、状态变化
 	七、数据结构
 	八、行为变化
@@ -961,8 +969,7 @@ void process(HouseBuilder* housebuilder){
 
 #### 实现
 
-![pic_singleton]: /pics/pattern/singleton.png
-
+![pic_singleton]
 
 <details><summary><b>具体实现</b></summary>
 
@@ -1039,52 +1046,400 @@ SingleObject* SingleObject::getInstance(){
 
 ## 4.2 Flyweight
 
+- [享元模式](http://www.runoob.com/design-pattern/flyweight-pattern.html)
+
+- 享元模式： 运用共享技术有效地支持大量细粒度的对象。
+
+- 主要解决：在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。
+
 #### 结构
+
+![pic_flyweight]
+
 
 #### 实现
 
+- 实现一个 Font 功能，系统中存在唯一地Font对象，使用键值存储Font,   使用factory类来返回对应关键字的Font对象
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+class Font{
+private:
+	string key;
+	
+public:
+	Font(string & key){
+		// ...
+	}
+};
+
+
+class FontFactory{
+private:
+	map<string, Font*> fontpool;
+
+public:
+Font* GetFont(string& key){
+
+	map<string, Font*> :: iterator it = fontpool.find(key);
+	if(it != fontpool.end())
+	{
+		return fontpool[key];
+	}
+	else{
+		Font* font = new Font(key);
+		fontpool[key] = font;
+		return font;
+	}
+
+}
+
+};
+
+
+```
+
+
 </details>
 
 
 # 5. 接口隔离
 
+- 在组件构建过程中，某些接口之间直接的依赖常常会带来很多问题，甚至根本无法实现，采用添加一层间接（稳定）的接口，来隔离本来互相紧密关联的接口是一种常用的解决方法。
+
 ## 5.1 Facade
+
+- [外观模式](http://www.runoob.com/design-pattern/facade-pattern.html)
+
+- 为子系统的一组接口提供一个一致的界面，Facade模式定义了一个高层接口，这个接口使得这个子系统更加容易使用(复用)；
+
+- 主要解决：降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。
 
 #### 结构
 
+![pic_facade]
+
+Facade: 外观角色
+SubSystem:子系统角色
+
+- [图来自](https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/facade.html)
+
 #### 实现
 
+- 实现 
+
 <details><summary><b>具体实现</b></summary>
+
+子系统：
+
+```c++
+
+class SystemA{
+public:
+	void operationA(){
+		// ....
+	}
+};
+
+class SystemB{
+public:
+	void operationB(){
+		// ....
+	}
+};
+
+class SystemA{
+public:
+	void operationC(){
+		// ....
+	}
+};
+
+```
+
+
+```c++
+
+class Facade{
+
+public:
+	Facade(){
+		m_SystemA  = new SystemA();
+		m_SystemB = new SystemB();
+		m_SystemC = new SystemC();		
+	}
+	
+	~Facade(){
+		delete m_SystemA;
+		delete m_SystemB;
+		delete m_SystemC;	
+	}
+	
+	void wrapOpration(){
+		m_SystemA->operationA();
+		m_SystemB->operationB();
+		m_SystemC->opeartionC();
+	}	
+		
+private:
+	SystemC *m_SystemC;
+	SystemA *m_SystemA;
+	SystemB *m_SystemB;
+
+};
+
+
+```
+
+
 </details>
 
 ## 5.2 Proxy
 
+- [代理模式](http://www.runoob.com/design-pattern/proxy-pattern.html)
+
+- 意图：为其他对象提供一种代理以控制对这个对象的访问。
+- 主要解决：在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。
+
 #### 结构
+
+![pic_proxy]
 
 #### 实现
 
+- client访问proxy
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+class ISubject{
+
+public:
+	virtual void process(){}
+	virtual ~ISubject(){}
+};
+
+class SubProxy: public ISubject{
+
+public:
+	virtual void porocess() {
+		// 对RealSubject 的间接访问
+	}
+
+	
+public:
+	ISubject* subject;
+	
+};
+
+```
+
 </details>
+
+
+---
 
 ## 5.3 Mediator
+
+- [中介者模式](http://www.runoob.com/design-pattern/mediator-pattern.html)
+
+- 意图：用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。
+- 主要解决：对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。
+- 何时使用：多个类相互耦合，形成了网状结构。
+- 如何解决：将上述网状结构分离为星型结构。
+- 关键代码：对象 Colleague 之间的通信封装到一个类中单独处理。
+
+
 #### 结构
+
+![pic_mediator]
+
+Mediator: 抽象中介者
+ConcreteMediator: 具体中介者
+Colleague: 抽象同事类
+ConcreteColleague: 具体同事类
 
 #### 实现
 
+- [2. 中介者模式](https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/mediator.html)
+
+- 多个同事通过中间人通话
+
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+
+class Colleague{
+private:
+	Mediator* m;
+public:
+	virtual ~Colleague(){}
+	virtual void sndMsg(int a){// ...}
+	virtual void revMsg(string str){ // ... }
+	
+	virtual void setMediator(Mediator* med){ m = med; }
+};
+
+
+class Mediator{
+private:
+	map<int, Colleague*> colleaguepool;
+public:
+	virtual ~Mediator(){}
+	virtual void operation(int num, string str){ // ... };
+	virtual void register(int num, Colleague* col){// ... }
+	
+};
+
+
+
+class concreteMediator : public Mediator{
+
+public:
+	virtual void register(int num, Colleague* col){
+		map<int,Colleague*>::const_iterator itr = colleaguepool.find(num);
+		if(itr == colleaguepool.end())
+		{
+			colleaguepool.insert(make_pair(num,col));
+			//同时将中介类暴露给colleague 
+			col->setMediator(this);
+		}		
+	
+	}
+	
+	virtual void operation(int num, string str){
+		map<int,Colleague*>::const_iterator itr = colleaguepool.find(num);
+		if(itr == colleaguepool.end())
+		{
+			cout << "not found this colleague!" << endl;
+			return;
+		}
+		
+		Colleague* pc = itr->second;
+		pc->revMsg(str);	
+	
+	}
+	
+
+};
+
+
+class concreteColleague: public Colleague{
+
+public:
+	virtual void SndMsg(int num, string str){
+		cout << "send msg from colleagueA,to:" << num << endl;
+		m->operation(num,str);	
+	}
+	
+	virtual void RevMsg(string str){
+		cout << "ConcreteColleagueA reveivemsg:" << str <<endl;	
+	}
+
+};
+
+
+
+
+```
+
+过程：
+
+```c++
+void process () {
+
+	ConcreteColleague * pa = new ConcreteColleague();
+	ConcreteColleague * pb = new ConcreteColleague();
+	ConcreteMediator * pm = new ConcreteMediator();
+	pm->registered(1,pa);
+	pm->registered(2,pb);
+	
+	// sendmsg from a to b
+	pa->sendmsg(2,"hello,i am a");
+	// sendmsg from b to a
+	pb->sendmsg(1,"hello,i am b");
+	
+	delete pa,pb,pm;
+}
+
+```
+
+
 </details>
 
+
+---
 
 ## 5.4 Adapter
 
+- [适配器模式](http://www.runoob.com/design-pattern/adapter-pattern.html)
+
+- 意图：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
+- 主要解决：主要解决在软件系统中，常常要将一些"现存的对象"放到新的环境中，而新环境要求的接口是现对象不能满足的。
+
+- 如何解决：继承或依赖（推荐）。
+- 关键代码：适配器继承或依赖已有的对象，实现想要的目标接口。
+
 #### 结构
+
+![pic_adapter]
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+```c++
+// 新接口
+class ITarget{
+
+public:
+	virtual void process ()= 0;
+	virtual ~ITarget(){}
+};
+
+
+// 遗留接口
+
+class IAdaptee{
+
+public:
+	virtual void foo(int data ){ //... }
+	virtual int bar(){//...}
+};
+
+
+
+
+// 适配器
+
+class Adapter: public ITarget{
+
+protected:
+	IAdaptee * adaptee;
+	
+public:
+	Adapter(IAdaptee* ada){
+		adaptee = ada;
+	}
+	
+	virtual void process(){
+		int data = adaptee->bar();
+		adaptee->foo(data);
+	}
+
+};
+
+
+```
+
+
 </details>
 
+
+
+---
 
 # 6. 状态变化
 
