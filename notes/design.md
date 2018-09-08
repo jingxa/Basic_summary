@@ -1,7 +1,9 @@
 
 # 参考资料
 
-
+- [菜鸟教程](http://www.runoob.com/design-pattern/mediator-pattern.html)
+- [图说设计模式](https://design-patterns.readthedocs.io/zh_CN/latest/index.html#)
+- [CS-Notes/notes/设计模式.md](https://github.com/CyC2018/CS-Notes/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 
 ---
@@ -103,9 +105,25 @@
 	
 [^_^]:
 	六、状态变化
+	[pic_state]: /pics/pattern/state.png
+	[pic_memento]: /pics/pattern/memento.png
+	
+	
+[^_^]:
 	七、数据结构
+	[pic_composite]: /pics/pattern/composite.png
+	[pic_iterator]: /pics/pattern/iterator.png
+	[pic_chain_of]: /pics/pattern/chain_of.png
+	
+	
+[^_^]:
 	八、行为变化
+	[pic_command]: /pics/pattern/command.png
+	[pic_visitor]: /pics/pattern/visitor.png
+	
+[^_^]:
 	九、领域问题
+	[pic_interpreter]: /pics/pattern/interpreter.png
 	
 	
 ---
@@ -1443,22 +1461,155 @@ public:
 
 # 6. 状态变化
 
+- 在组建构建过
+
 
 ## 6.1 Memento
 
+- [ 备忘录](http://www.runoob.com/design-pattern/memento-pattern.html)
+
+
+- **意图**：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。
+- **主要解决**：所谓备忘录模式就是在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。
+
+- **如何解决**：通过一个备忘录类专门存储对象状态。
+- **关键代码**：客户不与备忘录类耦合，与备忘录管理类耦合。
+
+
 #### 结构
+
+![pic_memento]
+
+备忘录模式使用三个类 Memento、Originator 和 CareTaker。
+- Memento 包含了要被恢复的对象的状态。
+- Originator 创建并在 Memento 对象中存储状态。
+- Caretaker 对象负责从 Memento 中恢复对象的状态。
+
 
 #### 实现
 
+
 <details><summary><b>具体实现</b></summary>
+
+```c++
+class Memento {
+
+private: 
+	string state;
+public:
+	Memento(const string& s):state(s){}
+	string getState(){ return state;}
+	void setSate(const string& s){state = s;}
+};
+
+
+class Originator{
+
+private:
+	string state;
+
+public:
+	Originator(){}
+	Memento createMemento(){
+		Memento m(state);
+		return m;
+	}
+	
+	void setMemento(Memento m){
+		state = m.getState();
+	}
+
+};
+
+
+```
+
+使用如下：
+
+```c++
+void process(){
+	Originator origin;
+	// 创建一个备忘录
+	Memento m = origin.createMemento();
+	
+	// ... 一些操作
+	
+	// 恢复
+	origin.setMemento(m);
+}
+```
+
 </details>
 
+
 ## 6.2 State
+
+- [状态模式](http://www.runoob.com/design-pattern/state-pattern.html)
+
+- **意图**：允许对象在内部状态发生改变时改变它的行为，对象看起来好像修改了它的类。
+- **主要解决**：对象的行为依赖于它的状态（属性），并且可以根据它的状态改变而改变它的相关行为。
+- **何时使用**：代码中包含大量与对象状态有关的条件语句。
+- **如何解决**：将各种具体的状态类抽象出来。
+
 #### 结构
+
+![pic_state]
 
 #### 实现
 
+创建一个 State 接口和实现了 State 接口的实体状态类。Context 是一个带有某个状态的类。
+
 <details><summary><b>具体实现</b></summary>
+
+
+```c++
+class NetState{
+
+public:
+	virtual void handle(){ //.. }
+	virtual ~NetState(){}
+};
+
+class openState: public NetState{
+
+public:
+	virtual void handle(){
+		// ...
+	}
+};
+
+class closeState: public NetState{
+public:
+	virtual void handle(){
+	
+	// ...
+}
+
+};
+
+```
+定义一个context类：
+
+```c++
+class Context{
+
+private:
+	State * state;
+	
+public:
+	Context(State* s):state(s){
+	
+	}
+
+	void request(){
+		state.request();
+	}
+
+};
+
+```
+
+
 </details>
 
 
