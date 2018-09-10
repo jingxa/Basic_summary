@@ -132,6 +132,15 @@
 - 现在软件专业分工之后的第一个结果：“框架与应用程序的划分”，“组件协作”模式通过晚期绑定，来实现框架与应用程序直接的松耦合，是二者之间的写作时常用的模式。
 
 ## 1.1 Template Method
+- [模板模式](http://www.runoob.com/design-pattern/template-pattern.html)
+
+- **意图**：定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+- **主要解决**：一些方法通用，却在每一个子类都重新写了这一方法。
+- **何时使用**：有一些通用的方法。
+- **如何解决**：将这些通用算法抽象出来。
+- **关键代码**：在抽象类实现，其他步骤在子类实现。
+
+
 - 定义： 定义一个操作中的算法的骨架（稳定），而将一些步骤延迟(变化)到子类中。`Template Mehtod` 使得子类可以不改变(复用)一个算法的结构即可重定义(Override 重写)该算法的某些特定步骤。
 
 #### 结构
@@ -189,6 +198,17 @@ int main(){
 
 
 ## 1.2 Observer
+
+- [观察者模式](http://www.runoob.com/design-pattern/observer-pattern.html)
+
+
+- **意图**：定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。
+- **主要解决**：一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。
+- **何时使用**：一个对象（目标对象）的状态发生改变，所有的依赖对象（观察者对象）都将得到通知，进行广播通知。
+- **如何解决**：使用面向对象技术，可以将这种依赖关系弱化。
+- **关键代码**：在抽象类里有一个 ArrayList 存放观察者们。
+
+
 定义
 - 对象间的一种一对多(变化)的依赖关系， 以便当一个对象的状态发生改变的时候，所有依赖于它的对象都得到通知并自动更新。 
 
@@ -296,8 +316,14 @@ int main(){
 
 
 ## 1.3 Stratagy
-定义：
-- 定义一系列算法，把它们一个个封装起来， 并且使他们可互相替换(变化). 该模式使得算法可独立于使用它的客户程序(稳定)而变化(扩展，子类化)。
+
+- [策略模式](http://www.runoob.com/design-pattern/strategy-pattern.html)
+
+- **意图**：定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。
+- **主要解决**：在有多种算法相似的情况下，使用 if...else 所带来的复杂和难以维护。
+- **何时使用**：一个系统有许多许多类，而区分它们的只是他们直接的行为。
+- **如何解决**：将这些算法封装成一个一个的类，任意地替换。
+- **关键代码**：实现同一个接口。
 
 #### 结构
 
@@ -380,6 +406,14 @@ public:
 
 ## 2.1 Decorator
 
+- [装饰器模式](http://www.runoob.com/design-pattern/decorator-pattern.html)
+
+- **意图**：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。
+- **主要解决**：一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。
+- **何时使用**：在不想增加很多子类的情况下扩展类。
+- **如何解决**：将具体功能职责划分，同时继承装饰者模式。
+
+
 - 动态(组合)地给一个对象增加一些额外的职责，就增加功能而言， Decorator模式比生成子类（继承）更为灵活(消除重复代码 ，减小子类个数)
 #### 结构
 
@@ -449,7 +483,16 @@ void process(){
 </details>
 
 ## 2.2 Bridge
-- 将抽象部分（业务功能） 与实现部分(平台实现)分离， 使它们都可以独立变化；
+
+- [桥接模式](http://www.runoob.com/design-pattern/bridge-pattern.html)
+
+- **意图**：将抽象部分与实现部分分离，使它们都可以独立的变化。
+- **主要解决**：在有多种可能会变化的情况下，用继承会造成类爆炸问题，扩展起来不灵活。
+- **何时使用**：实现系统可能有多个角度分类，每一种角度都可能变化。
+- **如何解决**：把这种多角度分类分离出来，让它们独立变化，减少它们之间耦合。
+- **关键代码**：抽象类依赖实现类。
+
+
 
 #### 结构
 
@@ -575,7 +618,14 @@ void process(){
 
 ## 3.1 Factory Method
 
-- 定义一个用于创建对象的接口，来让子类决定实例化哪一个类。Factory Method使得一个在等的实例化延迟（目的： 解耦，手段：虚函数）到子类
+- [工厂模式](http://www.runoob.com/design-pattern/factory-pattern.html)
+
+
+- **意图**：定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。
+- **主要解决**：主要解决接口选择的问题。
+- **何时使用**：我们明确地计划不同条件下创建不同实例时。
+- **如何解决**：让其子类实现工厂接口，返回的也是一个抽象的产品。
+- **关键代码**：创建过程在其子类执行。
 
 #### 结构
 
@@ -671,8 +721,14 @@ void process(SplitterFactory*  factory){
 
 
 ## 3.2 Abstract Factory
-- 提供一个接口，让该接口负责创建一系列“相关或者相互依赖的对象”， 无需指定他们具体的类
-- 提供一个接口，用于创建 相关的对象家族 。
+
+- [抽象工厂模式](http://www.runoob.com/design-pattern/abstract-factory-pattern.html)
+
+- **意图**：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。
+- **主要解决**：主要解决接口选择的问题。
+- **何时使用**：系统的产品有多于一个的产品族，而系统只消费其中某一族的产品。
+- **如何解决**：在一个产品族里面，定义多个产品。
+- **关键代码**：在一个工厂里聚合多个同类产品。
 
 #### 结构
 
@@ -775,7 +831,12 @@ void process (IDBFactory* dbFactory;){
 
 ## 3.3 Prototype
 
-- 使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象。
+- [原型模式](http://www.runoob.com/design-pattern/prototype-pattern.html)
+
+- **意图**：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。
+- **主要解决**：在运行期建立和删除原型。
+- **何时使用**： 1、当一个系统应该独立于它的产品创建，构成和表示时。 2、当要实例化的类是在运行时刻指定时，例如，通过动态装载。 3、为了避免创建一个与产品类层次平行的工厂类层次时。 4、当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆它们可能比每次用合适的状态手工实例化该类更方便一些。
+- **如何解决**：利用已有的一个原型对象，快速地生成和原型对象一样的实例。
 
 #### 结构
 
@@ -872,9 +933,13 @@ base* d3 = d1.clone();
 
 ## 3.4 Builder
 
-- 将一个复杂对象的构建和其表示相分离，使得同样的构建过程(稳定)可以创建不同的表示方法；
+- [建造者模式](http://www.runoob.com/design-pattern/builder-pattern.html)
 
-- 封装一个对象的构造过程，并允许按步骤构造。
+- **意图**：将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。
+- **主要解决**：主要解决在软件系统中，有时候面临着"一个复杂对象"的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将它们组合在一起的算法却相对稳定。
+- **何时使用**：一些基本部件不会变，而其组合经常变化的时候。
+- **如何解决**：将变与不变分离开。
+- **关键代码**：建造者：创建和提供实例，导演：管理建造出来的实例的依赖关系。
 
 #### 结构
 
@@ -963,6 +1028,8 @@ void process(HouseBuilder* housebuilder){
 
 ## 4.1 Singleton
 
+- [单例模式](http://www.runoob.com/design-pattern/singleton-pattern.html)
+
 - 这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
 
 #### 注意
@@ -971,6 +1038,7 @@ void process(HouseBuilder* housebuilder){
 3. 单例类必须给所有其他对象提供这一实例。
 
 #### 介绍
+
 
 **意图**：保证一个类仅有一个实例，并提供一个访问它的全局访问点。
 **主要解决**：一个全局使用的类频繁地创建与销毁。
@@ -1066,9 +1134,11 @@ SingleObject* SingleObject::getInstance(){
 
 - [享元模式](http://www.runoob.com/design-pattern/flyweight-pattern.html)
 
-- 享元模式： 运用共享技术有效地支持大量细粒度的对象。
-
-- 主要解决：在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。
+- **意图**：运用共享技术有效地支持大量细粒度的对象。
+- **主要解决**：在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。
+- **何时使用**： 1、系统中有大量对象。 2、这些对象消耗大量内存。 3、这些对象的状态大部分可以外部化。 4、这些对象可以按照内蕴状态分为很多组，当把外蕴对象从对象中剔除出来时，每一组对象都可以用一个对象来代替。 5、系统不依赖于这些对象身份，这些对象是不可分辨的。
+- **如何解决**：用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象。
+- **关键代码**：用 HashMap 存储这些对象。
 
 #### 结构
 
@@ -1130,9 +1200,10 @@ Font* GetFont(string& key){
 
 - [外观模式](http://www.runoob.com/design-pattern/facade-pattern.html)
 
-- 为子系统的一组接口提供一个一致的界面，Facade模式定义了一个高层接口，这个接口使得这个子系统更加容易使用(复用)；
-
-- 主要解决：降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。
+- **意图**：为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。
+- **主要解决**：降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。
+- **何时使用**： 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个"接待员"即可。 2、定义系统的入口。
+- **如何解决**：客户端不与系统耦合，外观类与系统耦合。
 
 #### 结构
 
@@ -1217,8 +1288,11 @@ private:
 
 - [代理模式](http://www.runoob.com/design-pattern/proxy-pattern.html)
 
-- 意图：为其他对象提供一种代理以控制对这个对象的访问。
-- 主要解决：在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。
+- **意图**：为其他对象提供一种代理以控制对这个对象的访问。
+- **主要解决**：在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。
+- **何时使用**：想在访问一个类时做一些控制。
+- **如何解决**：增加中间层。
+- **关键代码**：实现与被代理类组合。
 
 #### 结构
 
@@ -1262,11 +1336,11 @@ public:
 
 - [中介者模式](http://www.runoob.com/design-pattern/mediator-pattern.html)
 
-- 意图：用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。
-- 主要解决：对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。
-- 何时使用：多个类相互耦合，形成了网状结构。
-- 如何解决：将上述网状结构分离为星型结构。
-- 关键代码：对象 Colleague 之间的通信封装到一个类中单独处理。
+- **意图**：用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。
+- **主要解决**：对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。
+- **何时使用**：多个类相互耦合，形成了网状结构。
+- **如何解决**：将上述网状结构分离为星型结构。
+- **关键代码**：对象 Colleague 之间的通信封装到一个类中单独处理。
 
 
 #### 结构
@@ -2147,12 +2221,164 @@ int main()
 
 - [解释器模式](http://www.runoob.com/design-pattern/interpreter-pattern.html)
 
+- **意图**：给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。
+- **主要解决**：对于一些固定文法构建一个解释句子的解释器。
+- **何时使用**：如果一种特定类型的问题发生的频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。这样就可以构建一个解释器，该解释器通过解释这些句子来解决该问题。
+- **如何解决**：构件语法树，定义终结符与非终结符。
+- **关键代码**：构件环境类，包含解释器之外的一些全局信息，一般是 HashMap。
 
 #### 结构
+
+![](https://github.com/CyC2018/CS-Notes/raw/master/pics/794239e3-4baf-4aad-92df-f02f59b2a6fe.png)
+
+TerminalExpression：终结符表达式，每个终结符都需要一个 TerminalExpression。
+Context：上下文，包含解释器之外的一些全局信息。
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+```c++
+
+
+#include <iostream>
+#include <map>
+#include <stack>
+
+using namespace std;
+
+class Expression {
+public:
+    virtual int interpreter(map<char, int> var)=0;
+    virtual ~Expression(){}
+};
+
+//变量表达式
+class VarExpression: public Expression {
+    
+    char key;
+    
+public:
+    VarExpression(const char& key)
+    {
+        this->key = key;
+    }
+    
+    int interpreter(map<char, int> var) override {
+        return var[key];
+    }
+    
+};
+
+//符号表达式
+class SymbolExpression : public Expression {
+    
+    // 运算符左右两个参数
+protected:
+    Expression* left;
+    Expression* right;
+    
+public:
+    SymbolExpression( Expression* left,  Expression* right):
+        left(left),right(right){
+        
+    }
+    
+};
+
+//加法运算
+class AddExpression : public SymbolExpression {
+    
+public:
+    AddExpression(Expression* left, Expression* right):
+        SymbolExpression(left,right){
+        
+    }
+    int interpreter(map<char, int> var) override {
+        return left->interpreter(var) + right->interpreter(var);
+    }
+    
+};
+
+//减法运算
+class SubExpression : public SymbolExpression {
+    
+public:
+    SubExpression(Expression* left, Expression* right):
+        SymbolExpression(left,right){
+        
+    }
+    int interpreter(map<char, int> var) override {
+        return left->interpreter(var) - right->interpreter(var);
+    }
+    
+};
+
+
+
+Expression*  analyse(string expStr) {
+    
+    stack<Expression*> expStack;
+    Expression* left = nullptr;
+    Expression* right = nullptr;
+    for(int i=0; i<expStr.size(); i++)
+    {
+        switch(expStr[i])
+        {
+            case '+':
+                // 加法运算
+                left = expStack.top();
+                right = new VarExpression(expStr[++i]);
+                expStack.push(new AddExpression(left, right));
+                break;
+            case '-':
+                // 减法运算
+                left = expStack.top();
+                right = new VarExpression(expStr[++i]);
+                expStack.push(new SubExpression(left, right));
+                break;
+            default:
+                // 变量表达式
+                expStack.push(new VarExpression(expStr[i]));
+        }
+    }
+   
+    Expression* expression = expStack.top();
+
+    return expression;
+}
+
+void release(Expression* expression){
+    
+    //释放表达式树的节点内存...
+}
+
+int main(int argc, const char * argv[]) {
+    
+    
+    string expStr = "a+b-c+d-e";
+    map<char, int> var;
+    var.insert(make_pair('a',5));
+    var.insert(make_pair('b',2));
+    var.insert(make_pair('c',1));
+    var.insert(make_pair('d',6));
+    var.insert(make_pair('e',10));
+
+    
+    Expression* expression= analyse(expStr);
+    
+    int result=expression->interpreter(var);
+    
+    cout<<result<<endl;
+    
+    release(expression);
+    
+    return 0;
+}
+
+```
+
+
 </details>
 
  
