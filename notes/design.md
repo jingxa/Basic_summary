@@ -57,7 +57,7 @@
 #### [七、数据结构](#7-数据结构)
 - [7.1 Composite](#71-compositer)
 - [7.2 Iterator](#72-iterator)
-- [7.3 Chain of Responsibility](#73-chain-of-Responsibility)
+- [7.3 Chain of Responsibility](#73-chain-of-responsibility)
 
 
 #### [八、行为变化](#8-行为变化)
@@ -197,6 +197,8 @@ int main(){
 </details>
 
 
+---
+
 ## 1.2 Observer
 
 - [观察者模式](http://www.runoob.com/design-pattern/observer-pattern.html)
@@ -315,6 +317,8 @@ int main(){
 
 
 
+---
+
 ## 1.3 Stratagy
 
 - [策略模式](http://www.runoob.com/design-pattern/strategy-pattern.html)
@@ -394,6 +398,9 @@ public:
 ```
 </details>
 
+
+
+---
 
 # 2. 单一职责
 
@@ -481,6 +488,8 @@ void process(){
 
 
 </details>
+
+---
 
 ## 2.2 Bridge
 
@@ -612,6 +621,9 @@ void process(){
 
 </details>
 
+---
+
+
 # 3. 对象创建
 
 - 通过 “对象创建”模式来绕开new，来避免对象创建过程中所导致的紧耦合（依赖具体类）,从而支持对象创建的稳定。它是接口抽象后的第一步工作。
@@ -719,6 +731,8 @@ void process(SplitterFactory*  factory){
 
 </details>
 
+
+---
 
 ## 3.2 Abstract Factory
 
@@ -829,6 +843,9 @@ void process (IDBFactory* dbFactory;){
 </details>
 
 
+
+---
+
 ## 3.3 Prototype
 
 - [原型模式](http://www.runoob.com/design-pattern/prototype-pattern.html)
@@ -931,6 +948,10 @@ base* d3 = d1.clone();
 </details>
 
 
+
+---
+
+
 ## 3.4 Builder
 
 - [建造者模式](http://www.runoob.com/design-pattern/builder-pattern.html)
@@ -1023,6 +1044,9 @@ void process(HouseBuilder* housebuilder){
 
 </details>
 
+
+
+---
 
 # 4. 对象性能
 
@@ -1130,6 +1154,9 @@ SingleObject* SingleObject::getInstance(){
 
 </details>
 
+
+---
+
 ## 4.2 Flyweight
 
 - [享元模式](http://www.runoob.com/design-pattern/flyweight-pattern.html)
@@ -1190,6 +1217,8 @@ Font* GetFont(string& key){
 
 
 </details>
+
+---
 
 
 # 5. 接口隔离
@@ -1283,6 +1312,9 @@ private:
 
 
 </details>
+
+
+---
 
 ## 5.2 Proxy
 
@@ -1615,6 +1647,8 @@ void process(){
 
 </details>
 
+---
+
 
 ## 6.2 State
 
@@ -1687,6 +1721,8 @@ public:
 </details>
 
 
+
+---
 
 # 7. 数据结构
 - 常常有一些组件在内部具有特定的数据结构，如果让客户程序依赖这些特定的数据结构，将极大的破坏组件的复用。这个时候，将这些特定的数据结构封装在内部，在外部提供统一的接口，来实现特定数据结构无关的访问，是一种有效的解决方案。
@@ -1797,6 +1833,8 @@ void process(){
 </details>
 
 
+---
+
 ## 7.2 Iterator
 
 - [迭代器模式](http://www.runoob.com/design-pattern/iterator-pattern.html)
@@ -1815,7 +1853,9 @@ void process(){
 
 
 Aggregate 是聚合类，其中 createIterator() 方法可以产生一个 Iterator；
+
 Iterator 主要定义了一些方法；
+
 Client 组合了 Aggregate，为了迭代遍历 Aggregate，也需要组合 Iterator。
 
 #### 实现
@@ -1874,6 +1914,7 @@ public:
 
 </details>
 
+---
 
 ## 7.3 Chain of Responsibility
 
@@ -2000,6 +2041,7 @@ int main(){
 
 
 
+---
 
 # 8. 行为变化
 
@@ -2100,6 +2142,8 @@ int main()
 ```
 
 </details>
+
+---
 
 ## 8.2 Visitor
 
@@ -2211,6 +2255,8 @@ int main()
 
 </details>
 
+
+---
 
 
 # 9. 领域问题
