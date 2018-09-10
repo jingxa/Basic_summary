@@ -57,8 +57,8 @@
 #### [七、数据结构](#7-数据结构)
 - [7.1 Composite](#71-compositer)
 - [7.2 Iterator](#72-iterator)
-- [7.3 Chain of](#73-chain-of)
-- [7.4 Responsibility](#74-responsibility)
+- [7.3 Chain of Responsibility](#73-chain-of-Responsibility)
+
 
 #### [八、行为变化](#8-行为变化)
 - [8.1 Command](#81-command)
@@ -1461,7 +1461,7 @@ public:
 
 # 6. 状态变化
 
-- 在组建构建过
+- 在组建构建过程中， 某些对象的状态经常面临变化，如何对这些变化进行有效的管理？同时又维持高层模块的稳定？“状态变化”模式为这一问题提供了一种解决方案；
 
 
 ## 6.1 Memento
@@ -1615,50 +1615,250 @@ public:
 
 
 # 7. 数据结构
+- 常常有一些组件在内部具有特定的数据结构，如果让客户程序依赖这些特定的数据结构，将极大的破坏组件的复用。这个时候，将这些特定的数据结构封装在内部，在外部提供统一的接口，来实现特定数据结构无关的访问，是一种有效的解决方案。
 
-#### 结构
-
-#### 实现
-
-<details><summary><b>具体实现</b></summary>
-</details>
 
 ## 7.1 Composite
 
+- [组合模式](http://www.runoob.com/design-pattern/composite-pattern.html)
+
+- **意图**：将对象组合成树形结构以表示"部分-整体"的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。
+- **主要解决**：它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以向处理简单元素一样来处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。
+
+
+- **如何解决**：树枝和叶子实现统一接口，树枝内部组合该接口。
+- **关键代码**：树枝内部组合该接口，并且含有内部属性 List，里面放 Component。
+
+
 #### 结构
+
+![pic_composite]
+
+
+组件（Component）类是组合类（Composite）和叶子类（Leaf）的父类，可以把组合类看成是树的中间节点。
+
+组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象。
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+
+```c++
+class Component{
+
+public:
+	virtual ~Component(){}
+	virtual void process() = 0;
+
+};
+
+
+class Composite : public Component{
+private:
+	string name;
+	List<Component*> elements;
+	
+public:
+    Composite(const string & s) : name(s) {}
+    
+    void add(Component* element) {
+        elements.push_back(element);
+    }
+    void remove(Component* element){
+        elements.remove(element);
+    }
+    
+    void process(){
+        
+        //1. process current node
+        
+        
+        //2. process leaf nodes
+        for (auto &e : elements)
+            e->process(); //多态调用      
+    }	
+
+};
+
+//叶子节点
+class Leaf : public Component{
+    string name;
+public:
+    Leaf(string s) : name(s) {}
+            
+    void process(){
+        //process current node
+    }
+};
+
+
+```
+
+使用：
+
+```c++
+void process(){
+    Composite root("root");
+    Composite treeNode1("treeNode1");
+    Composite treeNode2("treeNode2");
+    Composite treeNode3("treeNode3");
+    Composite treeNode4("treeNode4");
+    Leaf leat1("left1");
+    Leaf leat2("left2");
+    
+    root.add(&treeNode1);
+    treeNode1.add(&treeNode2);
+    treeNode2.add(&leaf1);
+    
+    root.add(&treeNode3);
+    treeNode3.add(&treeNode4);
+    treeNode4.add(&leaf2);
+
+}
+
+```
+
+
 </details>
+
 
 ## 7.2 Iterator
+
+- [迭代器模式](http://www.runoob.com/design-pattern/iterator-pattern.html)
+
+
+- **意图**：提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。
+- **主要解决**：不同的方式来遍历整个整合对象。
+- **何时使用**：遍历一个聚合对象。
+- **如何解决**：把在元素之间游走的责任交给迭代器，而不是聚合对象。
+- **关键代码**：定义接口：hasNext, next。
+
+
 #### 结构
+
+![pic_iterator]
+
+
+Aggregate 是聚合类，其中 createIterator() 方法可以产生一个 Iterator；
+Iterator 主要定义了一些方法；
+Client 组合了 Aggregate，为了迭代遍历 Aggregate，也需要组合 Iterator。
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+
+```c++
+template<typename T>
+class Iterator
+{
+public:
+    virtual void first() = 0;
+    virtual void next() = 0;
+    virtual bool isDone() const = 0;
+    virtual T& current() = 0;
+};
+
+
+
+template<typename T>
+class MyCollection{
+    
+public:
+    
+    Iterator<T> GetIterator(){
+        //...
+    }
+    
+};
+
+template<typename T>
+class CollectionIterator : public Iterator<T>{
+    MyCollection<T> mc;
+public:
+    
+    CollectionIterator(const MyCollection<T> & c): mc(c){ }
+    
+    void first() override {
+        
+    }
+    void next() override {
+        
+    }
+    bool isDone() const override{
+        
+    }
+    T& current() override{
+        
+    }
+};
+
+
+```
+
+
 </details>
 
 
-## 7.3 Chain of
+## 7.3 Chain of Responsibility
+
+- [责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
+
+- **意图**：避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。
+- **主要解决**：职责链上的处理者负责处理请求，客户只需要将请求发送到职责链上即可，无须关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。
+- **何时使用**：在处理消息的时候以过滤很多道。
+- **如何解决**：拦截的类都实现统一接口。
+
 
 #### 结构
+
+![pic_chain_of]
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+
+```c++
+
+class Request{
+private:
+	string name;
+	
+public:
+	Request(string& str):name(str){}
+	void doSomething(){ // ... }
+
+};
+
+
+class Handler{
+private:
+	Handler* chain;
+
+public:
+	virtual HandlerRequest(const Request& req) = 0;
+	virtual ~Handler(){}
+
+};
+
+
+class ConcreteHandlerA: public Handler{
+
+public:
+	
+
+};
+
+
+```
+
+
 </details>
 
 
-## 7.4 Responsibility
 
-#### 结构
-
-#### 实现
-
-<details><summary><b>具体实现</b></summary>
-</details>
 
 
 # 8. 行为变化
