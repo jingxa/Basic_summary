@@ -1821,38 +1821,104 @@ public:
 
 
 ```c++
+#include <iostream>
+#include <string>
 
-class Request{
-private:
-	string name;
-	
+using namespace std;
+
+enum class RequestType
+{
+    REQ_HANDLER1,
+    REQ_HANDLER2,
+    REQ_HANDLER3
+};
+
+class Reqest
+{
+    string description;
+    RequestType reqType;
 public:
-	Request(string& str):name(str){}
-	void doSomething(){ // ... }
+    Reqest(const string & desc, RequestType type) : description(desc), reqType(type) {}
+    RequestType getReqType() const { return reqType; }
+    const string& getDescription() const { return description; }
+};
 
+class ChainHandler{
+    
+    ChainHandler *nextChain;
+    void sendReqestToNextHandler(const Reqest & req)
+    {
+        if (nextChain != nullptr)
+            nextChain->handle(req);
+    }
+protected:
+    virtual bool canHandleRequest(const Reqest & req) = 0;
+    virtual void processRequest(const Reqest & req) = 0;
+public:
+    ChainHandler() { nextChain = nullptr; }
+    void setNextChain(ChainHandler *next) { nextChain = next; }
+    
+   
+    void handle(const Reqest & req)
+    {
+        if (canHandleRequest(req))
+            processRequest(req);
+        else
+            sendReqestToNextHandler(req);
+    }
 };
 
 
-class Handler{
-private:
-	Handler* chain;
-
-public:
-	virtual HandlerRequest(const Request& req) = 0;
-	virtual ~Handler(){}
-
+class Handler1 : public ChainHandler{
+protected:
+    bool canHandleRequest(const Reqest & req) override
+    {
+        return req.getReqType() == RequestType::REQ_HANDLER1;
+    }
+    void processRequest(const Reqest & req) override
+    {
+        cout << "Handler1 is handle reqest: " << req.getDescription() << endl;
+    }
+};
+        
+class Handler2 : public ChainHandler{
+protected:
+    bool canHandleRequest(const Reqest & req) override
+    {
+        return req.getReqType() == RequestType::REQ_HANDLER2;
+    }
+    void processRequest(const Reqest & req) override
+    {
+        cout << "Handler2 is handle reqest: " << req.getDescription() << endl;
+    }
 };
 
-
-class ConcreteHandlerA: public Handler{
-
-public:
-	
-
+class Handler3 : public ChainHandler{
+protected:
+    bool canHandleRequest(const Reqest & req) override
+    {
+        return req.getReqType() == RequestType::REQ_HANDLER3;
+    }
+    void processRequest(const Reqest & req) override
+    {
+        cout << "Handler3 is handle reqest: " << req.getDescription() << endl;
+    }
 };
 
+int main(){
+    Handler1 h1;
+    Handler2 h2;
+    Handler3 h3;
+    h1.setNextChain(&h2);
+    h2.setNextChain(&h3);
+    
+    Reqest req("process task ... ", RequestType::REQ_HANDLER3);
+    h1.handle(req);
+    return 0;
+}
 
 ```
+
 
 
 </details>
@@ -1863,26 +1929,225 @@ public:
 
 # 8. 行为变化
 
+- 在组件的构建过程中，组件行为的变化经常导致组件本身剧烈的变化。“行为变化”模式将组件的行为和组件本身进行解耦，从而支持组件行为的变化，实现两者之间的松耦合。
+
 ## 8.1 Command
 
+- [命令模式](http://www.runoob.com/design-pattern/command-pattern.html)
+
+
+- **意图**：将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。
+- **主要解决**：在软件系统中，行为请求者与行为实现者通常是一种紧耦合的关系，但某些场合，比如需要对行为进行记录、撤销或重做、事务等处理时，这种无法抵御变化的紧耦合的设计就不太合适。
+- **何时使用**：在某些场合，比如要对行为进行"记录、撤销/重做、事务"等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将"行为请求者"与"行为实现者"解耦？将一组行为抽象为对象，可以实现二者之间的松耦合。
+- **如何解决**：通过调用者调用接受者执行命令，顺序：调用者→接受者→命令。
+- **关键代码**：定义三个角色：1、received 真正的命令执行对象 2、Command 3、invoker 使用命令对象的入口
+
 #### 结构
+
+![pic_command]
+
+
+Command：命令
+Receiver：命令接收者，也就是命令真正的执行者
+Invoker：通过它来调用命令
+Client：可以设置命令与命令的接收者
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+
+class Command
+{
+public:
+    virtual void execute() = 0;
+};
+
+class ConcreteCommand1 : public Command
+{
+    string arg;
+public:
+    ConcreteCommand1(const string & a) : arg(a) {}
+    void execute() override
+    {
+        cout<< "#1 process..."<<arg<<endl;
+    }
+};
+
+class ConcreteCommand2 : public Command
+{
+    string arg;
+public:
+    ConcreteCommand2(const string & a) : arg(a) {}
+    void execute() override
+    {
+        cout<< "#2 process..."<<arg<<endl;
+    }
+};
+        
+        
+class MacroCommand : public Command
+{
+    vector<Command*> commands;
+public:
+    void addCommand(Command *c) { commands.push_back(c); }
+    void execute() override
+    {
+        for (auto &c : commands)
+        {
+            c->execute();
+        }
+    }
+};
+        
+
+        
+int main()
+{
+
+    ConcreteCommand1 command1(receiver, "Arg ###");
+    ConcreteCommand2 command2(receiver, "Arg $$$");
+    
+    MacroCommand macro;
+    macro.addCommand(&command1);
+    macro.addCommand(&command2);
+    
+    macro.execute();
+
+}
+
+
+```
+
 </details>
 
 ## 8.2 Visitor
 
+- [访问者模式](http://www.runoob.com/design-pattern/visitor-pattern.html)
+
+- **意图**：主要将数据结构与数据操作分离。
+- **主要解决**：稳定的数据结构和易变的操作耦合问题。
+- **何时使用**：需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作"污染"这些对象的类，使用访问者模式将这些封装到类中。
+- **如何解决**：在被访问的类里面加一个对外提供接待访问者的接口。
+- **关键代码**：在数据基础类里面有一个方法接受访问者，将自身引用传入访问者。
+
 #### 结构
+
+![pic](https://github.com/CyC2018/CS-Notes/raw/master/pics/ec923dc7-864c-47b0-a411-1f2c48d084de.png)
 
 #### 实现
 
 <details><summary><b>具体实现</b></summary>
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Visitor;
+
+
+class Element
+{
+public:
+    virtual void accept(Visitor& visitor) = 0; //第一次多态辨析
+
+    virtual ~Element(){}
+};
+
+class ElementA : public Element
+{
+public:
+    void accept(Visitor &visitor) override {
+        visitor.visitElementA(*this);
+    }
+    
+
+};
+
+class ElementB : public Element
+{
+public:
+    void accept(Visitor &visitor) override {
+        visitor.visitElementB(*this); //第二次多态辨析
+    }
+
+};
+
+
+class Visitor{
+public:
+    virtual void visitElementA(ElementA& element) = 0;
+    virtual void visitElementB(ElementB& element) = 0;
+    
+    virtual ~Visitor(){}
+};
+
+//==================================
+
+//扩展1
+class Visitor1 : public Visitor{
+public:
+    void visitElementA(ElementA& element) override{
+        cout << "Visitor1 is processing ElementA" << endl;
+    }
+        
+    void visitElementB(ElementB& element) override{
+        cout << "Visitor1 is processing ElementB" << endl;
+    }
+};
+     
+//扩展2
+class Visitor2 : public Visitor{
+public:
+    void visitElementA(ElementA& element) override{
+        cout << "Visitor2 is processing ElementA" << endl;
+    }
+    
+    void visitElementB(ElementB& element) override{
+        cout << "Visitor2 is processing ElementB" << endl;
+    }
+};
+        
+    
+
+        
+int main()
+{
+    Visitor2 visitor;
+    ElementB elementB;
+    elementB.accept(visitor);// double dispatch
+    
+    ElementA elementA;
+    elementA.accept(visitor);
+
+    
+    return 0;
+}
+
+
+
+```
+
+
 </details>
 
+
+
 # 9. 领域问题
+
+- 在特定的领域中，某些变化虽然频繁，但可以抽象为某种规则，这时候，结合特定领域，将问题抽象为语法规则，从而给出在该领域的一般性解决方案。
+
 ## 9.1 Interpreter
+
+- [解释器模式](http://www.runoob.com/design-pattern/interpreter-pattern.html)
+
+
 #### 结构
 
 #### 实现
