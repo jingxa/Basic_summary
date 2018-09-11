@@ -22,10 +22,10 @@
 
 
 
-| c++ | 算法| 设计模式 | 计算机网络 | linux和操作系统 |  数据库 | 系统设计 |
+| c++ | 算法| 其他 | 计算机网络 | linux和操作系统 |  数据库 | 系统设计 |
 | -|-|-|-| -|-|-|
-| [c++] | [剑指offer] |[设计模式] 	| [network] | [操作系统]    |  [CyC-数据库基本原理] |         |
-|       | [leetcode]    |        | [CyC-HTTP] |       | 	[database常见题]|  	  		 | 
+| [c++] | [剑指offer] |	| [network] | [操作系统]    |  [CyC-数据库基本原理] |         |
+|[设计模式]| [leetcode] |        | [CyC-HTTP] |       | 	[database常见题]|  	  		 | 
 |		|				|			| [HTTP相关] |				|	[CyC-MySQL]			| 				|
 
 

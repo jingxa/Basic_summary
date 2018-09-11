@@ -486,10 +486,62 @@ int directFind(vector<int>& nums, int l , int h){
 
 # 12. 矩阵中的路径
 
+- [矩阵中的路径](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 <details><summary>code</summary>
 
-```
+```c++
+
+class Solution {
+public:
+    bool hasPath(char* matrix, int rows, int cols, char* str)
+    {
+        if(!matrix || !str || rows==0 || cols == 0)
+            return false;
+        
+        vector<vector<bool>> marked(rows, vector<bool>(cols,false));
+        int len= rows*cols;
+        bool res = false;
+        for(int m=0;m<rows;m++){
+            for(int n=0;n<cols;n++){
+                res = res || equalStr(matrix,m,n,rows,cols,str,0,marked);
+       
+           // 重置marked
+          //  marked.swap(vector<vector<bool>>(rows, vector<bool>(cols,false)));         
+        }
+        }
+        return res;
+    
+   }
+    
+    bool equalStr(char* matrix,int i,int j,int r, int c , char* str, int k,vector<vector<bool>>& marked){
+        if(i<0 || i>=r || j<0 || j>=c || marked[i][j])
+            return false;
+        
+        bool res=false;
+        if(matrix[i*c + j ] == str[k] && marked[i][j] == false){
+            k++;
+            marked[i][j] = true;
+            
+            if(str[k] == '\0')
+                return true;
+            
+            res = (equalStr(matrix,i,j+1,r,c,str,k,marked) || 
+                   equalStr(matrix,i,j-1,r,c,str,k,marked) ||
+                   equalStr(matrix,i+1,j,r,c,str,k,marked) ||
+                   equalStr(matrix,i-1,j,r,c,str,k,marked) );
+            
+         if(res != true)
+             marked[i][j] = false; 
+        }
+        
+        return res;
+    }
+    
+
+
+};
+
 ```
 
 </details>
@@ -497,6 +549,10 @@ int directFind(vector<int>& nums, int l , int h){
 
 
 # 13. 机器人的运动范围
+
+-  [机器人的运动范围](https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
 >地上有一个 m 行和 n 列的方格。一个机器人从坐标 (0, 0) 的格子开始移动，
 >每一次只能向左右上下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 k 的格子。
 >例如，当 k 为 18 时，机器人能够进入方格（35, 37），因为 3+5+3+7=18。
@@ -508,7 +564,7 @@ int directFind(vector<int>& nums, int l , int h){
 
 
 
-```
+```c++
 class Solution {
 public:
     int movingCount(int threshold, int rows, int cols)
@@ -567,10 +623,12 @@ public:
 ---
 # 14. 剪绳子
 
+- [ 剪绳子](https://leetcode.com/problems/integer-break/description/)
+
 > 把一根绳子剪成多段，并且使得每段的长度乘积最大
 ---
 
-```
+```c++
     int integerBreak(int n) {
         if(n<2)
             return 0;

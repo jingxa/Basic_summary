@@ -6,6 +6,7 @@
 - [CS-Notes/notes/设计模式.md](https://github.com/CyC2018/CS-Notes/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 
+
 ---
 
 # 分类
@@ -434,7 +435,7 @@ public:
 
 <details><summary><b>具体实现</b></summary>
 
-```
+```c++
 // 基类
 class stream{
 public:
@@ -476,7 +477,7 @@ public:
 
 ```
 
-```
+```c++
 void process(){
 
 	NetWorkStream* ns = NetWorkStream();
@@ -514,7 +515,7 @@ void process(){
 
 <details><summary><b>具体实现</b></summary>
 
-```
+```c++
 class MessageImp;
 
 class Messager{
@@ -607,7 +608,7 @@ public:
 
 ```
 
-```
+```c++
 void process(){
 	// 运行时装配
 	MessageImp* mimp = new PCMessageImp();
