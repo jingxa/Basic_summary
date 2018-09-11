@@ -563,6 +563,7 @@ public:
 2. DFS遍历，保存最大的移动数
 
 
+<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -620,12 +621,17 @@ public:
  
 };
 ```
+
+</details>
+
 ---
 # 14. 剪绳子
 
 - [ 剪绳子](https://leetcode.com/problems/integer-break/description/)
 
 > 把一根绳子剪成多段，并且使得每段的长度乘积最大
+
+<details><summary>code</summary>
 ---
 
 ```c++
@@ -660,6 +666,7 @@ public:
 
 ```
 
+</details>
 ---
 # 15. 二进制中 1 的个数
 
@@ -668,6 +675,8 @@ public:
 >n-1     : 10110011
 >n&(n-1) : 10110000
 
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -695,6 +704,7 @@ public:
 
 ```
 
+</details>
 ---
 
 # 16. 数值的整数次方
