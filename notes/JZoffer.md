@@ -33,6 +33,7 @@ bool duplicate(vector<int>nums, int len, int* dup){
 
 </details>
 
+---
 
 # 4. 二维数组中的查找
 
@@ -73,7 +74,7 @@ bool FindTarget(int target, vector<vector<int>> &nums){
 
 </details>
 
-
+---
 
 # 5. 替换空格
 
@@ -134,6 +135,7 @@ void replaceSpace(char *str,int length) {
 
 </details>
 
+---
 
 # 6. 从尾到头打印链表
 
@@ -172,7 +174,7 @@ public:
 
 
 
-
+---
 
 
 # 7. 重建二叉树
@@ -219,7 +221,7 @@ public:
 
 </details>
 
-
+---
 
 # 8. 二叉树的下一个结点
 
@@ -258,7 +260,7 @@ public:
 
 </details>
 
-
+---
 
 # 9. 用两个栈实现队列
 
@@ -303,7 +305,7 @@ public:
 
 </details>
 
-
+---
 
 # 10.1 斐波那契数列
 
@@ -332,6 +334,8 @@ public:
 
 
 </details>
+
+---
 
 
 # 10.2 跳台阶
@@ -363,7 +367,7 @@ public:
 
 </details>
 
-
+---
 
 # 10.3 变态跳台阶
 
@@ -395,7 +399,7 @@ public:
 
 </details>
 
-
+---
 
 # 10.4 矩形覆盖
 
@@ -429,7 +433,7 @@ int rectCover(int n){
 </details>
 
 
-
+---
 
 # 11. 旋转数组的最小数字
 
@@ -482,7 +486,7 @@ int directFind(vector<int>& nums, int l , int h){
 
 </details>
 
-
+---
 
 # 12. 矩阵中的路径
 
@@ -546,6 +550,7 @@ public:
 
 </details>
 
+---
 
 
 # 13. 机器人的运动范围
@@ -625,6 +630,8 @@ public:
 </details>
 
 ---
+
+
 # 14. 剪绳子
 
 - [ 剪绳子](https://leetcode.com/problems/integer-break/description/)
@@ -667,7 +674,11 @@ public:
 ```
 
 </details>
+
+
 ---
+
+
 # 15. 二进制中 1 的个数
 
 >输入一个整数，输出该数二进制表示中 1 的个数。
@@ -705,6 +716,8 @@ public:
 ```
 
 </details>
+
+
 ---
 
 # 16. 数值的整数次方
