@@ -11,7 +11,7 @@
 
 - [Linux epoll源码剖析](https://www.jianshu.com/p/5e00e74b8ce1)
 
-
+- [SYSCALL_DEFINEx函数调用](https://blog.csdn.net/Function_Dou/article/details/80393332)
 
 # epoll源码分析整理
 
