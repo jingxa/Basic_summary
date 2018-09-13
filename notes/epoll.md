@@ -17,6 +17,8 @@
 
 - 主要是截取上面几个资料中的文章！
 
+- 对于部分情况还是不太清楚，待后续。。
+
 
 
 ## 1. epoll的API
@@ -221,28 +223,6 @@ struct eventpoll {
 
 ```
 	
-## 4. epoll 的初始化
-
-```c++
-
-static int __init eventpoll_init(void)
-{
-   mutex_init(&pmutex);
-
-   ep_poll_safewake_init(&psw);
-
-   epi_cache = kmem_cache_create("eventpoll_epi", sizeof(struct epitem), 0, SLAB_HWCACHE_ALIGN|EPI_SLAB_DEBUG|SLAB_PANIC, NULL);
-
-   pwq_cache = kmem_cache_create("eventpoll_pwq", sizeof(struct eppoll_entry), 0, EPI_SLAB_DEBUG|SLAB_PANIC, NULL);
-
-   return 0;
-
-}
-
-
-
-```
-
 
 # 二、 源码分析整理
 
@@ -529,13 +509,8 @@ SYSCALL_DEFINE4(epoll_ctl, int, epfd, int, op, int, fd,
      */
     if (!tfile->f_op || !tfile->f_op->poll)
         goto error_tgt_fput;
-		
-    /*
-     * We have to check that the file structure underneath the file descriptor
-     * the user passed to us _is_ an eventpoll file. And also we do not permit
-     * adding an epoll file descriptor inside itself.
-     */
-	 
+
+ 
     error = -EINVAL;
     /* epoll不能自己监听自己... */
     if (file == tfile || !is_file_epoll(file))
