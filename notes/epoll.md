@@ -1,13 +1,22 @@
 # 参考资料
 
-- [epoll源码实现分析[整理]](https://www.cnblogs.com/apprentice89/p/3234677.html)
+
+- [epoll的原理和实现](https://titenwang.github.io/2017/10/05/implementation-of-epoll/)
+
+- 推荐：[epoll源码分析(三)](https://blog.csdn.net/Function_Dou/article/details/80421175)
 
 - [epoll内核源码详解+自己总结的流程 精](https://www.nowcoder.com/discuss/26226?type=0&order=0&pos=27&page=1)
 
+- 推荐： [select, poll, epoll的实现分析](http://leohotfn.com/2017/10/18/select-poll-epoll%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/)
+
+- [Linux epoll源码剖析](https://www.jianshu.com/p/5e00e74b8ce1)
 
 
 
 # epoll源码分析整理
+
+- 主要是截取上面几个资料中的文章！
+
 
 
 ## 1. epoll的API
@@ -123,7 +132,7 @@ struct epoitem{
 
 	struct epoll_filefd  ffd;   //这个结构体对应的被监听的文件描述符信息，即epitem对应的fd 和 struct file
 
-	int  nwait;                 //poll操作中事件的个数
+	int  nwait;                 //nwait记录了当前epitem加入到了多少个等待队列中
 
     struct list_head  pwqlist;  //双向链表，保存着被监视文件的等待队列，功能类似于select/poll中的poll_table
 
@@ -1329,6 +1338,87 @@ static int ep_send_events_proc(struct eventpoll *ep, struct list_head *head,
 3. 根据ET或者LT模式，如果是LT模式，将事件再次加入到ep->rdllist链表中
 
 
+### 总结
+
+### 1. SYSCALL_DEFINE(epoll_wait, …)函数
+	- 判断最大值合法性
+	- 获得匿名文件的文件指针
+	- 调用`ep_poll`阻塞自己, 等待有消息的到来
+	
+### 2. ep_poll
+	- 先设置好时间长度
+	- 初始化就绪的等待队列- 
+	- 对有没有进程准备好, 有消息传来或者对时间是否到达进行判断, 如果满足就退出循环, 执行进程.
+	- 如果没有满足就执行进程调度, 让出cpu, 让其他的进程执行, 等待一定的时间后返回该进程继续进行判断, 有准备好的执行, 没有继续让出cpu.
+	- 调用ep_send_evnets将就绪链表中的数据返回给用户空间.
+	
+### 3. ep_send_events
+	-  内部调用ep_scan_ready_list
+	
+### 4. ep_scan_ready_list
+	- rdlist就绪列表上的所有epitem转移到txlist临时列表
+	- rdlist列表不在接收新的events,新的events挂到ovflist列表上
+	- 调用函数`error = (*sproc)(ep, &txlist, priv);`处理就绪列表的epitem集合
+	- 将ovflist列表上的事件重新挂到rdlist，txlist上未处理完的数据也挂到rdlist,等待下一回处理
+	
+### 5. ep_send_events_proc
+	- 就是上面的处理epitem的函数，循环处理
+	- 从链表中取出第一个epitem并且移除，然后取出epitem的events
+	- `__put_user` 将就绪事件拷贝到用户态内存中
+	- 根据ET或者LT模式，如果是LT模式，将事件再次加入到ep->rdllist链表中
 
 
 
+
+
+---
+
+##  4. 总结
+
+### 一. epoll_create
+
+1. 调用ep_alloc()来创建一个struct eventpoll对象．ep_alloc()的执行过程如下：
+	- 获取当前用户的一些信息．
+	- 分配一个struct eventpoll对象．
+	- 初始化相关数据成员，如等待队列，就绪链表，红黑树．
+2. 创建一个匿名fd和与之对应的struct file对象．
+3. 将该eventpoll和该file关联起来，eventpoll对象保存在file对象的private_data指针中．
+ 
+
+ 
+ 
+### 二. epoll_ctl
+ 
+ 
+ 
+ 
+1. 将event拷贝到内核空间．
+2. 判断加入的fd是否支持poll操作．
+3. 根据用户传入的op参数，以及是否在eventpoll的红黑树中找到该fd的结点，来执行相应的操作(插入，删除，修改)．拿插入举例，执行ep_insert()：
+	- 在slab缓存中分配一个epitem对象，并初始化相关数据成员，如保存待监听的fd和它的file结构．
+	- 指定调用poll_wait()时(再次强调，不是epoll_wait)时的回调函数，用于数据就绪时唤醒进程．(其实质是初始化文件的等待队列，将进程加入到等待队列)．
+	- 到此该epitem就和这个待监听的fd关联起来了．
+	- 将该epitem插入到eventpoll的红黑树中．
+ 
+ 
+ 
+### 三. epoll_wait
+
+调用ep_poll()：
+1. 计算睡眠时间(如果有)．
+2. 判断eventpoll的就绪链表是否为空，不为空则直接处理而不是睡眠．
+3. 将当前进程添加到eventpoll的等待队列中．
+4. 进入循环．
+5. 将当前进程设置成TASK_INTERRUPTIBLE状态，然后判断是否有信号到来，如果没有，则进入睡眠．
+6. 如果超时或被信号唤醒，则跳出循环．
+7. 将当前进程从等待队列中删除，并把其状态设置成TASK_RUNNING．
+8. 将数据拷贝给用户空间．拷贝的过程是先把ready list转移到中间链表，然后遍历中间链表拷贝到用户空间，并且判断每个结点是否水平触发，是则再次插入到ready list．
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
