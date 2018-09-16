@@ -133,6 +133,40 @@ signal(SIGCHLD,SIG_IGN);
 
 
 
+---
+
+## 4.  Linux 相关的系统调用
+
+### (1). read()
+
+调用 `sys_open:`
+- `getname()`:把文件名传送到内核空间
+- `get_unused_fd()`: 获得下一个可用的文件描述符
+- `filp_open()`: 创建nameidata结构体
+- `open_namei()`:初始化nameidata结构体 
+- `dentry_open()`: 创建并初始化文件对象
+- `fd_install()`: `将current->files->fd[fd]设置成文件对象`
+- `putname()`:回收为文件名分配的内核空间
+
+
+### (2). close()
+- `sys_close()`
+
+- `__put_unused_fd()`:吧文件描述符归还给可用池
+- `filp_close()`: 准备即将清除的文件对象
+- `fput()`: 清除文件对象
+
+
+### (3).read()
+- sys_read()
+
+
+
+
+
+
+
+
 
 
 
