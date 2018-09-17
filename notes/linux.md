@@ -1,8 +1,9 @@
 
 # 参考资料
 
-
-
+- [Linux内存管理](http://gityuan.com/2015/10/30/kernel-memory/)
+- [Linux内存管理](https://segmentfault.com/a/1190000008125006)
+- 
 
 # 一、 内存管理
 
