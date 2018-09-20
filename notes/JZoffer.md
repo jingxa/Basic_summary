@@ -773,10 +773,6 @@ int CountSum(int m, int n){
 ```
 
 
-
-
-
-
 ---
 
 # 16. 数值的整数次方
@@ -801,8 +797,8 @@ public:
             e = -e;
             isN = true;
         }
-        double p = Power(b*b, e/2);
-        if(e%2 == 1)
+        double p = Power(b*b, e>>1);
+        if(e & 0x1 == 1)
             p = b*p;
         
         return isN ?1/ p : p; 
@@ -812,13 +808,187 @@ public:
 
 ```
 
+普通方法：
+- 计算机表示小数小数(float 和double)都有误差，不能用等号直接判断两个小数是否相等，比较两个数的差
+
+```c++
+
+bool equal(double num1, double num2){
+	if((num1 - num2 > -0.00000001) && (num1 - num2 < 0.00000001))
+		return true;
+	else
+		return false;
+}
+
+
+bool PowerWithUnsigned(double base, unsigned int exponent){
+	double result = 0.0;
+	for(int i=0;i<=exponent;++i)
+		result *= base;
+		
+	return result;
+}
+
+
+double  Power(double base, int exponent){
+
+	bool invalid = false;
+	if(equal(base,0.0) && exponent < 0){
+		invalid = true;
+		return 0.0;
+	}
+	
+	unsigned int absEx = (unsigned int)(exponent);
+	if(exponent < 0)
+		absEx = (unsigned int)(-exponent);		// 负值重新赋值
+		
+	double result = PowerWithUnsigned (base, exponent);
+	
+	if(exponent < 0)
+		result = 1.0 / result;
+		
+	return result;
+
+}
+
+
+```
+
 ---
 
-## 16.1 
+# 17. 打印从 1 到最大的 n 位数
 
----
+- 注意字符的长度
 
-17. 打印从 1 到最大的 n 位数
+```c++
+
+// 进位溢出计算
+bool Increment(char* number){
+
+	bool isOverflow = false;
+	int nTakeover = 0;
+	int nLength = strlen(number);  // 总长度
+	
+	for(int i = nLength -1;i>=0;i--){
+		int nSum = number[i] - '0' + nTakeover; // 计算当前位的值
+		if(i == nLength - 1)  // 最后一位，加1
+			nSum ++;
+		if(nSum >=10)  // 产生了进位	
+		{
+			if(i==0)
+				isOverflow = true; // 第 0 位，达到最大数字
+			else{
+				nSum -= 10;
+				nTakeover = 1;
+				number[i] = '0' + nSum;  // 更新 第 i 位
+			}
+		}else{
+			number[i] = '0' + nSum;
+			break;
+		}
+		
+		return isOverflow;
+	}
+}
+
+
+
+// 打印输出
+void printNumber(char* number){
+
+	bool isBeginning0 = true;
+	
+	int nLength = strlen(number);
+	
+	for(int i=0;i<nLength; ++i){
+	
+		if(isBeginning0 && number[i] != '0')
+			isBeginning0 = false;
+			
+		if(!isBeginning0){
+			printf("%c", number[i]);
+		}
+	}
+	printf("\n");
+}
+
+
+
+
+void print1ton( int n){
+
+	if(n <=0)
+		return;
+		
+	char number[] = new char[n + 1];
+	memset(number, '0', n);
+	number[n] = '\0';
+	
+	while(!Increment(number)){
+		printNumber(number);
+	}
+	
+	delete [] number;
+}
+
+```
+
+
+方法2：
+
+- 使用全排列的方式
+
+```c++
+
+
+
+void print1toNRecursive(char* number, int len , int idx){
+
+	if(idx == len -1)  // 最后一位
+	{
+		printNumber(number);
+		return ;
+	}
+	
+	for(int i=0;i<10;i++){
+	
+		number[idx+1] = i+'0';
+		print1toNRecursive(number,len,idx + 1);
+	}
+
+}
+
+
+
+
+
+void print1ton(int n){
+
+	if(n <=0)
+		return;
+	
+	char number[] = new char[n+1];
+	number[n] = '\0';
+	
+	
+	for(int i=0;i<10;++i){
+		number[0] = i+ '0';
+		print1toNRecursive(number,n,0);
+	}
+	
+	delete[] number;
+
+}
+
+
+
+
+```
+
+
+
+
+
 
 ---
 # 18.1 在 O(1) 时间内删除链表节点
@@ -849,6 +1019,75 @@ ListNode* delnode(ListNode* head, ListNode* node){
 ---
 
 # 18.2 删除链表中重复的结点
+
+- [删除链表中重复的结点](https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 递归删除
+
+```c++
+
+ListNode* deleteDuplicate(ListNode* head){
+	if(head == nullptr || head->next == nullptr)
+		return head;
+		
+	ListNode* cur, *next;
+	next = head->next;
+	
+	if(next->val == head->val){
+		while(next != nullptr && next->val == head->val){
+			next= next->next;
+		}
+		return deleteDuplicate(next);
+	}
+	else{
+		head->next = deleteDuplicate(next);
+		return head;
+	}
+}
+```
+
+
+非递归：
+
+```c++
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* head)
+    {
+        if(head == nullptr || head->next == nullptr)
+            return head;
+        ListNode * root = new ListNode(0);
+        ListNode* pre,*next;
+        pre = root;
+        pre->next= head;
+        next = head->next;
+        
+        while(next !=nullptr){
+            if( head->val == next->val){   
+                while(next !=nullptr && next->val == head->val)
+                    next = next->next; 
+                
+                head = next;
+                pre->next = head;   // 如果重复，一直指向下一个
+            }else{
+                pre = head;
+                head = head->next;             
+            }
+             
+            if(head != nullptr)   // 当前节点不为空节点
+                next =head->next;
+        }
+        
+        return root->next;
+
+    }
+};
+
+
+
+```
+
+
 
 ---
 
