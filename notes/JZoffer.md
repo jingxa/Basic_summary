@@ -783,7 +783,10 @@ int CountSum(int m, int n){
 ![](https://camo.githubusercontent.com/a9c60dcae8e57f42cb7f60473d695dddb3dd6221/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f785e6e3d5c6c6566745c7b5c626567696e7b61727261797d7b72636c7d28782a78295e7b6e2f327d26267b6e5c25323d307d5c5c782a28782a78295e7b6e2f327d26267b6e5c25323d317d5c656e647b61727261797d5c72696768742e)
 
 
-```
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     double Power(double b, int e) {
@@ -854,11 +857,18 @@ double  Power(double base, int exponent){
 
 ```
 
+</details>
+
+
 ---
 
 # 17. 打印从 1 到最大的 n 位数
 
 - 注意字符的长度
+
+
+<details><summary>code</summary>
+
 
 ```c++
 
@@ -933,10 +943,16 @@ void print1ton( int n){
 
 ```
 
+</details>
+
 
 方法2：
 
 - 使用全排列的方式
+
+
+<details><summary>code</summary>
+
 
 ```c++
 
@@ -985,7 +1001,7 @@ void print1ton(int n){
 
 ```
 
-
+</details>
 
 
 
@@ -996,7 +1012,11 @@ void print1ton(int n){
 - 中间节点：将下一个节点的值赋值给当前节点，删除下一节点
 - 尾巴节点：遍历到尾部
 
-```
+
+
+<details><summary>code</summary>
+
+```c++
 ListNode* delnode(ListNode* head, ListNode* node){
 	if(head == nullptr || head->next == nullptr || node == nullptr)
 		return nullptr;
@@ -1016,6 +1036,8 @@ ListNode* delnode(ListNode* head, ListNode* node){
 
 ```
 
+</details>
+
 ---
 
 # 18.2 删除链表中重复的结点
@@ -1023,6 +1045,9 @@ ListNode* delnode(ListNode* head, ListNode* node){
 - [删除链表中重复的结点](https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 递归删除
+
+
+<details><summary>code</summary>
 
 ```c++
 
@@ -1087,6 +1112,7 @@ public:
 
 ```
 
+</details>
 
 
 ---
@@ -1106,7 +1132,10 @@ public:
 > 3. aabc 和 .*abc   :  .* 可以匹配0到多个， match(s+1,p);
 
 
-```
+<details><summary>code</summary>
+
+
+```c++
 bool match(char* str, char* pattern)
 {
 	if (*str == '\0' && *pattern == '\0')
@@ -1133,11 +1162,16 @@ bool match(char* str, char* pattern)
 
 ```
 
+</details>
+
+
 ---
 # 20. 表示数值的字符串
 
 
-```
+<details><summary>code</summary>
+
+```c++
     bool isNumeric(char* s)
     {
         bool pre_ = false;   // 前面的正负号
@@ -1203,11 +1237,21 @@ bool match(char* str, char* pattern)
 };
 ```
 
+</details>
+
 
 ---
+
+
 # 21. 调整数组顺序使奇数位于偶数前面
 
-```
+- [调整数组顺序使奇数位于偶数前面](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     void reOrderArray(vector<int> &array) {
@@ -1232,26 +1276,34 @@ public:
 };
 
 
+// 交换
 
-void reOrderArray(vector<int> &array) {
-	if(array.empty())
+void reOrderArray(vector<int>& array){
+	int len = array.size();
+	if(len < 1)
 		return;
-	int flag = false;
-	for(int i=0;i<array.size();i++)
-	{
-		flag =true;
-		for(int j= array.size() -1;j>i;j--)
+	int i = 0, j = len - 1;
+	
+	while(i<j){
+		// 向后移动，知道遇见偶数
+		while(i<j && (array[i] & 0x1) != 0)
+			i++;
+		// 向前移动，直到遇到奇数
+		while(i<j && (array[j] & 0x1) == 0)
+			--j;
+		
+		if(i <j)
 		{
-			if(array[j-1] % 2 == 0 && array[j] % 2 ==1){
-				swap(array[j-1], array[j]);
-				flag = false;
-			}
+			swap(array[i], array[j]);
 		}
-		if(flag)
-			break;
+	
 	}
+
 }
+
 ```
+
+</details>
 
 
 
@@ -1259,7 +1311,14 @@ void reOrderArray(vector<int> &array) {
 
 # 22. 链表中倒数第 K 个结点
 
-```
+- [链表中倒数第 K 个结点](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 遍历两次： 第一次获取长度，第二次得到结果
+- 遍历一次： 采用双指针，两个指针相差k步,最后一个指针走到末尾，另一个指针指向倒数第 k个节点；
+
+<details><summary>code</summary>
+
+```c++
     ListNode* FindKthToTail(ListNode* head, unsigned int k) {
     
         if(!head)
@@ -1282,10 +1341,44 @@ void reOrderArray(vector<int> &array) {
         return p;
  
     }
+	
+	
+// 方法2
+
+ListNode* FindKthToTail(ListNode* head, unsigned int k) {
+	if(head == nullptr || k == 0)
+		return nullptr;
+		
+	ListNode* pre = head;
+	ListNode* last = head;
+	
+	for(int i=0;i<k-1;++i){  // 向前走k-1步
+		if(pre->next != nullptr)  // 长度不够
+			pre = pre->next;
+		else
+			return nullptr;
+	}
+	
+	while(pre->next != nullptr){
+		pre = pre->next;
+		last = last->next;
+	}
+
+	return last;
+}
+
+	
+	
 ```
 
+</details>
+
 ---
+
+
 # 23. 链表中环的入口结点
+
+
 > 假设x为环前面的路程
 > a为环入口到相遇点的路程, c为环的长度
 > 当快慢指针相遇的时候：
@@ -1300,7 +1393,9 @@ void reOrderArray(vector<int> &array) {
 
 
 
-```
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     ListNode* EntryNodeOfLoop(ListNode* head)
@@ -1332,11 +1427,19 @@ public:
 };
 ```
 
+</details>
 
 ---
 # 24. 反转链表
 
-```
+- [反转链表](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&tqId=11168&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 使用头插法
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     ListNode* ReverseList(ListNode* head) {
@@ -1361,10 +1464,37 @@ public:
 
 // 递归
 
+ListNode* ReverseList(ListNode* head){
+	if( head == nullptr || head->next == nullptr)
+		return head;
+		
+	ListNode* next = head->next;
+	
+	head->next = nullptr;
+	
+	ListNode* newhead = ReverseList(next);
+	
+	next->next = head;
+	
+	return newhead;
+	
+}
+
+
+
 ```
 
+</details>
+
 ---
+
+
 # 25. 合并两个排序的链表
+
+
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -1388,7 +1518,13 @@ public:
     }
 };
 ```
+
+</details>
+
 ---
+
+
+
 # 26. 树的子结构
 ```
 class Solution {
