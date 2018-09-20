@@ -109,7 +109,7 @@ struct page {
 ### 3.3 页分配与释放
 
 | 页分配函数| 描述 |
-| - | — |
+| - | - |
 | `alloc_pages(gfp_mask, order)` |	分配2^order个页，返回指向第一页的指针 |
 | `alloc_page(gfp_mask)` |	分配一页，返回指向页的指针,对上边函数调用。order为0 |
 | `__get_free_pages(gfp_mask, order)` |	分配2^order个页，返回指向其逻辑地址的指针 | 
