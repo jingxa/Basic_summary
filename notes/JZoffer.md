@@ -1492,11 +1492,14 @@ ListNode* ReverseList(ListNode* head){
 # 25. 合并两个排序的链表
 
 
-
+- [合并两个排序的链表](https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&tqId=11169&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 <details><summary>code</summary>
 
-```
+
+递归：
+
+```c++
 class Solution {
 public:
     ListNode* Merge(ListNode* head1, ListNode* head2)
@@ -1519,6 +1522,53 @@ public:
 };
 ```
 
+
+迭代：
+
+```c++
+
+
+class Solution {
+public:
+    ListNode* Merge(ListNode* head1, ListNode* head2)
+    {
+        if(head1 == nullptr)
+            return  head2;
+        else if(head2 == nullptr)
+            return head1;
+        ListNode* new_head = new ListNode(0);
+        
+        ListNode* cur = new_head;
+        while(head1 != nullptr && head2 != nullptr){
+            if(head1->val <= head2->val){
+                cur->next = head1;
+                head1= head1->next;
+            }else{
+                cur->next = head2;
+                head2 = head2->next;
+                
+            }
+            cur = cur->next;    
+        }
+        
+        if(head1 != nullptr)
+            cur->next = head1;
+        
+        if(head2 != nullptr)
+            cur->next = head2;
+        
+        cur = new_head->next;
+        delete new_head;
+        
+        return cur;
+    }
+};
+
+```
+
+
+
+
 </details>
 
 ---
@@ -1526,7 +1576,14 @@ public:
 
 
 # 26. 树的子结构
-```
+
+- [树的子结构](https://www.nowcoder.com/practice/6e196c44c7004d15b1610b9afca8bd88?tpId=13&tqId=11170&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     bool HasSubtree(TreeNode* root1, TreeNode* root2)
@@ -1551,11 +1608,22 @@ public:
 };
 ```
 
+</details>
+
 ---
+
+
 # 27. 二叉树的镜像
+
+
+- [二叉树的镜像](https://www.nowcoder.com/practice/564f4c26aa584921bc75623e48ca3011?tpId=13&tqId=11171&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 先序遍历或者后序遍历
 
-```
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     void Mirror(TreeNode *root) {
@@ -1573,10 +1641,19 @@ public:
 };
 ```
 
+</details>
+
 ---
+
+
 # 28 对称的二叉树
 
-```
+- [对称的二叉树](https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=11211&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     bool isSymmetrical(TreeNode* root)
@@ -1603,11 +1680,23 @@ public:
 
 };
 ```
+
+</details>
+
+
 ---
+
+
 # 29. 顺时针打印矩阵
 
+- [ 顺时针打印矩阵](https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a?tpId=13&tqId=11172&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 考虑最后两个循环的单行单列问题
-```
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     vector<int> printMatrix(vector<vector<int> > matrix) {
@@ -1647,12 +1736,20 @@ public:
 };
 ```
 
+</details>
 
 
 ---
+
+
 # 30. 包含 min 函数的栈
 
-```
+- [包含 min 函数的栈](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     void push(int value) {
@@ -1666,17 +1763,20 @@ public:
         
     }
     void pop() {
-
+		
+		assert(! datastack.empty() && ! minstack.empty() );
         if(datastack.top() == minstack.top())
             minstack.pop();
         datastack.pop();
         
     }
     int top() {
+		assert(! datastack.empty() && ! minstack.empty() );		
         return datastack.top();
         
     }
     int min() {
+		assert(! datastack.empty() && ! minstack.empty() );
         return minstack.top();
     }
 private:
@@ -1685,12 +1785,21 @@ private:
 };
 ```
 
+</details>
+
 ---
+
+
 # 31. 栈的压入、弹出序列
+
+- [栈的压入、弹出序列](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用一个栈模拟
 
-```
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     bool IsPopOrder(vector<int> in,vector<int> out) {
@@ -1701,7 +1810,7 @@ public:
         int len = out.size();
         for(int i : in){
             sin.push(i);
-            while(index < len && sin.top() == out[index])
+            while(!sin.empty() && index < len && sin.top() == out[index])
             {
                 sin.pop();
                 index++;
@@ -1713,10 +1822,22 @@ public:
 };
 ```
 
+</details>
+
 ---
+
+
 # 32.1 从上往下打印二叉树
-- 使用队列
-```
+
+- [从上往下打印二叉树](https://www.nowcoder.com/practice/7fe2212963db4790b57431d9ed259701?tpId=13&tqId=11175&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 使用队列,逐渐遍历
+
+
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     vector<int> PrintFromTopToBottom(TreeNode* root) {
@@ -1740,11 +1861,25 @@ public:
     }
 };
 ```
----
-32.2 把二叉树打印成多行
-- 及时读取队列长度
 
-```
+</details>
+
+
+---
+
+
+
+# 32.2 把二叉树打印成多行
+
+- [把二叉树打印成多行](https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288?tpId=13&tqId=11213&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 多行，需要分割，及时读取队列长度来做分割
+
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
         vector<vector<int> > Print(TreeNode* root) {
@@ -1752,13 +1887,13 @@ public:
             if(!root)
                 return res;
            deque<TreeNode*> d;
-            d.push_back(root);
+            d.push_back(root);		// 入队列
            TreeNode* cur;
            int len =0;
            while(! d.empty()){
                vector<int> tmp;
-               len = d.size();
-               for(int i=0;i<len;i++){
+               len = d.size();				// 重要： 获取每层的长度
+               for(int i=0;i<len;i++){    // 迭代，一层
                     cur = d.front();
                     tmp.push_back(cur->val);
                     if(cur->left)
@@ -1775,13 +1910,19 @@ public:
 };
 ```
 
+</details>
+
+
 ---
 # 32.3 按之字形顺序打印二叉树
 
-- 使用两个栈模拟左右顺序
-- 记录下行号，逆序就将vector,逆序一下
+- [按之字形顺序打印二叉树](https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&tqId=11212&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-```
+- 使用两个栈模拟左右顺序
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     vector<vector<int> > Print(TreeNode* root) {
@@ -1797,7 +1938,7 @@ public:
         
         while(!left.empty() || !right.empty()){ // 有一个不为空
             vector<int> tmp;
-            while(! left.empty()){
+            while(! left.empty()){		// 从左往右
                 cur = left.top();
                 tmp.push_back(cur->val);
                 if(cur->left)
@@ -1809,7 +1950,7 @@ public:
             res.push_back(tmp);
             
             vector<int> tmp2;
-            while(!right.empty()){
+            while(!right.empty()){			// 从右往左
                  cur = right.top();
                  tmp2.push_back(cur->val);
                 if(cur->right)
@@ -1832,11 +1973,22 @@ public:
 };
 ```
 
+</details>
+
+
+
 ---
 # 33. 二叉搜索树的后序遍历序列
+
+- [二叉搜索树的后序遍历序列](https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&tqId=11176&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 二叉搜索树：left < root < right
 
-```
+
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     bool VerifySquenceOfBST(vector<int> sequence) {
@@ -1865,12 +2017,23 @@ public:
 };
 ```
 
+</details>
+
 
 
 ---
+
+
 # 34. 二叉树中和为某一值的路径
 
-```
+- [二叉树中和为某一值的路径](https://www.nowcoder.com/practice/b736e784e3e34731af99065031301bca?tpId=13&tqId=11177&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
@@ -1881,7 +2044,7 @@ public:
     }
     vector<vector<int>> res;
     
-    void tracking(TreeNode* root, int sum , vector<int> tmp){    // 使用赋值传值
+    void tracking(TreeNode* root, int sum , vector<int> tmp){    // 使用赋值传值,就不用回退
         if(! root || sum<0) return;
         sum -= root->val;
         tmp.push_back(root->val);
@@ -1895,12 +2058,23 @@ public:
 };
 ```
 
+</details>
+
+
+
 ---
 
 # 35. 复杂链表的复制
+
+- [复杂链表的复制](https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba?tpId=13&tqId=11178&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 在每一个节点后面复制一个节点，指针同样指向复制节点
 
-```
+
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     RandomListNode* Clone(RandomListNode* pHead)
@@ -1939,11 +2113,23 @@ public:
 };
 ```
 
+</details>
+
+
 ---
+
+
+
 # 36. 二叉搜索树与双向链表
 
+- [二叉搜索树与双向链表](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-```
+- 使用中序遍历来进行
+
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     TreeNode* Convert(TreeNode* pRootOfTree)
@@ -1954,7 +2140,7 @@ public:
             return head;
         
     }
-    TreeNode* head= NULL,*pre =NULL;
+    TreeNode* head= NULL,*pre =NULL;	// 保留前置指针
     
     void inorder(TreeNode* root){
         if(!root)
@@ -1973,10 +2159,24 @@ public:
 };
 ```
 
+
+</details>
+
+
+
 ---
+
+
 # 37. 序列化二叉树
 
-```
+- [序列化二叉树](https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&tqId=11214&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+- 随意选择一种遍历方式，然后主要考虑替换空节点
+
+<details><summary>code</summary>
+
+```c++
     char* Serialize(TreeNode *root) {
        if(root == NULL)
            return NULL;
@@ -2031,10 +2231,20 @@ public:
 
 ```
 
+</details>
+
+
 ---
+
+
 # 38. 字符串的排列
 
-```
+- [字符串的排列](https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&tqId=11180&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
  
@@ -2058,11 +2268,11 @@ public:
     
 void PermutationHelp(set<string>& res, int k, string str) //遍历第k位的所有可能
     {
-        if(k == str.size() - 1)
+        if(k == str.size() - 1)			// 到达尾端，成为一个新的排列
             res.insert(str);
         for(int i = k; i < str.size(); i++)
         {
-            if(i != k && str[k] == str[i])
+            if(i != k && str[k] == str[i])  // 重复跳过
                 continue;
             swap(str[i], str[k]);
             PermutationHelp(res, k + 1, str);
@@ -2072,12 +2282,24 @@ void PermutationHelp(set<string>& res, int k, string str) //遍历第k位的所�
 };
 ```
 
+</details>
+
+
+
 ---
+
+
 # 39. 数组中出现次数超过一半的数字
+
+- [数组中出现次数超过一半的数字](https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&tqId=11181&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
 - unordered_map
 - 统计
 
-```
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int MoreThanHalfNum_Solution(vector<int> numbers) {
@@ -2106,7 +2328,14 @@ public:
 };
 ```
 
-```
+
+- 多数投票问题，可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题，使得时间复杂度为 O(N)。
+
+使用 cnt 来统计一个元素出现的次数，当遍历到的元素和统计元素相等时，令 cnt++，否则令 cnt--。如果前面查找了 i 个元素，且 cnt == 0，说明前 i 个元素没有 majority，或者有 majority，但是出现的次数少于 i / 2 ，因为如果多于 i / 2 的话 cnt 就一定不会为 0 。此时剩下的 n - i 个元素中，majority 的数目依然多于 (n - i) / 2，因此继续查找就能找出 majority。
+
+
+
+```c++
 class Solution {
 public:
     int MoreThanHalfNum_Solution(vector<int> numbers) {
@@ -2133,8 +2362,15 @@ public:
 };
 ```
 
+</details>
+
 ---
+
+
 # 40. 最小的 K 个数
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -2185,7 +2421,12 @@ public:
 };
 ```
 
+</details>
+
+
 ---
+
+
 # 41.1 数据流中的中位数
 
 - 插入一次，排序一次 
