@@ -2354,7 +2354,7 @@ public:
         }
        
     cnt = 0;
-    for (int val : numbers)
+    for (int val : numbers)	// 检查是否多数
         if (val == c)
             cnt++;
     return cnt > (numbers.size() / 2) ? c : 0;
@@ -2370,9 +2370,14 @@ public:
 # 40. 最小的 K 个数
 
 
+- [最小的 K 个数](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 第一种方式： 使用快速排序
+- 第二种方式： 使用大顶堆
+
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
@@ -2421,6 +2426,37 @@ public:
 };
 ```
 
+
+```c++
+
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+        vector<int> res;
+        if(input.empty() || k > input.size() || k < 0)
+            return res;
+     
+        priority_queue<int> pq;  // 大顶堆
+        
+        for(auto in : input){            // 维持最小的k个元素
+            pq.push(in);
+            if(pq.size() > k){
+                pq.pop();
+            }
+        }
+        
+        while(!pq.empty()){
+            res.push_back(pq.top());
+            pq.pop();
+        }
+        
+        return res;
+    }
+    
+};
+
+```
+
 </details>
 
 
@@ -2429,9 +2465,14 @@ public:
 
 # 41.1 数据流中的中位数
 
+- [数据流中的中位数](https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&tqId=11216&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
 - 插入一次，排序一次 
 
-```
+```c++
 class Solution {
 public:
     vector<int> data;
@@ -2456,7 +2497,10 @@ public:
 };
 ```
 
-```
+
+- 使用两个堆来存储
+
+```c++
 class Solution {
 public:
     priority_queue<int, vector<int>, greater<int>> right;  // 右边放大元素，堆顶为最小元素
@@ -2489,12 +2533,20 @@ public:
 };
 ```
 
+</details>
 
 ---
+
+
 # 41.2 字符流中第一个不重复的字符
+
+- [字符流中第一个不重复的字符](https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - unordered_map 统计
 
-```
+<details><summary>code</summary>
+
+```c++
 class Solution
 {
 public:
@@ -2521,31 +2573,57 @@ public:
 };
 ```
 
+</details>
 
 ---
+
+
 # 42. 连续子数组的最大和
+
+- [连续子数组的最大和](https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=11183&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
 - dp  `dp[i] = max(array[i], dp[i-1]+array[i])`
 
-```
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int FindGreatestSumOfSubArray(vector<int> array) {
         if(array.empty())return 0;
-        for(int i=1;i<array.size();i++){
+        int temp = 0;
+        int sum = INT_MIN;
+        for(int i=0;i<array.size();i++){
             temp = max(array[i], temp + array[i]);
             sum = max(sum, temp);
         }
         return sum;
     }
 };
-
 ```
+
+</details>
+
 
 ---
+
+
+
 # 43. 从 1 到 n 整数中 1 出现的次数
+
+
+- [从 1 到 n 整数中 1 出现的次数](https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6?tpId=13&tqId=11184&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 对每一个数字统计元素1个数
 
-```
+
+<details><summary>code</summary>
+
+- 暴力破解
+
+```c++
 class Solution {
 public:
     int NumberOf1Between1AndN_Solution(int n)
@@ -2566,9 +2644,11 @@ public:
 };
 ```
 
+
+
 - 每十个数之间的有的总数
 
-```
+```c++
 class Solution {
 public:
     int NumberOf1Between1AndN_Solution(int n)
@@ -2584,13 +2664,96 @@ public:
 
 ```
 
+
+</details>
+
+
+
 ---
+
+
 # 44. 数字序列中的某一位数字
 
+- 数字以 0123456789101112131415... 的格式序列化到一个字符串中，求这个字符串的第 index 位。
+
+
+<details><summary>code</summary>
+
+1. 计算是个、十、百、千中的那个区间
+2. 然后计算具体的数字
+
+```c++
+
+// 个，十、 百、千
+int getPlace(int place){
+	if(place == 1)
+		return 10;
+	return (int)pow(10,place -1) * 9;
+}
+
+
+// 区间的起始数字
+
+int getBeginNumber(int place){
+
+	if(place == 1)
+		return 0;
+		
+	return (int)pow(10,place -1);
+}
+
+
+// 计算第index位
+
+int getIndex(int index, int place){
+	int beginnumber = getBeginNumber(place);
+	int shift = index / place;
+	string num = to_string(beginnumber + shift);  // 获取数字
+	int count = index % place; // 数字中的某位
+	
+	return num[count] - '0';
+
+}
+
+// 主函数
+
+int getDigitIndex(int index){
+	if(index < 0)
+		return -1;
+		
+	int place = 1;  // 个、十、百。。。
+	while(true){
+	
+		int count = getPlace(place);    // 区间数量
+		int totalCount = count * place;
+		if(index < totalCount)
+			return getIndex(place,index);
+				
+		index -= totalCount;
+		place++;
+	}
+}
+
+```
+
+
+
+</details>
+
+
+
 ---
 
+
 # 45. 把数组排成最小的数
-```
+
+- [把数组排成最小的数](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
    string PrintMinNumber(vector<int> numbers) {
@@ -2617,9 +2780,18 @@ public:
 };
 ```
 
+</details>
+
+
+
 
 # 46. 把数字翻译成字符串
-```
+
+- [把数字翻译成字符串](https://leetcode.com/problems/decode-ways/description/)
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int numDecodings(string s) {
@@ -2647,11 +2819,22 @@ public:
 };
 ```
 
+</details>
+
+
 ---
+
+
+
 # 47. 礼物的最大价值
+
 - `dp[i][j] = dp[i-1][j] + do[i][j-1]`
 
-```
+<details><summary>code</summary>
+
+
+
+```c++
 class Bonus {
 public:
     int getMost(vector<vector<int> > board) {
@@ -2690,10 +2873,20 @@ public:
 };
 ```
 
+</details>
+
+
 ---
+
+
+
 # 48. 最长不含重复字符的子字符串
 
-```
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -2724,12 +2917,19 @@ public:
     }
 };
 ```
+</details>
+
 
 
 ---
+
+
+
 # 49. 丑数
 
-```
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int GetUglyNumber_Solution(int index) {
@@ -2757,10 +2957,17 @@ public:
 };
 ```
 
+</details>
+
 ---
+
+
 # 50. 第一个只出现一次的字符位置
 
-```
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int FirstNotRepeatingChar(string str) {
@@ -2786,12 +2993,19 @@ public:
 };
 ```
 
+</details>
 
 ---
+
+
 # 51. 数组中的逆序对
+
 - 使用归并排序，每一次交换，统计两个下标差
 
-```
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
     vector<int> tmp;
     int cnt=0;
@@ -2842,14 +3056,21 @@ void twomerge(vector<int>& nums, int l, int m, int h){
 };
 ```
 
+</details>
+
 ---
+
+
 # 52. 两个链表的第一个公共结点
 - 设 A 的长度为 a + c，B 的长度为 b + c，
 - 其中 c 为尾部公共部分长度，可知 a + c + b = b + c + a。
 - A访问完访问B
 - B访问完访问A
 
-```
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
@@ -2864,13 +3085,23 @@ public:
 };
 ```
 
+</details>
+
 
 ---
+
+
 # 53 数字在排序数组中出现的次数
+
+
 - 简单方法就是统计
+
 - 排序： 二分查找
 
-```
+<details><summary>code</summary>
+
+
+```c++
 class Solution {
 public:
     int GetNumberOfK(vector<int> data ,int k) {
@@ -2896,6 +3127,8 @@ public:
     }
 };
 ```
+
+</details>
 
 ---
 # 54. 二叉搜索树的第 K 个结点
