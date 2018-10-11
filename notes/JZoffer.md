@@ -2749,7 +2749,7 @@ int getDigitIndex(int index){
 
 - [把数组排成最小的数](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-
+- 自定义一个字符串比较函数
 
 <details><summary>code</summary>
 
@@ -2828,7 +2828,9 @@ public:
 
 # 47. 礼物的最大价值
 
-- `dp[i][j] = dp[i-1][j] + do[i][j-1]`
+- [礼物的最大价值](https://www.nowcoder.com/questionTerminal/72a99e28381a407991f2c96d8cb238ab)
+
+- `dp[i][j] = max(dp[i-1][j] ,dp[i][j-1]) + d[i][j]`
 
 <details><summary>code</summary>
 
@@ -2854,11 +2856,11 @@ public:
         for(int i=0;i<m;i++)
         {
             for(int j=0;j<n;j++){
-                if(i == 0 && j == 0)
+                if(i == 0 && j == 0)      // 初始化
                     res[i][j] = board[0][0];
-                else if( i== 0)
+                else if( i== 0)           // 单一情况
                     res[i][j] = res[i][j-1] + board[i][j];
-                else if(j == 0)
+                else if(j == 0)           // 单一情况
                     res[i][j] = res[i-1][j] + board[i][j];
                 else
                     res[i][j] = max(res[i-1][j],res[i][j-1]) + board[i][j];
@@ -2883,8 +2885,17 @@ public:
 # 48. 最长不含重复字符的子字符串
 
 
+- [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+
+
+> 输入一个字符串（只包含 a~z 的字符），求其最长不含重复字符的子字符串的长度。例如对于 arabcacfr，最长不含重复字符的子字符串为 acfr，长度为 4。
+
+
+- 保留对应字符的起始位置，如果再次出现，计算当前子字符串的长度，更新最大长度，然后更新当前字符的最新位置
 
 <details><summary>code</summary>
+
+使用一个变量保存当前重复变量的之前位置，算法复杂度为O(N^2)
 
 ```c++
 class Solution {
@@ -2917,6 +2928,51 @@ public:
     }
 };
 ```
+
+使用一个字符表来保存256个字符，记录每个字符前一次出现的位置
+
+```c++
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int> sets(256,-1);
+        
+        if(s.size() <=1)
+            return s.size();
+        int be = 0;
+        int len = s.size();
+        int cur = 0;
+        
+        int maxLen = 0;
+        int pre = 0;
+        int curLen = 0; 
+        
+        for(cur =0; cur < len ; cur ++){
+            pre = sets[s[cur] - '\0'];    // 前一次出现的位置
+             
+            if(pre == -1 || cur - pre > curLen)   // 当前的长度
+                ++curLen;
+            else {                // 已经出现过
+                maxLen = max(maxLen, curLen);    // 本次计算的最长长度
+                curLen = cur - pre;              // 记录当前的长度
+            }
+            
+            sets[s[cur] - '\0'] = cur;             // 记录当前字符出现的位置
+            
+        }
+        maxLen = max(maxLen, curLen);    // 最后比较一次
+        return maxLen;
+    }
+};
+
+
+
+```
+
+
+
+
 </details>
 
 
@@ -2926,6 +2982,7 @@ public:
 
 
 # 49. 丑数
+- [丑数](https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=13&tqId=11186&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 <details><summary>code</summary>
 
@@ -2965,9 +3022,16 @@ public:
 # 50. 第一个只出现一次的字符位置
 
 
+- [第一个只出现一次的字符位置](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 <details><summary>code</summary>
 
 ```c++
+
+- 使用hash来记录当前字符的个数
+- 还可以使用两个位图来记录字符的出现次数是否两次，第一次出现放到位图1，出现第二次放到位图2，再遍历一次查看是否两个位图都置位
+
+
 class Solution {
 public:
     int FirstNotRepeatingChar(string str) {
@@ -2993,12 +3057,53 @@ public:
 };
 ```
 
+
+```c++
+
+class Solution {
+public:
+    int FirstNotRepeatingChar(string str) {
+        if(str.empty())
+            return -1;
+        std::bitset<256> bt1;
+        std::bitset<256> bt2;
+        
+        size_t d;
+        for(int i=0;i<str.size();i++){
+            d = str[i] - '\0';
+            if(bt1.test(d)== false)
+                bt1.set(d);
+            else
+                bt2.set(d);
+            
+        }
+        int cnt=-1;
+        for(int i=0;i<str.size();i++)
+        {
+            d = str[i] - '\0';
+            if(bt1.test(d) == true && bt2.test(d) == false){
+                cnt = i;
+                break;
+            }
+        }
+        
+        return cnt;
+    }
+};
+
+
+```
+
+
 </details>
 
 ---
 
 
 # 51. 数组中的逆序对
+
+- [数组中的逆序对](https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tqId=11188&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 
 - 使用归并排序，每一次交换，统计两个下标差
 
@@ -3062,6 +3167,10 @@ void twomerge(vector<int>& nums, int l, int m, int h){
 
 
 # 52. 两个链表的第一个公共结点
+
+- [两个链表的第一个公共结点](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&tqId=11189&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
 - 设 A 的长度为 a + c，B 的长度为 b + c，
 - 其中 c 为尾部公共部分长度，可知 a + c + b = b + c + a。
 - A访问完访问B
@@ -3093,6 +3202,7 @@ public:
 
 # 53 数字在排序数组中出现的次数
 
+- [数字在排序数组中出现的次数](https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 简单方法就是统计
 
@@ -3113,7 +3223,7 @@ public:
         
     }
     
-    int binfind(vector<int> data, int k){
+    int binfind(vector<int> data, int k){  // 寻找到数字开始的位置
         int len = data.size();
         int l = 0 , h = len;
         while(l < h){
@@ -3132,9 +3242,14 @@ public:
 
 ---
 # 54. 二叉搜索树的第 K 个结点
+
+- [二叉搜索树的第 K 个结点](https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 中序遍历
 
-```
+<details><summary>code</summary>
+
+```c++
 class Solution {
     TreeNode* res=nullptr;
     int cnt=0;
@@ -3160,11 +3275,19 @@ public:
 };
 ```
 
+</details>
 
 ---
+
+
 # 55.1 二叉树的深度
 
-```
+- [二叉树的深度](https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b?tpId=13&tqId=11191&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     int TreeDepth(TreeNode* pRoot)
@@ -3176,13 +3299,21 @@ public:
     }
 };
 ```
-
+</details>
 
 ---
+
+
 # 55.2 平衡二叉树
+
+- [平衡二叉树](https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=13&tqId=11192&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 - 左右子树相差为最多1
 
-```
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     bool isBalanced = true;
@@ -3204,16 +3335,27 @@ public:
 
 ```
 
-
+</details>
 
 
 ---
+
+
 # 56. 数组中只出现一次的数字
+
+- [数组中只出现一次的数字](https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&tqId=11193&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+- [136. Single Number](https://leetcode.com/problems/single-number/description/)
+
+
 - 两个相同的数异或为0 ，
-- 两个不用的数异或中至少有一位为0 ， 找到这一位
+- 两个不用的数异或中至少有一位为0,找到这一位
 - 然后 与数相与
 
-```
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     void FindNumsAppearOnce(vector<int> nums,int* num1,int *num2) {
@@ -3223,7 +3365,7 @@ public:
     for (int num : nums)
         diff ^= num;
     
-    int index = findBitOne(diff);
+    int index = findBitOne(diff);  // 寻找当前数的中为1的二进制位数下标
 
     for (int num : nums) {
         if (isBitOne(num, index))
@@ -3254,13 +3396,78 @@ public:
 
 ```
 
+</details>
+
 
 
 
 ---
-# 57.1 和为 S 的两个数字
+
+
+# 56.1 数组中只出现一次的数字（2）
+
+- [137. Single Number II](https://leetcode.com/problems/single-number-ii/description/)
+
+- 除了一个元素外，其他元素都出现3次
+
+```c++
+	
+    那么，如果是三次的话，香浓定理，需要用 2bits 进行记录
+
+    当5第一次出现的时候，b = 5, a=0,  b记录这个数字
+    当5第二次出现的时候，b = 0, a=5， a记录了这个数字
+    当5第三次出现的时候，b = 0, a=0， 都清空了，可以去处理其他数字了
+    所以，如果有某个数字出现了1次，就存在b中，出现了两次，就存在a中，所以返回 a|b
+	
+	
+	公式方面 ，上面两次的时候，b清空的公式是 b = b xor i
+            而第三次时，b要等于零，而这时a是True，所以再 & 一个a的非就可以，b = b xor & ~a
+			
+   a = b = 0
+    for num in nums:
+        b = b ^ num & ~a   
+        a = a ^ num & ~b   
+    return a|b	
 
 ```
+
+
+<details><summary>code</summary>
+
+```c++
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+    
+        int a =0,  b = 0;
+        
+        for(auto i: nums){
+            b = b ^ i & ~ a;
+            a = a ^ i & ~ b;
+            
+        }
+        return a | b;
+    
+     
+    }
+};
+
+```
+
+</details>
+
+---
+
+# 57.1 和为 S 的两个数字
+
+- [和为 S 的两个数字](https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+<details><summary>code</summary>
+
+- 采用双指针，左右向中间查找，并且保存一个乘积最小的两个数
+
+```c++
 class Solution {
 public:
     vector<int> FindNumbersWithSum(vector<int> array,int sum) {
@@ -3283,18 +3490,26 @@ public:
     }
 };
 ```
-
+</details>
 
 
 ---
+
+
 # 57.2 和为 S 的连续正数序列
+
+- [和为 S 的连续正数序列](https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 从最小值开始，保存开始 l 和结束 r 两个变量，
 - 如果和小于sum,r 向后增加，如果大于sum , 减去 l的值 ,提高 l
 
 - 最多序列 r 不超过 和的一半 加 1；
 
-```
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     vector<vector<int> > FindContinuousSequence(int sum) {
@@ -3310,7 +3525,7 @@ public:
             }
             if(smax == sum  && l!=r){
                 vector<int> tmp;
-                for(int i=l; i<=r;i++)
+                for(int i=l; i<=r;i++)  // 保存当前序列
                     tmp.push_back(i);
                 res.push_back(tmp);
             }
@@ -3322,11 +3537,21 @@ public:
 };
 
 ```
+
+</details>
+
+
+
 ---
+
 # 58.1 翻转单词顺序列
+
+- [翻转单词顺序列](https://www.nowcoder.com/practice/3194a4f4cf814f63919d0790578d51f3?tpId=13&tqId=11197&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 - 使用额外空间
 
-```
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     string ReverseSentence(string str) {
@@ -3355,7 +3580,7 @@ public:
 
 ```
 
-```
+```c++
 class Solution {
 public:
     string ReverseSentence(string str) {
@@ -3366,12 +3591,12 @@ public:
         for(int i=0;i<=len; i++){
             if( i== len || str[i] == ' ' || str[i] ==  '\t'){
                 end = i;
-                reverseOne(str, begin, end-1);
+                reverseOne(str, begin, end-1);  
                 begin = i+1;
             }  
         }
         
-        reverseOne(str, 0, len-1);
+        reverseOne(str, 0, len-1);  // 对整个字符串旋转一次
         
         return str;
     }
@@ -3385,21 +3610,28 @@ public:
 };
 ```
 
+</details>
 
 
 
 ---
+
 # 58.2 左旋转字符串
 
-```
+- [左旋转字符串](https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     string LeftRotateString(string str, int k) {
         if(str.empty())return "";
         string s=str;
-        myreverse(s,0,k-1);
-        myreverse(s,k,str.size()-1);
-        myreverse(s,0,str.size()-1);
+        myreverse(s,0,k-1);  // 前半部分旋转
+        myreverse(s,k,str.size()-1);  // 后半部分旋转
+        myreverse(s,0,str.size()-1);  // 整体旋转
         return s;
     }
     
@@ -3410,11 +3642,19 @@ public:
 };
 ```
 
+</details>
 
 ---
+
+
 # 59. 滑动窗口的最大值
 
-```
+- [滑动窗口的最大值](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+- 最简单的方法，就是每次移动一个窗口，然后寻找窗口的最大值
+
+<details><summary>code</summary>
+
+```c++
 class Solution {
 public:
     vector<int> maxInWindows(const vector<int>& num, unsigned int size)
@@ -3462,10 +3702,17 @@ public:
     }
     
 };
+
 ```
+
+</details>
 
 ---
 # 60. n 个骰子的点数
+
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -3501,8 +3748,16 @@ public:
     }
 };
 ```
+
+</details>
+
+
 ---
+
 # 61. 扑克牌顺子
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -3529,9 +3784,14 @@ public:
 };
 ```
 
+</details>
 
 ---
+
 # 62. 圆圈中最后剩下的数
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -3561,8 +3821,19 @@ public:
 };
 ```
 
+</details>
+
+
+
+
 ---
+
+
 # 63. 股票的最大利润
+
+
+<details><summary>code</summary>
+
 ```
 class Solution {
 public:
@@ -3580,8 +3851,17 @@ public:
 };
 ```
 
+</details>
+
+
 ---
+
+
 # 64. 求 1+2+3+...+n
+
+
+<details><summary>code</summary>
+
 ```
 class Solution {
 public:
@@ -3593,8 +3873,19 @@ public:
 };
 ```
 
+</details>
+
+
+
 ---
+
+
+
 # 65. 不用加减乘除做加法
+
+
+<details><summary>code</summary>
+
 ```
 class Solution {
 public:
@@ -3613,10 +3904,21 @@ public:
 };
 ```
 
+</details>
+
+
 ---
+
+
+
 # 66. 构建乘积数组
+
+
 - 除了本身坐标，其他都要乘
 
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -3643,9 +3945,13 @@ public:
 };
 ```
 
+</details>
+
 ---
 # 67. 把字符串转换成整数
 
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -3669,8 +3975,19 @@ public:
     }
 };
 ```
+
+</details>
+
+
+
 ---
+
+
 # 68. 树中两个节点的最低公共祖先
+
+
+
+<details><summary>code</summary>
 
 ```
 class Solution {
@@ -3692,7 +4009,7 @@ public:
 };
 ```
 
-
+</details>
 
 
 
