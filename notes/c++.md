@@ -715,6 +715,7 @@ struct/class/union内存对齐原则有四个：
 
 
 ## 25.常用C库函数实现
+
 #### strcpy
 
 ```c++
