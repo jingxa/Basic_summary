@@ -33,7 +33,7 @@ bool duplicate(vector<int>nums, int len, int* dup){
 
 </details>
 
----
+
 
 # 4. 二维数组中的查找
 
@@ -74,7 +74,7 @@ bool FindTarget(int target, vector<vector<int>> &nums){
 
 </details>
 
----
+
 
 # 5. 替换空格
 
@@ -135,7 +135,7 @@ void replaceSpace(char *str,int length) {
 
 </details>
 
----
+
 
 # 6. 从尾到头打印链表
 
@@ -174,7 +174,7 @@ public:
 
 
 
----
+
 
 
 # 7. 重建二叉树
@@ -221,7 +221,7 @@ public:
 
 </details>
 
----
+
 
 # 8. 二叉树的下一个结点
 
@@ -260,7 +260,7 @@ public:
 
 </details>
 
----
+
 
 # 9. 用两个栈实现队列
 
@@ -305,7 +305,7 @@ public:
 
 </details>
 
----
+
 
 # 10.1 斐波那契数列
 
@@ -335,7 +335,7 @@ public:
 
 </details>
 
----
+
 
 
 # 10.2 跳台阶
@@ -367,7 +367,7 @@ public:
 
 </details>
 
----
+
 
 # 10.3 变态跳台阶
 
@@ -399,7 +399,7 @@ public:
 
 </details>
 
----
+
 
 # 10.4 矩形覆盖
 
@@ -433,7 +433,7 @@ int rectCover(int n){
 </details>
 
 
----
+
 
 # 11. 旋转数组的最小数字
 
@@ -486,7 +486,7 @@ int directFind(vector<int>& nums, int l , int h){
 
 </details>
 
----
+
 
 # 12. 矩阵中的路径
 
@@ -550,7 +550,7 @@ public:
 
 </details>
 
----
+
 
 
 # 13. 机器人的运动范围
@@ -629,7 +629,7 @@ public:
 
 </details>
 
----
+
 
 
 # 14. 剪绳子
@@ -639,7 +639,7 @@ public:
 > 把一根绳子剪成多段，并且使得每段的长度乘积最大
 
 <details><summary>code</summary>
----
+
 
 ```c++
     int integerBreak(int n) {
@@ -676,7 +676,7 @@ public:
 </details>
 
 
----
+
 
 
 # 15. 二进制中 1 的个数
@@ -773,7 +773,7 @@ int CountSum(int m, int n){
 ```
 
 
----
+
 
 # 16. 数值的整数次方
 
@@ -860,7 +860,7 @@ double  Power(double base, int exponent){
 </details>
 
 
----
+
 
 # 17. 打印从 1 到最大的 n 位数
 
@@ -1006,7 +1006,7 @@ void print1ton(int n){
 
 
 
----
+
 # 18.1 在 O(1) 时间内删除链表节点
 
 - 中间节点：将下一个节点的值赋值给当前节点，删除下一节点
@@ -1038,7 +1038,7 @@ ListNode* delnode(ListNode* head, ListNode* node){
 
 </details>
 
----
+
 
 # 18.2 删除链表中重复的结点
 
@@ -1115,7 +1115,7 @@ public:
 </details>
 
 
----
+
 
 # 19. 正则表达式匹配
 > 两个字符串都为空，返回true; 如果p为空，返回false
@@ -1165,7 +1165,7 @@ bool match(char* str, char* pattern)
 </details>
 
 
----
+
 # 20. 表示数值的字符串
 
 
@@ -1240,7 +1240,7 @@ bool match(char* str, char* pattern)
 </details>
 
 
----
+
 
 
 # 21. 调整数组顺序使奇数位于偶数前面
@@ -1307,7 +1307,7 @@ void reOrderArray(vector<int>& array){
 
 
 
----
+
 
 # 22. 链表中倒数第 K 个结点
 
@@ -1373,7 +1373,7 @@ ListNode* FindKthToTail(ListNode* head, unsigned int k) {
 
 </details>
 
----
+
 
 
 # 23. 链表中环的入口结点
@@ -1429,7 +1429,7 @@ public:
 
 </details>
 
----
+
 # 24. 反转链表
 
 - [反转链表](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&tqId=11168&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
@@ -1486,7 +1486,7 @@ ListNode* ReverseList(ListNode* head){
 
 </details>
 
----
+
 
 
 # 25. 合并两个排序的链表
@@ -1571,7 +1571,7 @@ public:
 
 </details>
 
----
+
 
 
 
@@ -1610,7 +1610,7 @@ public:
 
 </details>
 
----
+
 
 
 # 27. 二叉树的镜像
@@ -1643,7 +1643,7 @@ public:
 
 </details>
 
----
+
 
 
 # 28 对称的二叉树
@@ -1684,7 +1684,7 @@ public:
 </details>
 
 
----
+
 
 
 # 29. 顺时针打印矩阵
@@ -1739,7 +1739,7 @@ public:
 </details>
 
 
----
+
 
 
 # 30. 包含 min 函数的栈
@@ -1787,7 +1787,7 @@ private:
 
 </details>
 
----
+
 
 
 # 31. 栈的压入、弹出序列
@@ -1824,7 +1824,7 @@ public:
 
 </details>
 
----
+
 
 
 # 32.1 从上往下打印二叉树
@@ -1865,7 +1865,7 @@ public:
 </details>
 
 
----
+
 
 
 
@@ -1913,7 +1913,7 @@ public:
 </details>
 
 
----
+
 # 32.3 按之字形顺序打印二叉树
 
 - [按之字形顺序打印二叉树](https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&tqId=11212&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
@@ -1977,7 +1977,7 @@ public:
 
 
 
----
+
 # 33. 二叉搜索树的后序遍历序列
 
 - [二叉搜索树的后序遍历序列](https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&tqId=11176&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
@@ -2021,7 +2021,7 @@ public:
 
 
 
----
+
 
 
 # 34. 二叉树中和为某一值的路径
@@ -2062,7 +2062,7 @@ public:
 
 
 
----
+
 
 # 35. 复杂链表的复制
 
@@ -2116,7 +2116,7 @@ public:
 </details>
 
 
----
+
 
 
 
@@ -2164,7 +2164,7 @@ public:
 
 
 
----
+
 
 
 # 37. 序列化二叉树
@@ -2234,7 +2234,7 @@ public:
 </details>
 
 
----
+
 
 
 # 38. 字符串的排列
@@ -2286,7 +2286,7 @@ void PermutationHelp(set<string>& res, int k, string str) //遍历第k位的所�
 
 
 
----
+
 
 
 # 39. 数组中出现次数超过一半的数字
@@ -2364,7 +2364,7 @@ public:
 
 </details>
 
----
+
 
 
 # 40. 最小的 K 个数
@@ -2460,7 +2460,7 @@ public:
 </details>
 
 
----
+
 
 
 # 41.1 数据流中的中位数
@@ -2535,7 +2535,7 @@ public:
 
 </details>
 
----
+
 
 
 # 41.2 字符流中第一个不重复的字符
@@ -2575,7 +2575,7 @@ public:
 
 </details>
 
----
+
 
 
 # 42. 连续子数组的最大和
@@ -2607,7 +2607,7 @@ public:
 </details>
 
 
----
+
 
 
 
@@ -2669,7 +2669,7 @@ public:
 
 
 
----
+
 
 
 # 44. 数字序列中的某一位数字
@@ -2742,7 +2742,7 @@ int getDigitIndex(int index){
 
 
 
----
+
 
 
 # 45. 把数组排成最小的数
@@ -2822,7 +2822,7 @@ public:
 </details>
 
 
----
+
 
 
 
@@ -2878,7 +2878,7 @@ public:
 </details>
 
 
----
+
 
 
 
@@ -2977,7 +2977,7 @@ public:
 
 
 
----
+
 
 
 
@@ -3016,7 +3016,7 @@ public:
 
 </details>
 
----
+
 
 
 # 50. 第一个只出现一次的字符位置
@@ -3097,7 +3097,7 @@ public:
 
 </details>
 
----
+
 
 
 # 51. 数组中的逆序对
@@ -3163,7 +3163,7 @@ void twomerge(vector<int>& nums, int l, int m, int h){
 
 </details>
 
----
+
 
 
 # 52. 两个链表的第一个公共结点
@@ -3197,7 +3197,7 @@ public:
 </details>
 
 
----
+
 
 
 # 53 数字在排序数组中出现的次数
@@ -3240,7 +3240,7 @@ public:
 
 </details>
 
----
+
 # 54. 二叉搜索树的第 K 个结点
 
 - [二叉搜索树的第 K 个结点](https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
@@ -3277,7 +3277,7 @@ public:
 
 </details>
 
----
+
 
 
 # 55.1 二叉树的深度
@@ -3301,7 +3301,7 @@ public:
 ```
 </details>
 
----
+
 
 
 # 55.2 平衡二叉树
@@ -3338,7 +3338,7 @@ public:
 </details>
 
 
----
+
 
 
 # 56. 数组中只出现一次的数字
@@ -3401,7 +3401,7 @@ public:
 
 
 
----
+
 
 
 # 56.1 数组中只出现一次的数字（2）
@@ -3457,7 +3457,7 @@ public:
 
 </details>
 
----
+
 
 # 57.1 和为 S 的两个数字
 
@@ -3493,7 +3493,7 @@ public:
 </details>
 
 
----
+
 
 
 # 57.2 和为 S 的连续正数序列
@@ -3542,7 +3542,7 @@ public:
 
 
 
----
+
 
 # 58.1 翻转单词顺序列
 
@@ -3614,11 +3614,12 @@ public:
 
 
 
----
+
 
 # 58.2 左旋转字符串
 
 - [左旋转字符串](https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
 
 
 <details><summary>code</summary>
@@ -3644,13 +3645,15 @@ public:
 
 </details>
 
----
+
 
 
 # 59. 滑动窗口的最大值
 
 - [滑动窗口的最大值](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-- 最简单的方法，就是每次移动一个窗口，然后寻找窗口的最大值
+
+1. 最简单的方法，就是每次移动一个窗口，然后寻找窗口的最大值
+2. 维护一个最大堆，保存size个数字，每次插入，然后取堆顶数字就可以，删除失效的数字
 
 <details><summary>code</summary>
 
@@ -3703,18 +3706,51 @@ public:
     
 };
 
+
+// 方法2 
+
+
+vector<int> maxInWindows(const vector<int>& nums, unsigned int size){
+	vector<int> result;
+	priority_queue<pair<int,int>> pq;
+	if(nums.size() < size || size < 1)
+		return result;
+		
+	// 入堆 第一个窗口的元素
+	for(int i=0;i<size -1 ; ++i){
+		pq.push(pair<int,int>(nums[i], i));  // 存储元素和位置
+	}
+	
+	// 存储每个窗口的最大值
+	for(int i=size-1; i< nums.size(); ++i){
+	
+		pq.push(pair<int,int>(nums[i], i));
+		pair<int,int> p = pq.top();
+		
+		while(p.second < i-(size -1 )){  // 前一个窗口的元素，出堆
+			pq.pop();
+			p = pq.top();
+		}
+		
+		result.push_back(p.first);   // 保存最大元素
+	}
+	
+	return result;
+
+}
+
 ```
 
 </details>
 
----
+
 # 60. n 个骰子的点数
 
-
+- [n 个骰子的点数](https://www.lintcode.com/problem/dices-sum/description)
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     /**
@@ -3752,7 +3788,7 @@ public:
 </details>
 
 
----
+
 
 # 61. 扑克牌顺子
 
@@ -3786,7 +3822,7 @@ public:
 
 </details>
 
----
+
 
 # 62. 圆圈中最后剩下的数
 
@@ -3826,7 +3862,7 @@ public:
 
 
 
----
+
 
 
 # 63. 股票的最大利润
@@ -3854,7 +3890,7 @@ public:
 </details>
 
 
----
+
 
 
 # 64. 求 1+2+3+...+n
@@ -3877,7 +3913,7 @@ public:
 
 
 
----
+
 
 
 
@@ -3907,7 +3943,7 @@ public:
 </details>
 
 
----
+
 
 
 
@@ -3947,7 +3983,7 @@ public:
 
 </details>
 
----
+
 # 67. 把字符串转换成整数
 
 
@@ -3980,7 +4016,7 @@ public:
 
 
 
----
+
 
 
 # 68. 树中两个节点的最低公共祖先

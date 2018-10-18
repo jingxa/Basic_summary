@@ -251,7 +251,7 @@ public:
     }
 
     ~SmartPointer() {
-        (*this->_count)--;
+        (*this->_count)--; 
         if (*this->_count == 0) {
             delete this->_ptr;
             delete this->_count;
