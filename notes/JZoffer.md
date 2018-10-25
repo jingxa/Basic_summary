@@ -1,11 +1,14 @@
-# 3. 数组中重复的数字
+
+
+### 3. 数组中重复的数字
+
+<details><summary>code</summary>
 
 - [数组中重复的数字](https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 思路：O(N) + O(1)
 - 将 `j=nums[i]` ，将j放到nums的下标为j中，如果存在`nums[k] == num[j] == j `，说明重复；
 
-<details><summary>code</summary>
 
 ```c++
 bool duplicate(vector<int>nums, int len, int* dup){
@@ -35,7 +38,9 @@ bool duplicate(vector<int>nums, int len, int* dup){
 
 
 
-# 4. 二维数组中的查找
+### 4. 二维数组中的查找
+
+<details><summary>code</summary>
 
 - [二维数组中的查找](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -43,9 +48,6 @@ bool duplicate(vector<int>nums, int len, int* dup){
 - 从右上角开始查找。矩阵中的一个数，它左边的数都比它小，下边的数都比它大。
 	因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间。 
 
-
-	
-<details><summary>code</summary>
 
 ```c++
 bool FindTarget(int target, vector<vector<int>> &nums){
@@ -76,13 +78,13 @@ bool FindTarget(int target, vector<vector<int>> &nums){
 
 
 
-# 5. 替换空格
+### 5. 替换空格
+
+<details><summary>code</summary>
 
 - [替换空格](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 将一个字符串中的空格替换成 "%20"。
-
-<details><summary>code</summary>
 
 ```c++
 
@@ -137,13 +139,14 @@ void replaceSpace(char *str,int length) {
 
 
 
-# 6. 从尾到头打印链表
+### 6. 从尾到头打印链表
+
+<details><summary>code</summary>
 
 - [从尾到头打印链表](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用栈
   
-<details><summary>code</summary>
 
 ```
 
@@ -177,12 +180,15 @@ public:
 
 
 
-# 7. 重建二叉树
+
+### 7. 重建二叉树
+
+<details><summary>code</summary>
+
 
 - [重建二叉树](https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&tqId=11157&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
-<details><summary>code</summary>
 
 ```c++
 
@@ -223,11 +229,13 @@ public:
 
 
 
-# 8. 二叉树的下一个结点
+### 8. 二叉树的下一个结点
+
+<details><summary>code</summary>
 
 - [二叉树的下一个结点](https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-<details><summary>code</summary>
+
 
 ```c++
 
@@ -262,11 +270,12 @@ public:
 
 
 
-# 9. 用两个栈实现队列
+### 9. 用两个栈实现队列
+
+<details><summary>code</summary>
 
 - [用两个栈实现队列](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-<details><summary>code</summary>
 
 ```c++
 
@@ -307,11 +316,11 @@ public:
 
 
 
-# 10.1 斐波那契数列
-
-- [斐波那契数列](https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId=13&tqId=11160&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+### 10.1 斐波那契数列
 
 <details><summary>code</summary>
+
+- [斐波那契数列](https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId=13&tqId=11160&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ```c++
 class Solution {
@@ -338,11 +347,10 @@ public:
 
 
 
-# 10.2 跳台阶
+### 10.2 跳台阶
 
 - [跳台阶](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -369,11 +377,12 @@ public:
 
 
 
-# 10.3 变态跳台阶
+### 10.3 变态跳台阶
+
+<details><summary>code</summary>
 
 - [变态跳台阶](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=11162&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -401,13 +410,14 @@ public:
 
 
 
-# 10.4 矩形覆盖
+### 10.4 矩形覆盖
+
+<details><summary>code</summary>
 
 - [矩形覆盖](https://github.com/CyC2018/CS-Notes/blob/master/notes/%E5%89%91%E6%8C%87%20offer%20%E9%A2%98%E8%A7%A3.md#56-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97)
 
 - 还是斐波那契问题
 
-<details><summary>code</summary>
 
 ```c++
 
@@ -435,7 +445,9 @@ int rectCover(int n){
 
 
 
-# 11. 旋转数组的最小数字
+### 11. 旋转数组的最小数字
+
+<details><summary>code</summary>
 
 - [旋转数组的最小数字](https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=11159&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -449,8 +461,6 @@ int rectCover(int n){
 	- 否则，解在`[m+1,h], 令l = m+1`
 - 数字重复的情况下：
 	- `nums[l] == nums[m] == nums[h]，那么此时无法确定解在哪个区间，需要切换到顺序查找`
-
-<details><summary>code</summary>
 
 ```c++
 int minNumberInRotateArray(vector<int> nums) 
@@ -488,11 +498,11 @@ int directFind(vector<int>& nums, int l , int h){
 
 
 
-# 12. 矩阵中的路径
-
-- [矩阵中的路径](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+### 12. 矩阵中的路径
 
 <details><summary>code</summary>
+
+- [矩阵中的路径](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ```c++
 
@@ -553,7 +563,9 @@ public:
 
 
 
-# 13. 机器人的运动范围
+### 13. 机器人的运动范围
+
+<details><summary>code</summary>
 
 -  [机器人的运动范围](https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -567,8 +579,6 @@ public:
 1. 坐标和的计算： 使用数组保存
 2. DFS遍历，保存最大的移动数
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -632,14 +642,13 @@ public:
 
 
 
-# 14. 剪绳子
+### 14. 剪绳子
+
+<details><summary>code</summary>
 
 - [ 剪绳子](https://leetcode.com/problems/integer-break/description/)
 
 > 把一根绳子剪成多段，并且使得每段的长度乘积最大
-
-<details><summary>code</summary>
-
 
 ```c++
     int integerBreak(int n) {
@@ -679,7 +688,9 @@ public:
 
 
 
-# 15. 二进制中 1 的个数
+### 15. 二进制中 1 的个数
+
+<details><summary>code</summary>
 
 - 关键点： **把一个整数减去1之后在和原来的整数做与运算， 得到的结果相当于把整数的二进制中的最右边一个1变成0**
 
@@ -687,9 +698,6 @@ public:
 >n       : 10110100
 >n-1     : 10110011
 >n&(n-1) : 10110000
-
-
-<details><summary>code</summary>
 
 ```
 class Solution {
@@ -738,7 +746,7 @@ int NumberOf1(int n){
 </details>
 
 
-## 15.1 用一条语句判断一个整数是不是2的整数次方
+### 15.1 用一条语句判断一个整数是不是2的整数次方
 
 - 一个整数如果是2的整数次方，那么他的二进制表中有且只有一位为1，其他所有位为0
 
@@ -749,7 +757,7 @@ int NumberOf1(int n){
 
 ```
 
-## 15.2 输入两个整数m和n，计算需要改变m的二进制表示中的多少位才能得到n。
+### 15.2 输入两个整数m和n，计算需要改变m的二进制表示中的多少位才能得到n。
 
 - 例如 10的二进制位1010， 13为1101，需要改变1010中的3位才能得到1101
 
@@ -775,15 +783,14 @@ int CountSum(int m, int n){
 
 
 
-# 16. 数值的整数次方
+### 16. 数值的整数次方
+
+<details><summary>code</summary>
 
 >给定一个 double 类型的浮点数 base 和 int 类型的整数 exponent。
 >求 base 的 exponent 次方。
 
 ![](https://camo.githubusercontent.com/a9c60dcae8e57f42cb7f60473d695dddb3dd6221/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f785e6e3d5c6c6566745c7b5c626567696e7b61727261797d7b72636c7d28782a78295e7b6e2f327d26267b6e5c25323d307d5c5c782a28782a78295e7b6e2f327d26267b6e5c25323d317d5c656e647b61727261797d5c72696768742e)
-
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -862,13 +869,11 @@ double  Power(double base, int exponent){
 
 
 
-# 17. 打印从 1 到最大的 n 位数
-
-- 注意字符的长度
-
+### 17. 打印从 1 到最大的 n 位数
 
 <details><summary>code</summary>
 
+- 注意字符的长度
 
 ```c++
 
@@ -943,16 +948,9 @@ void print1ton( int n){
 
 ```
 
-</details>
-
-
 方法2：
 
 - 使用全排列的方式
-
-
-<details><summary>code</summary>
-
 
 ```c++
 
@@ -1007,14 +1005,12 @@ void print1ton(int n){
 
 
 
-# 18.1 在 O(1) 时间内删除链表节点
+### 18.1 在 O(1) 时间内删除链表节点
+
+<details><summary>code</summary>
 
 - 中间节点：将下一个节点的值赋值给当前节点，删除下一节点
 - 尾巴节点：遍历到尾部
-
-
-
-<details><summary>code</summary>
 
 ```c++
 ListNode* delnode(ListNode* head, ListNode* node){
@@ -1040,14 +1036,14 @@ ListNode* delnode(ListNode* head, ListNode* node){
 
 
 
-# 18.2 删除链表中重复的结点
+### 18.2 删除链表中重复的结点
+
+<details><summary>code</summary>
 
 - [删除链表中重复的结点](https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 递归删除
 
-
-<details><summary>code</summary>
 
 ```c++
 
@@ -1117,7 +1113,10 @@ public:
 
 
 
-# 19. 正则表达式匹配
+### 19. 正则表达式匹配
+
+<details><summary>code</summary>
+
 > 两个字符串都为空，返回true; 如果p为空，返回false
 >(1)pattern 第二个字符不为‘*’
 >  两种组合： 
@@ -1131,8 +1130,6 @@ public:
 > 2. aabc 和 a*bc : a* 多个； p不动，s动， match(s+1, p);
 > 3. aabc 和 .*abc   :  .* 可以匹配0到多个， match(s+1,p);
 
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -1166,8 +1163,7 @@ bool match(char* str, char* pattern)
 
 
 
-# 20. 表示数值的字符串
-
+### 20. 表示数值的字符串
 
 <details><summary>code</summary>
 
@@ -1243,13 +1239,12 @@ bool match(char* str, char* pattern)
 
 
 
-# 21. 调整数组顺序使奇数位于偶数前面
+### 21. 调整数组顺序使奇数位于偶数前面
+
+<details><summary>code</summary>
 
 - [调整数组顺序使奇数位于偶数前面](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1309,14 +1304,15 @@ void reOrderArray(vector<int>& array){
 
 
 
-# 22. 链表中倒数第 K 个结点
+### 22. 链表中倒数第 K 个结点
+
+<details><summary>code</summary>
 
 - [链表中倒数第 K 个结点](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 遍历两次： 第一次获取长度，第二次得到结果
 - 遍历一次： 采用双指针，两个指针相差k步,最后一个指针走到末尾，另一个指针指向倒数第 k个节点；
 
-<details><summary>code</summary>
 
 ```c++
     ListNode* FindKthToTail(ListNode* head, unsigned int k) {
@@ -1376,7 +1372,9 @@ ListNode* FindKthToTail(ListNode* head, unsigned int k) {
 
 
 
-# 23. 链表中环的入口结点
+### 23. 链表中环的入口结点
+
+<details><summary>code</summary>
 
 
 > 假设x为环前面的路程
@@ -1391,9 +1389,6 @@ ListNode* FindKthToTail(ListNode* head, unsigned int k) {
 > = (n - 2 *m -1 )*c + c - a
 > 即环前面的路程 = 数个环的长度（为可能为0） + c - a
 
-
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1430,14 +1425,14 @@ public:
 </details>
 
 
-# 24. 反转链表
+### 24. 反转链表
+
+<details><summary>code</summary>
 
 - [反转链表](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&tqId=11168&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用头插法
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1489,12 +1484,14 @@ ListNode* ReverseList(ListNode* head){
 
 
 
-# 25. 合并两个排序的链表
+### 25. 合并两个排序的链表
 
+
+<details><summary>code</summary>
 
 - [合并两个排序的链表](https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&tqId=11169&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-<details><summary>code</summary>
+
 
 
 递归：
@@ -1575,12 +1572,11 @@ public:
 
 
 
-# 26. 树的子结构
-
-- [树的子结构](https://www.nowcoder.com/practice/6e196c44c7004d15b1610b9afca8bd88?tpId=13&tqId=11170&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-
+### 26. 树的子结构
 
 <details><summary>code</summary>
+
+- [树的子结构](https://www.nowcoder.com/practice/6e196c44c7004d15b1610b9afca8bd88?tpId=13&tqId=11170&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
 ```c++
@@ -1613,15 +1609,15 @@ public:
 
 
 
-# 27. 二叉树的镜像
+### 27. 二叉树的镜像
 
+<details><summary>code</summary>
 
 - [二叉树的镜像](https://www.nowcoder.com/practice/564f4c26aa584921bc75623e48ca3011?tpId=13&tqId=11171&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 先序遍历或者后序遍历
 
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1646,12 +1642,12 @@ public:
 
 
 
-# 28 对称的二叉树
+### 28 对称的二叉树
+
+<details><summary>code</summary>
 
 - [对称的二叉树](https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=11211&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1687,14 +1683,15 @@ public:
 
 
 
-# 29. 顺时针打印矩阵
+### 29. 顺时针打印矩阵
+
+<details><summary>code</summary>
 
 - [ 顺时针打印矩阵](https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a?tpId=13&tqId=11172&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 考虑最后两个循环的单行单列问题
 
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1742,12 +1739,11 @@ public:
 
 
 
-# 30. 包含 min 函数的栈
-
-- [包含 min 函数的栈](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-
+### 30. 包含 min 函数的栈
 
 <details><summary>code</summary>
+
+- [包含 min 函数的栈](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1790,14 +1786,14 @@ private:
 
 
 
-# 31. 栈的压入、弹出序列
+### 31. 栈的压入、弹出序列
+
+<details><summary>code</summary>
 
 - [栈的压入、弹出序列](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用一个栈模拟
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1827,15 +1823,14 @@ public:
 
 
 
-# 32.1 从上往下打印二叉树
+### 32.1 从上往下打印二叉树
+
+<details><summary>code</summary>
 
 - [从上往下打印二叉树](https://www.nowcoder.com/practice/7fe2212963db4790b57431d9ed259701?tpId=13&tqId=11175&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用队列,逐渐遍历
-
-
-<details><summary>code</summary>
-
+>
 
 ```c++
 class Solution {
@@ -1869,15 +1864,13 @@ public:
 
 
 
-# 32.2 把二叉树打印成多行
+### 32.2 把二叉树打印成多行
+
+<details><summary>code</summary>
 
 - [把二叉树打印成多行](https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288?tpId=13&tqId=11213&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 多行，需要分割，及时读取队列长度来做分割
-
-
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1914,13 +1907,13 @@ public:
 
 
 
-# 32.3 按之字形顺序打印二叉树
+### 32.3 按之字形顺序打印二叉树
+
+<details><summary>code</summary>
 
 - [按之字形顺序打印二叉树](https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&tqId=11212&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用两个栈模拟左右顺序
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -1978,14 +1971,14 @@ public:
 
 
 
-# 33. 二叉搜索树的后序遍历序列
+### 33. 二叉搜索树的后序遍历序列
+
+<details><summary>code</summary>
 
 - [二叉搜索树的后序遍历序列](https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&tqId=11176&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 二叉搜索树：left < root < right
 
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -2024,13 +2017,11 @@ public:
 
 
 
-# 34. 二叉树中和为某一值的路径
-
-- [二叉树中和为某一值的路径](https://www.nowcoder.com/practice/b736e784e3e34731af99065031301bca?tpId=13&tqId=11177&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-
-
+### 34. 二叉树中和为某一值的路径
 
 <details><summary>code</summary>
+
+- [二叉树中和为某一值的路径](https://www.nowcoder.com/practice/b736e784e3e34731af99065031301bca?tpId=13&tqId=11177&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
 ```c++
@@ -2064,14 +2055,13 @@ public:
 
 
 
-# 35. 复杂链表的复制
+### 35. 复杂链表的复制
+
+<details><summary>code</summary>
 
 - [复杂链表的复制](https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba?tpId=13&tqId=11178&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 在每一个节点后面复制一个节点，指针同样指向复制节点
-
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -2120,13 +2110,13 @@ public:
 
 
 
-# 36. 二叉搜索树与双向链表
+### 36. 二叉搜索树与双向链表
+
+<details><summary>code</summary>
 
 - [二叉搜索树与双向链表](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 使用中序遍历来进行
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -2167,14 +2157,15 @@ public:
 
 
 
-# 37. 序列化二叉树
+### 37. 序列化二叉树
+
+<details><summary>code</summary>
 
 - [序列化二叉树](https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&tqId=11214&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
 - 随意选择一种遍历方式，然后主要考虑替换空节点
 
-<details><summary>code</summary>
 
 ```c++
     char* Serialize(TreeNode *root) {
@@ -2237,12 +2228,12 @@ public:
 
 
 
-# 38. 字符串的排列
+### 38. 字符串的排列
+
+<details><summary>code</summary>
 
 - [字符串的排列](https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&tqId=11180&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -2289,7 +2280,9 @@ void PermutationHelp(set<string>& res, int k, string str) //遍历第k位的所�
 
 
 
-# 39. 数组中出现次数超过一半的数字
+### 39. 数组中出现次数超过一半的数字
+
+<details><summary>code</summary>
 
 - [数组中出现次数超过一半的数字](https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&tqId=11181&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -2297,7 +2290,6 @@ void PermutationHelp(set<string>& res, int k, string str) //遍历第k位的所�
 - unordered_map
 - 统计
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -2367,7 +2359,9 @@ public:
 
 
 
-# 40. 最小的 K 个数
+### 40. 最小的 K 个数
+
+<details><summary>code</summary>
 
 
 - [最小的 K 个数](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
@@ -2375,7 +2369,6 @@ public:
 - 第一种方式： 使用快速排序
 - 第二种方式： 使用大顶堆
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -2463,12 +2456,12 @@ public:
 
 
 
-# 41.1 数据流中的中位数
+### 41.1 数据流中的中位数
+
+<details><summary>code</summary>
 
 - [数据流中的中位数](https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&tqId=11216&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-
-<details><summary>code</summary>
 
 - 插入一次，排序一次 
 
@@ -2538,13 +2531,13 @@ public:
 
 
 
-# 41.2 字符流中第一个不重复的字符
+### 41.2 字符流中第一个不重复的字符
+
+<details><summary>code</summary>
 
 - [字符流中第一个不重复的字符](https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - unordered_map 统计
-
-<details><summary>code</summary>
 
 ```c++
 class Solution
@@ -2578,15 +2571,15 @@ public:
 
 
 
-# 42. 连续子数组的最大和
+### 42. 连续子数组的最大和
+
+<details><summary>code</summary>
 
 - [连续子数组的最大和](https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=11183&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
 - dp  `dp[i] = max(array[i], dp[i-1]+array[i])`
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -2611,15 +2604,15 @@ public:
 
 
 
-# 43. 从 1 到 n 整数中 1 出现的次数
+### 43. 从 1 到 n 整数中 1 出现的次数
 
+<details><summary>code</summary>
 
 - [从 1 到 n 整数中 1 出现的次数](https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6?tpId=13&tqId=11184&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 对每一个数字统计元素1个数
 
 
-<details><summary>code</summary>
 
 - 暴力破解
 
@@ -2672,12 +2665,11 @@ public:
 
 
 
-# 44. 数字序列中的某一位数字
-
-- 数字以 0123456789101112131415... 的格式序列化到一个字符串中，求这个字符串的第 index 位。
-
+### 44. 数字序列中的某一位数字
 
 <details><summary>code</summary>
+
+- 数字以 0123456789101112131415... 的格式序列化到一个字符串中，求这个字符串的第 index 位。
 
 1. 计算是个、十、百、千中的那个区间
 2. 然后计算具体的数字
@@ -2745,13 +2737,14 @@ int getDigitIndex(int index){
 
 
 
-# 45. 把数组排成最小的数
+### 45. 把数组排成最小的数
+
+<details><summary>code</summary>
 
 - [把数组排成最小的数](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 自定义一个字符串比较函数
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -2785,11 +2778,12 @@ public:
 
 
 
-# 46. 把数字翻译成字符串
+### 46. 把数字翻译成字符串
+
+<details><summary>code</summary>
 
 - [把数字翻译成字符串](https://leetcode.com/problems/decode-ways/description/)
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -2826,14 +2820,13 @@ public:
 
 
 
-# 47. 礼物的最大价值
+### 47. 礼物的最大价值
+
+<details><summary>code</summary>
 
 - [礼物的最大价值](https://www.nowcoder.com/questionTerminal/72a99e28381a407991f2c96d8cb238ab)
 
 - `dp[i][j] = max(dp[i-1][j] ,dp[i][j-1]) + d[i][j]`
-
-<details><summary>code</summary>
-
 
 
 ```c++
@@ -2882,7 +2875,9 @@ public:
 
 
 
-# 48. 最长不含重复字符的子字符串
+### 48. 最长不含重复字符的子字符串
+
+<details><summary>code</summary>
 
 
 - [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
@@ -2893,7 +2888,6 @@ public:
 
 - 保留对应字符的起始位置，如果再次出现，计算当前子字符串的长度，更新最大长度，然后更新当前字符的最新位置
 
-<details><summary>code</summary>
 
 使用一个变量保存当前重复变量的之前位置，算法复杂度为O(N^2)
 
@@ -2981,10 +2975,11 @@ public:
 
 
 
-# 49. 丑数
-- [丑数](https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=13&tqId=11186&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+### 49. 丑数
 
 <details><summary>code</summary>
+
+- [丑数](https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=13&tqId=11186&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ```c++
 class Solution {
@@ -3019,12 +3014,11 @@ public:
 
 
 
-# 50. 第一个只出现一次的字符位置
-
-
-- [第一个只出现一次的字符位置](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+### 50. 第一个只出现一次的字符位置
 
 <details><summary>code</summary>
+
+- [第一个只出现一次的字符位置](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ```c++
 
@@ -3100,14 +3094,13 @@ public:
 
 
 
-# 51. 数组中的逆序对
+### 51. 数组中的逆序对
+
+<details><summary>code</summary>
 
 - [数组中的逆序对](https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tqId=11188&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-
 - 使用归并排序，每一次交换，统计两个下标差
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -3166,7 +3159,9 @@ void twomerge(vector<int>& nums, int l, int m, int h){
 
 
 
-# 52. 两个链表的第一个公共结点
+### 52. 两个链表的第一个公共结点
+
+<details><summary>code</summary>
 
 - [两个链表的第一个公共结点](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&tqId=11189&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -3176,8 +3171,6 @@ void twomerge(vector<int>& nums, int l, int m, int h){
 - A访问完访问B
 - B访问完访问A
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3200,15 +3193,15 @@ public:
 
 
 
-# 53 数字在排序数组中出现的次数
+### 53 数字在排序数组中出现的次数
+
+<details><summary>code</summary>
 
 - [数字在排序数组中出现的次数](https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 简单方法就是统计
 
 - 排序： 二分查找
-
-<details><summary>code</summary>
 
 
 ```c++
@@ -3241,13 +3234,14 @@ public:
 </details>
 
 
-# 54. 二叉搜索树的第 K 个结点
+### 54. 二叉搜索树的第 K 个结点
+
+<details><summary>code</summary>
 
 - [二叉搜索树的第 K 个结点](https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 中序遍历
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3280,12 +3274,11 @@ public:
 
 
 
-# 55.1 二叉树的深度
-
-- [二叉树的深度](https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b?tpId=13&tqId=11191&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-
+### 55.1 二叉树的深度
 
 <details><summary>code</summary>
+
+- [二叉树的深度](https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b?tpId=13&tqId=11191&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ```c++
 class Solution {
@@ -3304,14 +3297,14 @@ public:
 
 
 
-# 55.2 平衡二叉树
+### 55.2 平衡二叉树
+
+<details><summary>code</summary>
 
 - [平衡二叉树](https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=13&tqId=11192&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 - 左右子树相差为最多1
 
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3341,7 +3334,9 @@ public:
 
 
 
-# 56. 数组中只出现一次的数字
+### 56. 数组中只出现一次的数字
+
+<details><summary>code</summary>
 
 - [数组中只出现一次的数字](https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&tqId=11193&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 - [136. Single Number](https://leetcode.com/problems/single-number/description/)
@@ -3351,9 +3346,6 @@ public:
 - 两个不用的数异或中至少有一位为0,找到这一位
 - 然后 与数相与
 
-
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3404,7 +3396,9 @@ public:
 
 
 
-# 56.1 数组中只出现一次的数字（2）
+### 56.1 数组中只出现一次的数字（2）
+
+<details><summary>code</summary>
 
 - [137. Single Number II](https://leetcode.com/problems/single-number-ii/description/)
 
@@ -3432,7 +3426,6 @@ public:
 ```
 
 
-<details><summary>code</summary>
 
 ```c++
 
@@ -3459,11 +3452,12 @@ public:
 
 
 
-# 57.1 和为 S 的两个数字
+### 57.1 和为 S 的两个数字
+
+<details><summary>code</summary>
 
 - [和为 S 的两个数字](https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
-<details><summary>code</summary>
 
 - 采用双指针，左右向中间查找，并且保存一个乘积最小的两个数
 
@@ -3496,7 +3490,10 @@ public:
 
 
 
-# 57.2 和为 S 的连续正数序列
+### 57.2 和为 S 的连续正数序列
+
+
+<details><summary>code</summary>
 
 - [和为 S 的连续正数序列](https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -3505,9 +3502,6 @@ public:
 
 - 最多序列 r 不超过 和的一半 加 1；
 
-
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3544,12 +3538,12 @@ public:
 
 
 
-# 58.1 翻转单词顺序列
+### 58.1 翻转单词顺序列
+
+<details><summary>code</summary>
 
 - [翻转单词顺序列](https://www.nowcoder.com/practice/3194a4f4cf814f63919d0790578d51f3?tpId=13&tqId=11197&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 - 使用额外空间
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3578,9 +3572,9 @@ public:
     }
 };
 
-```
+// 方法2 
 
-```c++
+
 class Solution {
 public:
     string ReverseSentence(string str) {
@@ -3616,13 +3610,12 @@ public:
 
 
 
-# 58.2 左旋转字符串
-
-- [左旋转字符串](https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-
+### 58.2 左旋转字符串
 
 
 <details><summary>code</summary>
+
+- [左旋转字符串](https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ```c++
 class Solution {
@@ -3648,14 +3641,14 @@ public:
 
 
 
-# 59. 滑动窗口的最大值
+### 59. 滑动窗口的最大值
+
+<details><summary>code</summary>
 
 - [滑动窗口的最大值](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 1. 最简单的方法，就是每次移动一个窗口，然后寻找窗口的最大值
 2. 维护一个最大堆，保存size个数字，每次插入，然后取堆顶数字就可以，删除失效的数字
-
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -3744,11 +3737,11 @@ vector<int> maxInWindows(const vector<int>& nums, unsigned int size){
 </details>
 
 
-# 60. n 个骰子的点数
-
-- [n 个骰子的点数](https://www.lintcode.com/problem/dices-sum/description)
+### 60. n 个骰子的点数
 
 <details><summary>code</summary>
+
+- [n 个骰子的点数](https://www.lintcode.com/problem/dices-sum/description)
 
 ```c++
 class Solution {
@@ -3790,12 +3783,15 @@ public:
 
 
 
-# 61. 扑克牌顺子
-
+### 61. 扑克牌顺子
 
 <details><summary>code</summary>
 
-```
+- [扑克牌顺子](https://www.nowcoder.com/practice/762836f4d43d43ca9deb273b3de8e1f4?tpId=13&tqId=11198&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 癞子为0， 只需要统计非癞子的数之间的差值，对于癞子的个数就返回false
+
+```c++
 class Solution {
 public:
     bool IsContinuous( vector<int> numbers ) {
@@ -3824,12 +3820,16 @@ public:
 
 
 
-# 62. 圆圈中最后剩下的数
-
+### 62. 圆圈中最后剩下的数
 
 <details><summary>code</summary>
 
-```
+- [圆圈中最后剩下的数](https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&tqId=11199&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 笨方法： 使用一个数组模拟所有人，出队的下标就标记为-1，然后循环数数，遇到-1的就跳过
+- 第二种方法： 使用递归
+
+```c++
 class Solution {
 public:
     int LastRemaining_Solution(int n, int m)
@@ -3855,7 +3855,24 @@ public:
 
     }
 };
+
+
+
+// 方法2
+int LastRemaining_Solution(int n, int m){
+	if(n == 0)
+		return -1;
+	if(n==1)
+		return 0;
+	
+	return (LastRemaining_Solution(n-1, m) + m)%n;
+
+}
+
+
 ```
+
+
 
 </details>
 
@@ -3865,12 +3882,14 @@ public:
 
 
 
-# 63. 股票的最大利润
-
+### 63. 股票的最大利润
 
 <details><summary>code</summary>
 
-```
+- [股票的最大利润](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/)
+- 寻找最小的一天，和股票价格最高的一天
+
+```c++
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -3893,12 +3912,15 @@ public:
 
 
 
-# 64. 求 1+2+3+...+n
-
+### 64. 求 1+2+3+...+n
 
 <details><summary>code</summary>
 
-```
+- [求 1+2+3+...+n](https://www.nowcoder.com/practice/7a0da8fc483247ff8800059e12d7caf1?tpId=13&tqId=11200&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+- 不能使用乘除法，使用 && 操作 作为递归判断退出条件
+
+```c++
 class Solution {
 public:
     int Sum_Solution(int n) {
@@ -3917,12 +3939,18 @@ public:
 
 
 
-# 65. 不用加减乘除做加法
-
+### 65. 不用加减乘除做加法
 
 <details><summary>code</summary>
 
-```
+- [不用加减乘除做加法](https://www.nowcoder.com/practice/59ac416b4b944300b617d4f7f111b215?tpId=13&tqId=11201&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)<details><summary>code</summary>
+
+思路：
+
+> a ^ b 表示没有考虑进位的情况下两数的和，(a & b) << 1 就是进位。
+
+
+```c++
 class Solution {
 public:
     int Add(int num1, int num2)
@@ -3947,16 +3975,14 @@ public:
 
 
 
-# 66. 构建乘积数组
-
-
-- 除了本身坐标，其他都要乘
-
-
+### 66. 构建乘积数组
 
 <details><summary>code</summary>
 
-```
+- [构建乘积数组](https://www.nowcoder.com/practice/94a4d381a68b47b7a8bed86f2975db46?tpId=13&tqId=11204&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+- 除了本身坐标，其他都要乘
+
+```c++
 class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
@@ -3984,12 +4010,14 @@ public:
 </details>
 
 
-# 67. 把字符串转换成整数
-
+#### 67. 把字符串转换成整数
 
 <details><summary>code</summary>
 
-```
+- [把字符串转换成整数](https://www.nowcoder.com/practice/1277c681251b4372bdef344468e4f26e?tpId=13&tqId=11202&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+
+```c++
 class Solution {
 public:
     int StrToInt(string str) {
@@ -4019,13 +4047,13 @@ public:
 
 
 
-# 68. 树中两个节点的最低公共祖先
-
-
+### 68. 树中两个节点的最低公共祖先
 
 <details><summary>code</summary>
 
-```
+- [树中两个节点的最低公共祖先](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
+
+```c++
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
