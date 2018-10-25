@@ -349,6 +349,8 @@ public:
 
 ### 10.2 跳台阶
 
+<details><summary>code</summary>
+
 - [跳台阶](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 
@@ -743,7 +745,7 @@ int NumberOf1(int n){
 	 
 ```
 
-</details>
+
 
 
 ### 15.1 用一条语句判断一个整数是不是2的整数次方
@@ -780,7 +782,7 @@ int CountSum(int m, int n){
 
 ```
 
-
+</details>
 
 
 ### 16. 数值的整数次方
