@@ -16,16 +16,15 @@
 - 数据结构相关
 
 ---
+
 # 1 双指针
 
-## 1.1 167. Two Sum II - Input array is sorted
+## 1.1 【有序数组的 Two Sum】167. Two Sum II - Input array is sorted
 
-<details>
-<summary> code </summary>
+<details><summary>code</summary>
 
 - [167. Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -59,7 +58,7 @@ public:
 
 </details>
 
-## 1.2 633. Sum of Square Numbers[leetcode]
+## 1.2 【两数平方和】 633. Sum of Square Numbers[leetcode]
 
 
 <details><summary>code</summary>
@@ -93,7 +92,7 @@ public:
 
 </details>
 
-## 1.3 345. Reverse Vowels of a String (Easy)
+## 1.3 【反转字符串中的元音字符】345. Reverse Vowels of a String (Easy)
 
 
 <details><summary>code</summary>
@@ -147,7 +146,7 @@ public:
 </details>
 
 
-## 1.4 680. Valid Palindrome II
+## 1.4 【回文字符串】680. Valid Palindrome II
 
 <details><summary>code</summary>
 
@@ -185,7 +184,7 @@ public:
 
 </details>
 
-## 1.5 88. Merge Sorted Array (Easy)
+## 1.5 【归并两个有序数组】88. Merge Sorted Array (Easy)
 
 <details><summary>code</summary>
 
@@ -228,7 +227,7 @@ public:
 
 </details>
 
-## 1.6 141. Linked List Cycle (Easy)
+## 1.6 【判断链表是否存在环】141. Linked List Cycle (Easy)
 
 <details><summary>code</summary>
 
@@ -255,7 +254,7 @@ public:
 
 </details>
 
-## 1.7 524. Longest Word in Dictionary through Deleting (Medium)
+## 1.7 【最长子序列】524. Longest Word in Dictionary through Deleting (Medium)
 
 <details><summary>code</summary>
 
@@ -303,7 +302,7 @@ public:
 
 # 2. 排序
 
-## 2.1 215. Kth Largest Element in an Array (Medium)
+## 2.1 【Kth Element】 215. Kth Largest Element in an Array (Medium)
 
 <details><summary>code</summary>
 
@@ -335,7 +334,7 @@ public:
 </details>
 
 
-## 2.2 347. Top K Frequent Elements (Medium)
+## 2.2 【出现频率最多的 k 个数】 347. Top K Frequent Elements (Medium)
 
 <details><summary>code</summary>
 
@@ -381,7 +380,7 @@ public:
 
 </details>
 
-## 2.3 451. Sort Characters By Frequency (Medium)
+## 2.3 【按照字符出现次数对字符串排序】451. Sort Characters By Frequency (Medium)
 
 <details><summary>code</summary>
 
@@ -423,7 +422,7 @@ public:
 </details>
 
 
-## 2.4 75. Sort Colors (Medium)
+## 2.4 【荷兰国旗问题】75. Sort Colors (Medium)
 
 
 <details><summary>code</summary>
@@ -472,7 +471,7 @@ public:
 
 - 保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。
 
-## 3.1 455. Assign Cookies (Easy)
+## 3.1 【分配饼干】455. Assign Cookies (Easy)
 
 
 <details><summary>code</summary>
@@ -498,7 +497,7 @@ public:
 </details>
 
 
-## 3.2 435. Non-overlapping Intervals (Medium)
+## 3.2【不重叠的区间个数】435. Non-overlapping Intervals (Medium)
 
 
 <details><summary>code</summary>
@@ -558,7 +557,7 @@ static    bool comp(Interval a, Interval b){
 
 </details>
 
-## 3.3 452. Minimum Number of Arrows to Burst Balloons (Medium)
+## 3.3 【投飞镖刺破气球】452. Minimum Number of Arrows to Burst Balloons (Medium)
 
 
 <details><summary>code</summary>
@@ -608,7 +607,7 @@ public:
 
 </details>
 
-## 3.4 406. Queue Reconstruction by Height(Medium)
+## 3.4 【根据身高和序号重组队列】406. Queue Reconstruction by Height(Medium)
 
 
 <details><summary>code</summary>
@@ -658,7 +657,7 @@ public:
 </details>
 
 
-## 3.5 763. Partition Labels (Medium)【分隔字符串使同种字符出现在一起】
+## 3.5 【分隔字符串使同种字符出现在一起】763. Partition Labels (Medium)
 - [763. Partition Labels (Medium)](https://leetcode.com/problems/partition-labels/description/)
 
 - 贪婪：始终寻找最后一个下标
@@ -770,7 +769,7 @@ public:
 
 </details>
 
-## 3.7
+## 3.7 【判断是否为子序列】392. Is Subsequence (Medium)
 
 <details><summary>code</summary>
 
