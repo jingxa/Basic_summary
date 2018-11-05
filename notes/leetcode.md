@@ -17,12 +17,17 @@
 
 ---
 # 1 双指针
+
 ## 1.1 167. Two Sum II - Input array is sorted
+
+<details>
+<summary> code </summary>
+
 - [167. Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
@@ -59,7 +64,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     bool judgeSquareSum(int c) {
@@ -89,11 +94,14 @@ public:
 </details>
 
 ## 1.3 345. Reverse Vowels of a String (Easy)
-- 逆转两个元音字母
+
 
 <details><summary>code</summary>
 
-```
+- 逆转两个元音字母
+
+
+```c++
 
 class Solution {
 public:
@@ -143,7 +151,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     bool validPalindrome(string s) {
@@ -181,7 +189,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
@@ -224,7 +232,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -251,7 +259,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     string findLongestWord(string s, vector<string>& d) {
@@ -299,7 +307,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
@@ -331,7 +339,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -377,7 +385,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     string frequencySort(string s) {
@@ -414,16 +422,19 @@ public:
 
 </details>
 
+
 ## 2.4 75. Sort Colors (Medium)
+
+
+<details><summary>code</summary>
 
 > 荷兰国旗问题
 > 荷兰国旗包含三种颜色：红、白、蓝。
 > 有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。
 > 它其实是三向切分快速排序的一种变种，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分> 元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。
 
-<details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
@@ -456,13 +467,17 @@ public:
 
 
 
+
 # 3 贪心算法
+
 - 保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。
 
 ## 3.1 455. Assign Cookies (Easy)
+
+
 <details><summary>code</summary>
 
-```
+```c++
 class Solution {
 public:
     int findContentChildren(vector<int>& g, vector<int>& s) {
@@ -485,6 +500,9 @@ public:
 
 ## 3.2 435. Non-overlapping Intervals (Medium)
 
+
+<details><summary>code</summary>
+
 - 删除重复区间，保留最小的区间，即留下最多区间数
 
 - 利用区间的结尾，排序
@@ -493,9 +511,7 @@ public:
 
 
 
-<details><summary>code</summary>
-
-```
+```c++
 /**
  * Definition for an interval.
  * struct Interval {
@@ -544,15 +560,16 @@ static    bool comp(Interval a, Interval b){
 
 ## 3.3 452. Minimum Number of Arrows to Burst Balloons (Medium)
 
+
+<details><summary>code</summary>
+
 - [452](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/)
 
 - 二维坐标，表示x轴上的位置起点和终点，但是，箭头只能垂直射入，最小能够射破气球的箭头数
 - 计算不重叠的区域个数
 
-<details><summary>code</summary>
 
-
-```
+```c++
 class Solution {
 public:
     int findMinArrowShots(vector<pair<int, int>>& points) {
@@ -593,6 +610,10 @@ public:
 
 ## 3.4 406. Queue Reconstruction by Height(Medium)
 
+
+<details><summary>code</summary>
+
+
 - [406. Queue Reconstruction by Height(Medium)](https://leetcode.com/problems/queue-reconstruction-by-height/description/)
 
 
@@ -600,7 +621,6 @@ public:
 
 > 身高降序、k 值升序，然后按排好序的顺序插入队列的第 k 个位置中。
 
-<details><summary>code</summary>
 
 ```c++
 class Solution {
@@ -695,6 +715,10 @@ public:
 
 ## 3.6 【种植花朵】605. Can Place Flowers (Easy)
 
+
+<details><summary>code</summary>
+
+
 - [605. Can Place Flowers (Easy)](https://leetcode.com/problems/can-place-flowers/description/)
 
 - 花必须间隔种的问题，寻找能够种植最多的解
@@ -702,9 +726,44 @@ public:
 - 贪心思想：
 
 
-<details><summary>code</summary>
-
 ```c++
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& bed, int n) {
+        // 两朵花之间有空格
+        int len = bed.size();
+        int cnt = 0;
+        // 记录前一个位置和后一个位置的情况
+        int pre = 0, next = 0;
+        
+        for(int i=0;i<len&& cnt < len; ++i){
+            // 当前未被占用
+            if(bed[i] == 1)
+                continue;
+            
+            if(i == 0){  // 第一个位置
+                pre = 0;
+            }else{
+                pre = bed[i - 1];  // 前一个位置
+            }
+            
+            if(i == len -1){  // 最后一个
+                next = 0;
+            }else{
+                next = bed[i+1];
+            }
+            
+            // 前后都为空
+            if(pre == 0 && next == 0){
+                ++ cnt;
+                bed[i] = 1;
+            }
+        }
+        
+        return cnt >= n;   // 是否能够容下
+    }
+};
+
 
 
 ```
@@ -715,7 +774,7 @@ public:
 
 <details><summary>code</summary>
 
-```
+```c++
 ```
 
 </details>
