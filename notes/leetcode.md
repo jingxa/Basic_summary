@@ -875,10 +875,45 @@ public:
 
 ```
 
+</details>
 
+3.10 【子数组最大的和】53. Maximum Subarray (Easy)
+
+<details><summary>code</summary>
+
+- [53. Maximum Subarray (Easy)](https://leetcode.com/problems/maximum-subarray/description/)
+
+- 使用动态规划求解连续的最大和
+
+```c++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        if(nums.empty())
+            return 0;
+        
+        int pre = nums[0];
+        int maxnum = pre;
+        
+        for(int i=1;i<nums.size(); ++i){
+            pre = pre > 0 ? pre + nums[i] : nums[i];
+            if(pre > maxnum)
+                maxnum = pre;
+
+        }
+        return maxnum;        
+    }
+};
+
+
+```
 
 </details>
 
 
+
+<details><summary>code</summary>
+
+</details>
 
 
